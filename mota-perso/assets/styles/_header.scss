@@ -1,0 +1,40 @@
+body {
+   font-family: 'Space mono', sans-serif;
+   width: 100%;
+   margin: auto;
+   max-width: 1440px;
+}
+
+:root {
+   --color-red: #E00000;
+   --color-red-medium: #FE5858;
+   --color-pink: #FFD6D6;
+   --color-grey-light: #E5E5E5;
+   --color-grey-medium: #D8D8D8;
+   --color-grey-strong: #C4C4C4; 
+   --color-blue-strong: #313144;
+}
+
+/*header*/
+#header * {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   width: 100%;
+   height: 80px;
+}
+
+#menu * {
+   display: flex;
+   flex-direction: row;
+   text-decoration: none;
+   font-size: 16px;
+   justify-content: center;
+   margin-left: 10px;
+   color: black;
+}
+
+#branding-img {
+   width: 216px;
+   height: 14px;
+}

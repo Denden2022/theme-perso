@@ -7,11 +7,16 @@
  */
 
 ?>  
-</main>
-</div>
-<footer id="footer" role="contentinfo">
 
+<footer id="footer" role="contentinfo">
+    <ul>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">Vie privée</a></li>
+        <li><a href="#">Tous droits réservés</a></li>
+    </ul>
 </footer>
+
 <?php wp_footer(); ?>
+
 </body>
 </html>

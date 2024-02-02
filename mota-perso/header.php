@@ -16,15 +16,17 @@
 <?php wp_head(); ?>
 </head>
 
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+
 <header id="header" role="banner">
 <div id="branding">
     <div id="branding-img">
-        <?php echo '<img src="/images/Logo.svg" alt="logo">'?>
+        <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/Logo.svg'; ?>" alt="<?php echo 'logo'; ?>">
     </div>
     <nav id="menu" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
-        <?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'link_before' => '<span itemprop="name">', 'link_after' => '</span>')); ?>
+        <?php wp_nav_menu( array( 'theme_location' => 'principal', 'link_before' => '<span itemprop="name">', 'link_after' => '</span>')); ?>
     </nav>
 </div>
 </header>
-<div id="container">
-<main id="content" role="main">
+
