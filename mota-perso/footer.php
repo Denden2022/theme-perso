@@ -8,7 +8,7 @@
 
 ?>  
 
-<footer id="footer" role="contentinfo">
+<footer id="footer" role="contentinfo" class="footer">
     <ul>
         <li><a href="#">Mentions légales</a></li>
         <li><a href="#">Vie privée</a></li>
