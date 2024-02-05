@@ -14,9 +14,12 @@
         <li><a href="#">Vie privée</a></li>
         <li><a href="#">Tous droits réservés</a></li>
     </ul>
+
 </footer>
 
-<?php //get_template_part('templates-part/content-modale'); ?>
+    <?php get_template_part('templates-part/content-modale'); ?>
+
+
 
 <?php wp_footer(); ?>
 
