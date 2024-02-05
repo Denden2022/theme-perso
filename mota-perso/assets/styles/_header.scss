@@ -14,6 +14,7 @@ body {
    --color-grey-medium: #D8D8D8;
    --color-grey-strong: #C4C4C4; 
    --color-blue-strong: #313144;
+   --color-border-form: #B8BBC2;
 }
 
 /*header*/
@@ -35,16 +36,16 @@ body {
    color: black;
    margin-left: 20px;
    position: relative;
-   left: 70px;
+   left: 100px;
    text-transform: uppercase;
 }
-.page-item-15 {
+.page-item-63 {
    order: -1;
 }
 #branding-img {
    width: 216px;
    height: 14px;
    position: absolute;
-   left: 140px;
-   top: 60px;
+   left: 400px;
+   margin-top: 20px;
 }

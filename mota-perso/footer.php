@@ -16,6 +16,8 @@
     </ul>
 </footer>
 
+<?php //get_template_part('templates-part/content-modale'); ?>
+
 <?php wp_footer(); ?>
 
 </body>

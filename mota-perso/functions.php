@@ -9,5 +9,8 @@ wp_enqueue_script( 'jquery' );
 wp_enqueue_script('modale-contact-script', get_template_directory_uri() . '/js/modale-contact.js', array(), 1.1, true);
 }
 
-
+register_nav_menus( array(
+	'main' => 'Menu Principal',
+	//'footer' => 'Bas de page',
+) );
 ?>
