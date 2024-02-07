@@ -17,7 +17,7 @@
     height: 770px;
     padding-top: 10px;
     object-fit: contain;
-    
+    @include anim-modale;
 }
 
 .wpcf7 {

@@ -1,50 +1,107 @@
 <?php
 /**
- * The template for displaying all single posts
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+ * Template utilisé pour afficher un seul article (post).
  *
  * @package WordPress
  * @subpackage Theme-perso
- * 
  */
 
 get_header();
 
-/* Start the Loop */
-while ( have_posts() ) :
-	the_post();
+/* Commencer la boucle */
+while (have_posts()) :
+    the_post();
+?>
 
-	get_template_part( 'template-parts/content/content-single' );
+<main id="main" class="site-main">
+    <div class="container">
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			
+<?php
+// On récupère les champs ACF nécessaires
+$titre=get_field('titre');
+$reference=get_field('reference');
+$categorie=get_field('categorie');
+$format=get_field('format');
+$type=get_field('type');
+$annee=get_field('annee');
+// Obtenir l'ID de l'image à partir du champ ACF "photos"
+$image_id = get_field('photos', $post_id);
+?>
+            <!---1ère partie avec la photo et ses informations détaillées-->
+<div class="details-container">
+	<div class="details">
+		<h2><?php echo $titre ?></h2>
+			<ul>
+				<li>Référence : BF<?php echo $reference ?></li>
+				<li>Catégorie : <?php echo $categorie ?></li>
+				<li>Format : <?php echo $format ?></li>
+				<li>Type : <?php echo $type ?></li>
+				<li>Année : <?php echo $annee ?></li>
+			</ul>
+    </div><!---ferme details-->
 
-	if ( is_attachment() ) {
-		// Parent post navigation.
-		the_post_navigation(
-			array(
-				/* translators: %s: Parent post link. */
-				'prev_text' => sprintf( __( '<span class="meta-nav">Published in</span><span class="post-title">%s</span>', 'twentytwentyone' ), '%title' ),
-			)
-		);
+    <div class="side-big-image">
+<?php
+// Vérifier si l'ID de l'image a été récupéré avec succès
+if ($image_id) {
+    // Utilisez l'ID de l'image pour obtenir l'URL et les autres informations de l'image
+   		$image_url = wp_get_attachment_image_url($image_id, 'medium');//donner une taille à l'image
+		$image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true); // Récupérer l'attribut alt de l'image
+
+    // Afficher l'image
+        echo '<img class="big-image" src="' . esc_url($image_url) . '" alt="' . esc_attr($image_alt) . '">';
 	}
+?>                      
+	</div><!---ferme la side-image-->		
+</div><!---ferme details-container-->
 
-	// If comments are open or there is at least one comment, load up the comment template.
-	if ( comments_open() || get_comments_number() ) {
-		comments_template();
-	}
+                <!---2ème partie avec le bouton contact-->
+    <div class="contact-photo"><!---contact commande photo-->
+        <div class="button-contact">
+			<p>Cette photo vous intéresse ?</p>
+			<a href="../../contact"><input class="input-single-page" type="submit" value="Contact"></a>
+		</div>
 
-	// Previous/next post navigation.
-	$twentytwentyone_next = is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' );
-	$twentytwentyone_prev = is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' );
+        <div class="side-little-image">
+            <?php
+                // Vérifier si l'ID de l'image a été récupéré avec succès
+                if ($image_id) {
+                // Utilisez l'ID de l'image pour obtenir l'URL et les autres informations de l'image
+		            $image_little = wp_get_attachment_image_url($image_id, 'thumbnail');//donner une taille à l'image
+		            $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true); // Récupérer l'attribut alt de l'image
 
-	$twentytwentyone_next_label     = esc_html__( 'Next post', 'twentytwentyone' );
-	$twentytwentyone_previous_label = esc_html__( 'Previous post', 'twentytwentyone' );
+	            // Afficher l'image
+		            echo '<div><img class="little-image" src="' . esc_url($image_little) . '" alt="Autre image"></div>';
+	            }
+            ?>
+        </div><!---ferme side-little-image-->
+    </div><!---ferme contact-photo-->
+        
+</article><!-- #post-<?php the_ID(); ?> -->
 
-	the_post_navigation(
-		array(
-			'next_text' => '<p class="meta-nav">' . $twentytwentyone_next_label . $twentytwentyone_next . '</p><p class="post-title">%title</p>',
-			'prev_text' => '<p class="meta-nav">' . $twentytwentyone_prev . $twentytwentyone_previous_label . '</p><p class="post-title">%title</p>',
-		)
-	);
-endwhile; // End of the loop.
+        <?php
+        // La boucle
+        $args = array(
+            'showposts' => 1,
+            'cat' => 0,
+            'orderby'  => 'rand'
+        );
 
+        $the_query = new WP_Query($args);
+        while ($the_query->have_posts()) :
+            $the_query->the_post();
+        ?>
+
+        <?php endwhile;
+        wp_reset_postdata(); // Réinitialiser la requête
+
+        endwhile; // Fin de la boucle WordPress
+        ?>
+    </div><!-- .container -->
+</main><!-- #main -->
+
+<?php
 get_footer();
+?>
+

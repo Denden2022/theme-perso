@@ -14,12 +14,13 @@
  
  <main id="primary" class="site-main">
         <section id="logo" class="banner">
-                <img class="header-logo" style="width:100%; height:962px;" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/nathalie-2.webp'; ?> " alt="hero header">
+                
+        <div class="title-header">
+                <img style="width:100%; height:142px;" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/Titre-header.svg'; ?> " alt="titre header">
+        </div>
         </section>
  
-
-
-
+ </main>
  </div>
- 
+
  <?php get_footer(); ?>

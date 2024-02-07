@@ -3,8 +3,6 @@
  * The header for our theme
  *
  *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
  */
 
 ?>
@@ -25,7 +23,7 @@
         <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/Logo.svg'; ?>" alt="<?php echo 'logo'; ?>">
     </div>
     <nav id="menu" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
-        <?php wp_nav_menu( array(
+        <?php wp_nav_menu ( array(
                                     'theme_location' => 'main',
                                     'container' => 'ul', // afin d'éviter d'avoir une div autour 
                                     'menu_class' => 'site_header_menu', // ma classe personnalisée 
@@ -34,6 +32,7 @@
     </nav>
 </div>
 </header>
+
 
 
 

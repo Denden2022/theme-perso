@@ -11,11 +11,10 @@ wp_enqueue_script('modale-script', get_template_directory_uri() . '/assets/js/sc
 
 function register_my_menu(){
 register_nav_menus( array(
-	'main' => 'Menu Principal'
-	//'footer' => 'Bas de page',
+	'main' => 'Menu Principal',
+	'footer' => 'Bas de page',
 ) );
 }
 add_action( 'after_setup_theme', 'register_my_menu' );
-
 
 ?>
