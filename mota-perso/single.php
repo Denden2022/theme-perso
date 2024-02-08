@@ -46,37 +46,50 @@ $image_id = get_field('photos', $post_id);
 // Vérifier si l'ID de l'image a été récupéré avec succès
 if ($image_id) {
     // Utilisez l'ID de l'image pour obtenir l'URL et les autres informations de l'image
-   		$image_url = wp_get_attachment_image_url($image_id, 'medium');//donner une taille à l'image
+   		$image_url = wp_get_attachment_image_url($image_id, 'full');//donner une taille à l'image
 		$image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true); // Récupérer l'attribut alt de l'image
 
     // Afficher l'image
         echo '<img class="big-image" src="' . esc_url($image_url) . '" alt="' . esc_attr($image_alt) . '">';
 	}
-?>                      
+?>        
 	</div><!---ferme la side-image-->		
 </div><!---ferme details-container-->
 
-                <!---2ème partie avec le bouton contact-->
+                    <!---2ème partie avec le bouton contact-->
+
     <div class="contact-photo"><!---contact commande photo-->
         <div class="button-contact">
 			<p>Cette photo vous intéresse ?</p>
 			<a href="../../contact"><input class="input-single-page" type="submit" value="Contact"></a>
 		</div>
 
+    <div class="arrows">
+        <img class="arrow-left" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche">
+        <img class="arrow-right"src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite">
+    </div>
         <div class="side-little-image">
             <?php
                 // Vérifier si l'ID de l'image a été récupéré avec succès
-                if ($image_id) {
+                /*if ($image_id) {
                 // Utilisez l'ID de l'image pour obtenir l'URL et les autres informations de l'image
 		            $image_little = wp_get_attachment_image_url($image_id, 'thumbnail');//donner une taille à l'image
 		            $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true); // Récupérer l'attribut alt de l'image
 
 	            // Afficher l'image
 		            echo '<div><img class="little-image" src="' . esc_url($image_little) . '" alt="Autre image"></div>';
-	            }
+	            }*/
             ?>
+
+        
         </div><!---ferme side-little-image-->
     </div><!---ferme contact-photo-->
+
+    <div class="text-photos-apparentes">
+        <p>Vous aimerez aussi</p>
+    </div>
+
+    <?php get_template_part('templates-part/photo-block'); ?>
         
 </article><!-- #post-<?php the_ID(); ?> -->
 

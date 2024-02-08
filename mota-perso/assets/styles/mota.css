@@ -40,6 +40,7 @@ body {
   justify-content: center;
   width: 100%;
   height: 80px;
+  box-shadow: 0px 5px 15px -5px #E5E5E5;
 }
 
 #menu * {
@@ -161,21 +162,18 @@ body {
   cursor: pointer;
 }
 
-.container {
-  background-color: #f7f7f7;
-}
-
 .details-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 720px 720px;
   gap: 10px;
   padding-top: 35px;
+  justify-content: center;
 }
 
 .contact-photo {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  height: 118px;
 }
 
 .details {
@@ -203,13 +201,15 @@ body {
 }
 
 .side-big-image {
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 563px;
-  height: 844px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 30vw;
+  height: 37.61vw;
 }
 
 .big-image {
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
   height: 100%;
 }
@@ -258,4 +258,34 @@ body {
   -o-object-fit: fill;
      object-fit: fill;
   padding-top: 10px;
+}
+
+.arrows {
+  margin-left: 340px;
+  margin-top: 85px;
+}
+
+.arrow-right {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.arrow-left {
+  margin-left: 140px;
+  cursor: pointer;
+}
+
+.text-photos-apparentes {
+  text-transform: uppercase;
+  font-size: 18px;
+  border-top: 1px solid;
+  margin: 0 150px 0 120px;
+  padding: 60px 0 40px 0;
+}
+
+.block-image {
+  display: grid;
+  grid-template-columns: 600px 600px;
+  justify-content: center;
+  padding-bottom: 100px;
 }/*# sourceMappingURL=mota.css.map */

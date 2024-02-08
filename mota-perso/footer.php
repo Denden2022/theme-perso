@@ -14,7 +14,7 @@
                             'container' => 'ul', // afin d'éviter d'avoir une div autour 
                             'menu_class' => 'site_footer_menu', // ma classe personnalisée 
             )); 
-        ?>
+?>
 
 </footer>
 

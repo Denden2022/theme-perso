@@ -10,8 +10,6 @@
 
  <?php get_header(); ?>
 
- <div class="entry-content" itemprop="mainContentOfPage">
- 
  <main id="primary" class="site-main">
         <section id="logo" class="banner">
                 
@@ -21,6 +19,5 @@
         </section>
  
  </main>
- </div>
 
  <?php get_footer(); ?>
