@@ -14,77 +14,90 @@ while (have_posts()) :
 ?>
 
 <main id="main" class="site-main">
-    <div class="container">
+    <div class="container-single-page">
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			
 <?php
 // On récupère les champs ACF nécessaires
 $titre=get_field('titre');
 $reference=get_field('reference');
-$categorie=get_field('categorie');
-$format=get_field('format');
+$categorie=get_field('categorie', $post_id);
+$format=get_field('format', $post_id);
 $type=get_field('type');
 $annee=get_field('annee');
 // Obtenir l'ID de l'image à partir du champ ACF "photos"
 $image_id = get_field('photos', $post_id);
 ?>
+
             <!---1ère partie avec la photo et ses informations détaillées-->
 <div class="details-container">
 	<div class="details">
 		<h2><?php echo $titre ?></h2>
 			<ul>
 				<li>Référence : BF<?php echo $reference ?></li>
-				<li>Catégorie : <?php echo $categorie ?></li>
-				<li>Format : <?php echo $format ?></li>
+				<li>Catégorie : <?php if ($categorie) {
+                    // Récupérer les termes de taxonomie associés au champ personnalisé 'format'
+                    $terms = get_terms(array(
+                    'taxonomy' => 'categorie',
+                    'include' => $categorie // Inclure uniquement les termes de taxonomie correspondant à la valeur du champ 'format'
+                ));
+
+                // Vérifier s'il y a des termes de taxonomie trouvés
+                if (!empty($terms) && !is_wp_error($terms)) {
+                    // Parcourir les termes de taxonomie
+                    foreach ($terms as $term) {
+                    // affichez le nom du terme)
+                    echo $term->name;
+                    }
+                }};
+                ?>
+                </li>
+				<li>Format : <?php if ($format) {
+                // Récupérer les termes de taxonomie associés au champ personnalisé 'format'
+                    $terms = get_terms(array(
+                    'taxonomy' => 'format',
+                    'include' => $format // Inclure uniquement les termes de taxonomie correspondant à la valeur du champ 'format'
+                    ));
+
+                    // Vérifier s'il y a des termes de taxonomie trouvés
+                if (!empty($terms) && !is_wp_error($terms)) {
+                    // Parcourir les termes de taxonomie
+                    foreach ($terms as $term) {
+                    // affichez le nom du terme)
+                    echo $term->name;
+                    }
+                }};
+                ?>
+                </li>
 				<li>Type : <?php echo $type ?></li>
 				<li>Année : <?php echo $annee ?></li>
 			</ul>
     </div><!---ferme details-->
-
     <div class="side-big-image">
-<?php
-// Vérifier si l'ID de l'image a été récupéré avec succès
-if ($image_id) {
-    // Utilisez l'ID de l'image pour obtenir l'URL et les autres informations de l'image
-   		$image_url = wp_get_attachment_image_url($image_id, 'full');//donner une taille à l'image
-		$image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true); // Récupérer l'attribut alt de l'image
-
-    // Afficher l'image
-        echo '<img class="big-image" src="' . esc_url($image_url) . '" alt="' . esc_attr($image_alt) . '">';
-	}
-?>        
-	</div><!---ferme la side-image-->		
+        <?php echo '<div class="big-image">'; the_post_thumbnail(); echo '</div>';?>
+	</div><!---ferme la side-image-->
 </div><!---ferme details-container-->
 
-                    <!---2ème partie avec le bouton contact-->
 
+                    <!---2ème partie avec le bouton contact-->
     <div class="contact-photo"><!---contact commande photo-->
         <div class="button-contact">
 			<p>Cette photo vous intéresse ?</p>
 			<a href="../../contact"><input class="input-single-page" type="submit" value="Contact"></a>
 		</div>
-
-    <div class="arrows">
-        <img class="arrow-left" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche">
-        <img class="arrow-right"src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite">
-    </div>
+        <div class="arrows">
+            <img class="arrow-left" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche">
+            <img class="arrow-right"src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite">
         <div class="side-little-image">
-            <?php
-                // Vérifier si l'ID de l'image a été récupéré avec succès
-                /*if ($image_id) {
-                // Utilisez l'ID de l'image pour obtenir l'URL et les autres informations de l'image
-		            $image_little = wp_get_attachment_image_url($image_id, 'thumbnail');//donner une taille à l'image
-		            $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true); // Récupérer l'attribut alt de l'image
-
-	            // Afficher l'image
-		            echo '<div><img class="little-image" src="' . esc_url($image_little) . '" alt="Autre image"></div>';
-	            }*/
-            ?>
-
+            <?php echo '<div class="little-image">'; the_post_thumbnail(); echo '</div>';?>
         
         </div><!---ferme side-little-image-->
+        </div>
+        
     </div><!---ferme contact-photo-->
 
+
+                    <!---3ème partie avec les photos apparentées-->
     <div class="text-photos-apparentes">
         <p>Vous aimerez aussi</p>
     </div>

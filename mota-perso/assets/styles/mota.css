@@ -15,6 +15,7 @@
 }
 body {
   font-family: "Space mono", sans-serif;
+  font-family: "Poppins", sans-serif;
   width: 100%;
   margin: auto;
   max-width: 1440px;
@@ -38,6 +39,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  position: relative;
   width: 100%;
   height: 80px;
   box-shadow: 0px 5px 15px -5px #E5E5E5;
@@ -47,7 +49,6 @@ body {
   display: flex;
   flex-direction: row;
   text-decoration: none;
-  font-size: 18px;
   color: black;
   margin-left: 20px;
   position: relative;
@@ -55,34 +56,45 @@ body {
 }
 
 .site_header_menu {
+  font-family: "Space mono", sans-serif;
   position: relative;
-  left: 350px;
+  left: 18.23vw;
+}
+.site_header_menu li:hover, .site_header_menu #button-contact:hover {
+  font-weight: bold;
+}
+
+#button-contact {
+  font-family: "Space mono", sans-serif;
+  font-size: 16px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
 }
 
 .page-item-63 {
   order: -1;
 }
 
-#branding-img {
-  width: 216px;
+#branding-img img {
+  width: 11.25vw;
   height: 14px;
   position: absolute;
-  left: 400px;
-  margin-top: 20px;
+  left: 8.83vw;
+  margin-top: 1.042vw;
 }
 
 .title-header {
   position: absolute;
-  bottom: 300px;
-  left: 450px;
+  bottom: 14.58vw;
+  left: 23.44vw;
 }
 
-#logo {
-  background-image: url(../images/nathalie-2.webp);
-  background-size: cover;
-  min-height: 962px;
-  background-position: center center;
-  background-repeat: no-repeat;
+.header-image img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 50.104vw;
+  width: 75vw;
 }
 
 /*footer*/
@@ -95,13 +107,17 @@ body {
   text-decoration: none;
   color: black;
   font-size: 18px;
-  margin-left: 50px;
+  margin-left: 40px;
   padding: 0;
   text-transform: uppercase;
 }
 
 .footer {
   border-top: 1px solid;
+}
+
+.menu-item-144 {
+  margin-right: 40px;
 }
 
 .popup-contain {
@@ -119,7 +135,7 @@ body {
 .popup-contact {
   position: absolute;
   background: white;
-  border: black solid 4px;
+  border: black solid 5px;
   width: 597px;
   height: 770px;
   padding-top: 10px;
@@ -144,7 +160,7 @@ body {
   border-radius: 10px;
   border: 1px solid;
   color: var(--color-border-form);
-  font-family: "Poppins", sans-serif;
+  margin: 5px 0 10px 0;
 }
 
 #message {
@@ -157,22 +173,32 @@ body {
   width: 263px;
   padding: 6px 16px;
   color: black;
+  font-size: 12px;
+  font-family: "Space mono", sans-serif;
+  font-weight: lighter;
   border-radius: 2px;
   border: none;
   cursor: pointer;
 }
 
+.wpcf7-form p label {
+  font-size: 12px;
+  font-family: "Poppins" sans-serif;
+  font-weight: 200;
+}
+
 .details-container {
   display: grid;
   grid-template-columns: 720px 720px;
-  gap: 10px;
   padding-top: 35px;
   justify-content: center;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .contact-photo {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 720px 720px;
   height: 118px;
 }
 
@@ -201,20 +227,18 @@ body {
 }
 
 .side-big-image {
-  -o-object-fit: contain;
-     object-fit: contain;
-  width: 30vw;
-  height: 37.61vw;
+  width: 29.125vw;
+  margin-left: 10px;
 }
 
-.big-image {
+.big-image img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
-.input-single-page {
+.input-single-page, .button-charger {
   padding: 10px;
   width: 272px;
   height: 50px;
@@ -244,34 +268,36 @@ body {
 }
 
 .side-little-image {
+  position: relative;
   margin-left: 480px;
   -o-object-fit: cover;
      object-fit: cover;
-  width: 81px;
-  height: 71px;
-  margin-bottom: 50px;
+  width: 4.22vw;
+  height: 3.7vw;
 }
 
-.little-image {
+.little-image img {
+  position: absolute;
   width: 100%;
   height: 100%;
-  -o-object-fit: fill;
-     object-fit: fill;
-  padding-top: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  bottom: 95px;
+  right: 335px;
 }
 
 .arrows {
-  margin-left: 340px;
-  margin-top: 85px;
+  margin-left: 17.8vw;
+  margin-top: 4.43vw;
 }
 
 .arrow-right {
-  margin-left: 20px;
+  margin-left: 22px;
   cursor: pointer;
 }
 
 .arrow-left {
-  margin-left: 140px;
+  margin-left: 145px;
   cursor: pointer;
 }
 
@@ -285,7 +311,24 @@ body {
 
 .block-image {
   display: grid;
-  grid-template-columns: 600px 600px;
+  grid-template-columns: 580px 580px;
   justify-content: center;
-  padding-bottom: 100px;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.same-image img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 29.375vw;
+  height: 25.78vw;
+  width: 100%;
+}
+
+.block-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
 }/*# sourceMappingURL=mota.css.map */

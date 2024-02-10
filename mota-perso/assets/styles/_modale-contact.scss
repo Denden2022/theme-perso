@@ -12,7 +12,7 @@
 .popup-contact{
     position: absolute;
     background:white;
-    border: black solid 4px;
+    border: black solid 5px;
     width:597px;
     height: 770px;
     padding-top: 10px;
@@ -34,7 +34,7 @@
     border-radius: 10px;
     border: 1px solid;
     color: var(--color-border-form);
-    font-family: 'Poppins', sans-serif;
+    margin: 5px 0 10px 0;
 }
 
 #message {
@@ -48,7 +48,15 @@
     width: 263px;
     padding:6px 16px;
     color:black;
+    font-size: 12px;
+    font-family: 'Space mono', sans-serif;
+    font-weight: lighter;
     border-radius:2px;
     border: none;
     cursor: pointer;
+}
+.wpcf7-form p label {
+    font-size: 12px;
+    font-family: 'Poppins' sans-serif; 
+    font-weight: 200;
 }

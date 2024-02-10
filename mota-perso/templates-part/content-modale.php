@@ -9,10 +9,10 @@
 ?>
 
 <!-- Ajout d'une popup contact -->
+
 <div class="popup-contain" id="popup-container">
     <div class="popup-contact" id="popup-contact">
         <div class="popup-header">
-			
             <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/Contact-header.svg'; ?>" alt="<?php echo 'logo contact'; ?>">
         </div>
 		
