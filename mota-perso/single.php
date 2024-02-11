@@ -30,7 +30,7 @@ $image_id = get_field('photos', $post_id);
 ?>
 
             <!---1ère partie avec la photo et ses informations détaillées-->
-<div class="details-container">
+<section class="details-container">
 	<div class="details">
 		<h2><?php echo $titre ?></h2>
 			<ul>
@@ -72,29 +72,49 @@ $image_id = get_field('photos', $post_id);
 				<li>Type : <?php echo $type ?></li>
 				<li>Année : <?php echo $annee ?></li>
 			</ul>
-    </div><!---ferme details-->
+            </div><!---ferme details-->
+
+                        <!---L'image de la 1ère partie--->
     <div class="side-big-image">
-        <?php echo '<div class="big-image">'; the_post_thumbnail(); echo '</div>';?>
-	</div><!---ferme la side-image-->
-</div><!---ferme details-container-->
+    <?php echo '<div class="big-image">'; the_post_thumbnail(); echo '</div>';?>
+	</div><!---ferme la sidebig-image-->
+</section><!---ferme details-container-->
 
 
                     <!---2ème partie avec le bouton contact-->
-    <div class="contact-photo"><!---contact commande photo-->
-        <div class="button-contact">
-			<p>Cette photo vous intéresse ?</p>
-			<a href="../../contact"><input class="input-single-page" type="submit" value="Contact"></a>
-		</div>
-        <div class="arrows">
-            <img class="arrow-left" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche">
-            <img class="arrow-right"src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite">
-        <div class="side-little-image">
-            <?php echo '<div class="little-image">'; the_post_thumbnail(); echo '</div>';?>
-        
-        </div><!---ferme side-little-image-->
+<section class="contact-photo"><!---container contact photo-->
+    <div class="button-contact">
+		<p>Cette photo vous intéresse ?</p>
+		<a href="../../contact"><input class="input-single-page" type="submit" value="Contact"></a>
+	</div>
+    <div class="arrows">
+        <img class="arrow-left" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche">
+        <img class="arrow-right"src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite">
+    
+                <!---La petite image au dessus des flèches--->
+        <div class="side-little-image">           
+    <?php 
+    // Récupérer une petite image
+    echo '<div class="little-image">';
+    // Utiliser la fonction WP_Query pour obtenir une image aléatoire du type de post "photo"
+        $little_image_query = new WP_Query(array(
+            'post_type' => 'photo',
+            'posts_per_page' => 1,
+            'orderby' => 'rand'
+        ));
+        if ($little_image_query->have_posts()) {
+            while ($little_image_query->have_posts()) {
+                $little_image_query->the_post();
+                the_post_thumbnail(); // Afficher la miniature de l'image
+            }
+        }
+    echo '</div>';
+    wp_reset_postdata(); // Réinitialiser les données de la requête précédente
+    ?>
+</div><!---ferme side-little-image-->
         </div>
         
-    </div><!---ferme contact-photo-->
+    </section><!---ferme contact-photo-->
 
 
                     <!---3ème partie avec les photos apparentées-->

@@ -6,10 +6,9 @@ wp_enqueue_style( 'theme-perso-style', get_template_directory_uri(). '/assets/st
 wp_enqueue_script( 'jquery' );
     // Enqueue custom script.js
 wp_enqueue_script('modale-script', get_template_directory_uri() . '/assets/js/script.js', array('jquery'), 1.1, true);
-// Localiser le script pour passer des données PHP à JavaScript
-wp_localize_script('ajax-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
 }
 add_action( 'wp_enqueue_scripts', 'theme_perso_enqueue' );
+
 
 /*****création du menu Header et Footer*****/
 function register_my_menu(){
@@ -57,5 +56,52 @@ function load_modale_content() {
 }
 
 
+/*****Charger un script spécifique aux articles du blog*****/
+function button_home() {
+    // Charger un script bouton charger plus à la page d'accueil
+  if( is_page() ) {
+      wp_enqueue_script( 'button_plus', get_template_directory_uri() . '/assets/js/ajax-script.js', [ 'jquery' ], '1.1', true);
+  }
+}
+
+add_action( 'wp_enqueue_scripts', 'button_home' );
+
+
+/*****Réceptionner et traiter la requête Ajax*****/
+add_action( 'wp_ajax_load_photos', 'load_photos' );
+add_action( 'wp_ajax_nopriv_load_photos', 'load_photos' );
+
+function load_photos() {
+    // Vérification de sécurité
+    if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'load_photos' ) ) {
+        wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
+    }
+
+    // On vérifie que l'identifiant a bien été envoyé
+    if ( ! isset( $_POST['postid'] ) ) {
+        wp_send_json_error( "L'identifiant de l'article est manquant.", 400 );
+    }
+
+    // Récupération de l'ID de l'article
+    $post_id = intval( $_POST['postid'] );
+
+    // Vérifier que l'article est publié, et public
+    if ( get_post_status( $post_id ) !== 'publish' ) {
+        wp_send_json_error( "Vous n'avez pas accès aux photos de cet article.", 403 );
+    }
+
+    // Construction du HTML des photos
+    $html = '';
+    $number_of_blocks = 4;
+
+    for ($i = 0; $i < $number_of_blocks; $i++) {
+        ob_start();
+        get_template_part('templates-part/photo-block');
+        $html .= ob_get_clean();
+    }
+
+    // Envoyer les données au navigateur
+    wp_send_json_success( $html );
+}
 
 ?>

@@ -53,8 +53,17 @@
         }
         ?>
 
+                <!---<button class="button-charger">-->
         <div class="block-button">
-            <button class="button-charger">Charger plus</button>
+            <button class="js-load-button"
+                data-postid="<?php echo get_the_ID(); ?>"
+                data-nonce="<?php echo wp_create_nonce('load_photos'); ?>"
+                data-action="load_photos"
+                data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>">Charger plus</button>
+
+                <!--les photos chargés, apparaitront ici-->
+                <div class="block-list-photos">
+                </div>
         </div>
     </section>
 </main>
