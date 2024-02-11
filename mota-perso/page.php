@@ -44,26 +44,26 @@
         </div>
 
         <?php
-        // Nombre de fois que vous souhaitez afficher le modèle photo-block
+        // Nombre de fois que le template photo-block s'affiche
         $number_of_blocks = 4;
 
-        // Boucle pour afficher le modèle photo-block plusieurs fois
+        // Boucle pour afficher le template photo-block plusieurs fois
         for ($i = 0; $i < $number_of_blocks; $i++) {
             get_template_part('templates-part/photo-block');
         }
         ?>
 
-                <!---<button class="button-charger">-->
+                <!---<Le bouton "charger-plus">-->
         <div class="block-button">
             <button class="js-load-button"
                 data-postid="<?php echo get_the_ID(); ?>"
                 data-nonce="<?php echo wp_create_nonce('load_photos'); ?>"
                 data-action="load_photos"
-                data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>">Charger plus</button>
+                data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>">Charger plus
+            </button>
 
                 <!--les photos chargés, apparaitront ici-->
-                <div class="block-list-photos">
-                </div>
+            <div class="block-list-photos"></div>
         </div>
     </section>
 </main>

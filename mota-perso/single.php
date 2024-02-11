@@ -17,17 +17,15 @@ while (have_posts()) :
     <div class="container-single-page">
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			
-<?php
-// On récupère les champs ACF nécessaires
-$titre=get_field('titre');
-$reference=get_field('reference');
-$categorie=get_field('categorie', $post_id);
-$format=get_field('format', $post_id);
-$type=get_field('type');
-$annee=get_field('annee');
-// Obtenir l'ID de l'image à partir du champ ACF "photos"
-$image_id = get_field('photos', $post_id);
-?>
+            <?php
+            // On récupère les champs ACF nécessaires
+            $titre=get_field('titre');
+            $reference=get_field('reference');
+            $categorie=get_field('categorie', $post_id);
+            $format=get_field('format', $post_id);
+            $type=get_field('type');
+            $annee=get_field('annee');
+            ?>
 
             <!---1ère partie avec la photo et ses informations détaillées-->
 <section class="details-container">
@@ -90,41 +88,39 @@ $image_id = get_field('photos', $post_id);
     <div class="arrows">
         <img class="arrow-left" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche">
         <img class="arrow-right"src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite">
-    
-                <!---La petite image au dessus des flèches--->
+        <!---La petite image au dessus des flèches--->
         <div class="side-little-image">           
-    <?php 
-    // Récupérer une petite image
-    echo '<div class="little-image">';
-    // Utiliser la fonction WP_Query pour obtenir une image aléatoire du type de post "photo"
-        $little_image_query = new WP_Query(array(
-            'post_type' => 'photo',
-            'posts_per_page' => 1,
-            'orderby' => 'rand'
-        ));
-        if ($little_image_query->have_posts()) {
-            while ($little_image_query->have_posts()) {
-                $little_image_query->the_post();
-                the_post_thumbnail(); // Afficher la miniature de l'image
-            }
-        }
-    echo '</div>';
-    wp_reset_postdata(); // Réinitialiser les données de la requête précédente
-    ?>
-</div><!---ferme side-little-image-->
-        </div>
-        
-    </section><!---ferme contact-photo-->
+            <?php 
+            // Récupérer une petite image
+            echo '<div class="little-image">';
+            // Utiliser la fonction WP_Query pour obtenir une image aléatoire du type de post "photo"
+                $little_image_query = new WP_Query(array(
+                    'post_type' => 'photo',
+                    'posts_per_page' => 1,
+                    'orderby' => 'rand'
+                ));
+                if ($little_image_query->have_posts()) {
+                    while ($little_image_query->have_posts()) {
+                        $little_image_query->the_post();
+                        the_post_thumbnail(); // Afficher la miniature de l'image
+                    }
+                }
+            echo '</div>';
+            wp_reset_postdata(); // Réinitialiser les données de la requête précédente
+            ?>
+        </div><!---ferme side-little-image-->
+    </div><!---ferme arrows-->
+</section><!---ferme contact-photo-->
 
 
                     <!---3ème partie avec les photos apparentées-->
-    <div class="text-photos-apparentes">
-        <p>Vous aimerez aussi</p>
-    </div>
+<div class="text-photos-apparentes">
+    <p>Vous aimerez aussi</p>
+</div>
 
-    <?php get_template_part('templates-part/photo-block'); ?>
+<?php get_template_part('templates-part/photo-block'); ?>
         
-</article><!-- #post-<?php the_ID(); ?> -->
+        </article><!-- #post-<?php the_ID(); ?> -->
 
         <?php
         // La boucle
