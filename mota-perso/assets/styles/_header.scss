@@ -7,16 +7,16 @@ body {
    background-color: white;
 }
 
-:root {
-   --color-red: #E00000;
-   --color-red-medium: #FE5858;
-   --color-pink: #FFD6D6;
-   --color-grey-light: #E5E5E5;
-   --color-grey-medium: #D8D8D8;
-   --color-grey-strong: #C4C4C4; 
-   --color-blue-strong: #313144;
-   --color-border-form: #B8BBC2;
-}
+/*colors theme*/
+$color-red: #E00000;
+$color-red-medium: #FE5858;
+$color-pink: #FFD6D6;
+$color-grey-light: #E5E5E5;
+$color-blue-strong: #313144;
+$color-grey-medium: #D8D8D8;
+$color-grey-strong: #C4C4C4; 
+$color-border-form: #B8BBC2;
+$color-border-hover: #215AFF;
 
 /*header*/
 #header {
@@ -53,7 +53,9 @@ body {
    border: none;
    background-color: white;
    cursor: pointer;
+   transition:all 0.4s ease;
 }
+
 .page-item-63 {
    order: -1;
 }

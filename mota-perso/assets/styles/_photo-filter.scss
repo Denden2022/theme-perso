@@ -1,3 +1,26 @@
+.filters {
+    margin: 50px 20px 30px 80px;
+
+}
+.filters-class {
+    margin-right: 30px;
+    border-radius: 10px;
+    border: $color-border-form solid 1px;
+    width: 260px;
+    height: 43px;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    padding: 0 20px 0 10px;
+    &:hover {
+        border: $color-border-hover solid 1px;
+    }
+}
+#trier-select {
+    margin-left: 360px;
+}
+
+
 .block-button {
     //le style bouton se trouve dans le style single-page à .input-single-page
     display: flex;
@@ -5,4 +28,8 @@
     justify-content: center;
     margin-bottom: 50px;
     margin-top: 50px;
+}
+.js-load-button:hover {
+    background-color: black;
+    color: white;
 }

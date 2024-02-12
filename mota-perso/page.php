@@ -38,9 +38,29 @@
         </div>
     </section>
 
-    <section>
-        <div>
-            <p>filtres</p>
+    <section class="filters-photos">
+        <div class="filters">
+            <select class="filters-class" name="categories" id="categories-select">
+                <option value="categories" selected>catégories</option>
+                <option value="vide"></option>
+                <option value="reception">Réception</option>
+                <option value="television">Télévision</option>
+                <option value="concert">Concert</option>
+                <option value="mariage">Mariage</option>
+
+            </select>
+            <select class="filters-class" name="formats" id="formats-select">
+                <option value="formats" selected>formats</option>
+                <option value="vide"></option>
+                <option value="portrait">Portrait</option>
+                <option value="paysage">Paysage</option>
+            </select>
+            <select class="filters-class" name="trier" id="trier-select">
+                <option value="trier">trier par</option>
+                <option value="vide"></option>
+                <option value="new">A partir des plus récentes</option>
+                <option value="old">A partir des plus anciennes</option>
+            </select>
         </div>
 
         <?php

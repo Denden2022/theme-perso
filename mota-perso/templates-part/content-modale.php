@@ -21,6 +21,5 @@
 		$formulaire_shortcode = do_shortcode('[contact-form-7 id="b1992bf" title="Contact"]');
 		echo $formulaire_shortcode;
 		?>
-
 	</div>
 </div>

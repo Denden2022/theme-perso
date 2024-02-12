@@ -1,35 +1,21 @@
-// fermeture de la popup modale-contact quand je clique à l'extérieur de la modale
-document.addEventListener("DOMContentLoaded", function () {
-  jQuery(document).ready(function ($) {
-    $(document).click(function (e) {
-      const popupContainer = $(".popup-contact");
-    
-      // Si le clic est en dehors de la modale
-      if (!popupContainer.is(e.target) && popupContainer.has(e.target).length === 0) {
-            popupContainer.parent().hide();
-        }
-    });
-  });
-});
+// Gestion popup modale-contact
+const modal = document.getElementById('popup-container');
+const btn = document.getElementById("button-contact");
+const btnSinglePage = document.querySelector(".btn-single-page");
 
-jQuery(document).ready(function($) {
-  $('.menu-item-contact').click(function(event) {
-      event.preventDefault();
-      $.ajax({
-          url: ajax_object.ajax_url,
-          type: 'POST',
-          data: {
-              'action': 'load_modale_content'
-          },
-          success: function(response) {
-              $('body').append(response);
-          }
-      });
-  });
-});
-
-
-
-
+// Ouverture de la modale au clic du bouton contact du menu Header
+btn.onclick = function() {
+    modal.style.display = "flex";
+}
+// Fermeture de la modale en cliquant à l'extérieur de la modale
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+// Ouverture de la modale au clic du bouton contact du single page
+btnSinglePage.onclick = function() {
+  modal.style.display = "flex";
+}
 
 

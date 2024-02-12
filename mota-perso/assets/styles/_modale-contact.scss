@@ -1,4 +1,4 @@
-.popup-contain {
+.popup-contain {//la modale
     position:fixed;
     width:100%;
     height:100%;
@@ -9,7 +9,7 @@
     top: 0;
     left: 0;
 }
-.popup-contact{
+.popup-contact {//le contenu
     position: absolute;
     background:white;
     border: black solid 5px;
@@ -33,7 +33,7 @@
     width: 263px;
     border-radius: 10px;
     border: 1px solid;
-    color: var(--color-border-form);
+    color: $color-grey-medium;
     margin: 5px 0 10px 0;
 }
 
@@ -43,7 +43,7 @@
 
 .wpcf7-submit{
     //display:inline-block;
-    background-color: var(--color-grey-medium);
+    background-color: $color-grey-medium;
     height: 50px;
     width: 263px;
     padding:6px 16px;

@@ -6,6 +6,7 @@ wp_enqueue_style( 'theme-perso-style', get_template_directory_uri(). '/assets/st
 wp_enqueue_script( 'jquery' );
     // Enqueue custom script.js
 wp_enqueue_script('modale-script', get_template_directory_uri() . '/assets/js/script.js', array('jquery'), 1.1, true);
+wp_enqueue_script('lightbox-script', get_template_directory_uri() . '/assets/js/lightbox.js', array('jquery'), 1.1, true);
 }
 add_action( 'wp_enqueue_scripts', 'theme_perso_enqueue' );
 
@@ -18,6 +19,7 @@ register_nav_menus( array(
 ) );
 }
 add_action( 'after_setup_theme', 'register_my_menu' );
+
 
 /*****Fonction pour ajouter un item supplémentaire au menu Footer****/
 function my_footer_menu($items, $args) {
@@ -32,12 +34,12 @@ function my_footer_menu($items, $args) {
 add_filter('wp_nav_menu_items', 'my_footer_menu', 10, 2);
 
 
-/*****Fonction pour ajouter un item supplémentaire au menu Header*****/
+/*****Fonction pour ajouter le bouton contact au menu Header*****/
 function my_contact_menu($items, $args) {
     // Vérifiez si c'est le menu Header
     if ($args->theme_location == 'main') {
         // Ajoutez votre texte personnalisé ici
-        $items .= '<li><button id="button-contact" class="menu-item-contact">Contact</button></li>';
+        $items .= '<li><button id="button-contact" class="contact-btn">Contact</button></li>';
     }
     return $items;
 }
@@ -45,29 +47,17 @@ function my_contact_menu($items, $args) {
 add_filter('wp_nav_menu_items', 'my_contact_menu', 10, 2);
 
 
-/****gérer la requête ajax pour ouvrir la modale en cliquant sur le bouton contact****/
-add_action('wp_ajax_load_modale_content', 'load_modale_content');
-add_action('wp_ajax_nopriv_load_modale_content', 'load_modale_content');
-
-function load_modale_content() {
-    // Votre code pour charger le contenu de la modale
-    get_template_part('templates-part/content-modale');
-    die(); // Assurez-vous de terminer la fonction après avoir renvoyé la réponse
-}
-
-
-/*****Charger un script spécifique aux articles du blog*****/
+/*****Charger un script spécifique à la page.php*****/
 function button_home() {
-    // Charger un script bouton charger plus à la page d'accueil
+    // Charger un script quand on clique sur le bouton "charger plus" à la page d'accueil
   if( is_page() ) {
       wp_enqueue_script( 'button_plus', get_template_directory_uri() . '/assets/js/ajax-script.js', [ 'jquery' ], '1.1', true);
   }
 }
-
 add_action( 'wp_enqueue_scripts', 'button_home' );
 
 
-/*****Réceptionner et traiter la requête Ajax*****/
+/*****Réceptionner et traiter la requête Ajax du bouton "charger plus"*****/
 add_action( 'wp_ajax_load_photos', 'load_photos' );
 add_action( 'wp_ajax_nopriv_load_photos', 'load_photos' );
 
@@ -76,15 +66,12 @@ function load_photos() {
     if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'load_photos' ) ) {
         wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
     }
-
     // On vérifie que l'identifiant a bien été envoyé
     if ( ! isset( $_POST['postid'] ) ) {
         wp_send_json_error( "L'identifiant de l'article est manquant.", 400 );
     }
-
     // Récupération de l'ID de l'article
     $post_id = intval( $_POST['postid'] );
-
     // Vérifier que l'article est publié, et public
     if ( get_post_status( $post_id ) !== 'publish' ) {
         wp_send_json_error( "Vous n'avez pas accès aux photos de cet article.", 403 );
