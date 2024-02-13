@@ -7,6 +7,11 @@ wp_enqueue_script( 'jquery' );
     // Enqueue custom script.js
 wp_enqueue_script('modale-script', get_template_directory_uri() . '/assets/js/script.js', array('jquery'), 1.1, true);
 wp_enqueue_script('lightbox-script', get_template_directory_uri() . '/assets/js/lightbox.js', array('jquery'), 1.1, true);
+wp_enqueue_script('swiper-script', get_stylesheet_directory_uri() . '/assets/js/swiper.js', array('swiper-js'), 1.1, true);
+// Enqueue Swiper CSS
+wp_enqueue_style('swiper-css', 'https://unpkg.com/swiper/swiper-bundle.min.css');
+// Enqueue Swiper JS
+wp_enqueue_script('swiper-js', 'https://unpkg.com/swiper/swiper-bundle.min.js', array(), null, true);
 }
 add_action( 'wp_enqueue_scripts', 'theme_perso_enqueue' );
 

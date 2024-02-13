@@ -85,6 +85,8 @@ while (have_posts()) :
                     <p>Cette photo vous intéresse ?</p>
                     <input class="btn-single-page" type="submit" value="Contact">
                 </div>
+                                <!---Template modale popup contact--->
+<?php get_template_part('templates-part/paging-photos'); ?>
                 <div class="arrows">
                     <img class="arrow-left" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche">
                     <img class="arrow-right"src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite">

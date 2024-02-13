@@ -238,6 +238,10 @@ body {
   font-size: 12px;
   font-family: "Space mono", sans-serif;
 }
+.btn-single-page:hover, .js-load-button:hover {
+  background-color: black;
+  color: white;
+}
 
 .button-contact {
   display: flex;
@@ -268,6 +272,7 @@ body {
   height: 3.7vw;
 }
 
+/***  Section bouton contact et pagination flêchée et photos au survol****/
 .little-image img {
   position: absolute;
   width: 100%;
@@ -275,12 +280,12 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
   bottom: 95px;
-  right: 335px;
 }
 
 .arrows {
-  margin-left: 17.8vw;
-  margin-top: 4.43vw;
+  position: absolute;
+  bottom: -250px;
+  left: 950px;
 }
 
 .arrow-right {
@@ -299,6 +304,26 @@ body {
   content: url(../images/arrow-Lblack.svg);
 }
 
+/*** swiper ****/
+.swiper {
+  width: 4.22vw;
+  height: 3.7vw;
+  margin-top: 5px;
+}
+
+.swiper-slide img {
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-button-next {
+  content: url(../images/arrow-right.svg);
+}
+
+/***  Photos apparentées***/
 .text-photos-apparentes {
   text-transform: uppercase;
   font-size: 18px;
@@ -352,11 +377,6 @@ body {
   justify-content: center;
   margin-bottom: 50px;
   margin-top: 50px;
-}
-
-.js-load-button:hover {
-  background-color: black;
-  color: white;
 }
 
 .lightbox-overlay {

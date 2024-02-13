@@ -18,6 +18,24 @@
         'category_in' => 'categorie'
     ));
 
+/*$current_category = get_the_terms(get_the_ID(), 'categorie');
+
+$the_query = new WP_Query(array(
+  'post_type' => 'photos',
+  'posts_per_page' => 2,
+  'orderby' => 'rand',
+  'tax_query' => array(
+      array(
+          // Prendre les images de la taxonomie de "catégorie"
+          'taxonomy' => 'categorie',
+          // Prendre l'ID de la photo affichée sur le single.php
+          'field' => 'term_id',
+          // Utiliser la catégorie actuelle
+          'terms' => $current_category[0]->term_id,
+      ),
+  ),
+));*/
+
     $count = 0;
     while ($the_query->have_posts()) : $the_query->the_post(); ?>
         <?php if ($count == 0) : ?>
