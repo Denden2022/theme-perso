@@ -55,6 +55,7 @@
         color: white;
     }
 }
+
 .button-contact {
     display: flex;
     flex-direction: row;
@@ -74,33 +75,49 @@
         transition: background-color 0.3s ease;
     }
 }
+
+/***  Section bouton contact et pagination flêchée et photos au survol****/
 .side-little-image {
-    position: relative;
+    position: absolute;
     margin-left: 480px;
     object-fit: cover;
     width: 4.22vw;
     height: 3.70vw;
 }
-
-/***  Section bouton contact et pagination flêchée et photos au survol****/
 .little-image img{
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    bottom: 95px;
+    bottom: 90px;
+    left: 8px;
 }
 .arrows {
-    position: absolute;
-    bottom: -250px;
-    left: 950px;
+    position: relative;
+    bottom: -90px;
+    left: 345px;
+    &:hover .swiper-part {
+        visibility: visible;
+        position: absolute;
+        z-index: 1;
+        left: 143px;
+        bottom: 30px;
+    }
+    &:hover .side-little-image {
+        position: relative;
+        z-index: -1;
+    }
+}
+
+.swiper-part {
+    visibility: hidden;
 }
 .arrow-right {
     margin-left: 22px;
     cursor: pointer;
     &:hover {
         content: url(../images/arrow-Rblack.svg);
-
+        width: fit-content;
     }
 }
 .arrow-left {
@@ -108,6 +125,7 @@
     cursor: pointer;
     &:hover {
         content: url(../images/arrow-Lblack.svg);
+        width: fit-content;
     }
 }
 

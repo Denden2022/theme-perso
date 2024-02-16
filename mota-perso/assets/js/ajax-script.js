@@ -39,8 +39,8 @@
                     }
 
                     // Et en cas de réussite
-                    $this.hide(); // Cacher le bouton
                     $('.block-list-photos').html(body.data); // Remplacer le contenu du conteneur par les nouvelles photos
+                    $('.block-list-photos').append($this); // Déplacer le bouton à la fin de la liste de photos
                 });
         });
 

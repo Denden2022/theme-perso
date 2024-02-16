@@ -40,26 +40,21 @@
 
     <section class="filters-photos">
         <div class="filters">
-            <select class="filters-class" name="categories" id="categories-select">
-                <option value="categories" selected>catégories</option>
-                <option value="vide"></option>
-                <option value="reception">Réception</option>
-                <option value="television">Télévision</option>
-                <option value="concert">Concert</option>
-                <option value="mariage">Mariage</option>
-
+            <select class="filters-class" name="categories" id="categorie">
+                <option class="item all" value="all" selected>catégories</option>
+                <option class="item vide" value="vide"></option>
+                <?php echo filtreCategorie(); ?>
             </select>
-            <select class="filters-class" name="formats" id="formats-select">
-                <option value="formats" selected>formats</option>
-                <option value="vide"></option>
-                <option value="portrait">Portrait</option>
-                <option value="paysage">Paysage</option>
+            <select class="filters-class" name="formats" id="format">
+                <option class="item all" value="formats" selected>formats</option>
+                <option class="item vide" value="vide"></option>
+                <?php echo filtreFormat(); ?>
             </select>
-            <select class="filters-class" name="trier" id="trier-select">
-                <option value="trier">trier par</option>
-                <option value="vide"></option>
-                <option value="new">A partir des plus récentes</option>
-                <option value="old">A partir des plus anciennes</option>
+            <select class="filters-class" name="trier" id="trier">
+                <option class="item all" value="trier">trier par</option>
+                <option class="item vide" value="vide"></option>
+                <option class="item recent" value="recent">A partir des plus récentes</option>
+                <option class="item old" value="old">A partir des plus anciennes</option>
             </select>
         </div>
 

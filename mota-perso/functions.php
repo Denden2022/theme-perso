@@ -96,4 +96,45 @@ function load_photos() {
     wp_send_json_success( $html );
 }
 
+
+/*****Fonction pour les filtres de la page d'accueil*****/
+//filtre des catégories
+function filtreCategorie()
+{
+	if ($terms = get_terms(array(
+		'taxonomy' => 'categorie',
+		'field'    => 'slug',
+		'terms'    => $_POST['category'],
+	)))
+		foreach ($terms as $term) {
+			echo '<option  value="' . $term->slug . '">' . $term->name . '</option>';
+		}
+}
+
+//filtre des formats
+function filtreFormat()
+{
+	if ($terms = get_terms(array(
+		'taxonomy' => 'format',
+		'field'    => 'slug',
+		'terms'    => $_POST['format'],
+	)))
+		foreach ($terms as $term) {
+			echo '<option  value="' . $term->slug . '">' . $term->name . '</option>';
+		}
+}
+
+//filtre des tries
+/*function filtreTrie()
+{
+	if ($terms = get_terms(array(
+		'taxonomy' => 'categorie',
+		'field'    => 'slug',
+		'terms'    => $_POST['category'],
+	)))
+		foreach ($terms as $term) {
+			echo '<option  value="' . $term->slug . '">' . $term->name . '</option>';
+		}
+}*/
+
 ?>

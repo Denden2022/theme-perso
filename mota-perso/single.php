@@ -15,8 +15,7 @@ while (have_posts()) :
 
 <main id="main" class="site-main">
     <div class="container-single-page">
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			
+		
             <?php
             // On récupère les champs ACF nécessaires
             $titre=get_field('titre');
@@ -32,12 +31,12 @@ while (have_posts()) :
                 <div class="details">
                     <h2><?php echo $titre ?></h2>
                         <ul>
-                            <li>Référence : BF<?php echo $reference ?></li>
-                            <li>Catégorie : <?php if ($categorie) {
+                            <li>Référence : <span id="reference_value">BF<?php echo $reference ?></span></li>
+                            <li>Catégorie : <span id="categorie_value"><?php if ($categorie) {
                                 // Récupérer les termes de taxonomie associés au champ personnalisé 'format'
                                 $terms = get_terms(array(
                                 'taxonomy' => 'categorie',
-                                'include' => $categorie // Inclure uniquement les termes de taxonomie correspondant à la valeur du champ 'format'
+                                'include' => $categorie // Inclure uniquement les termes de taxonomie correspondant à la valeur du champ 'categorie'
                             ));
 
                             // Vérifier s'il y a des termes de taxonomie trouvés
@@ -48,7 +47,7 @@ while (have_posts()) :
                                 echo $term->name;
                                 }
                             }};
-                            ?>
+                            ?></span>
                             </li>
                             <li>Format : <?php if ($format) {
                             // Récupérer les termes de taxonomie associés au champ personnalisé 'format'
@@ -85,16 +84,20 @@ while (have_posts()) :
                     <p>Cette photo vous intéresse ?</p>
                     <input class="btn-single-page" type="submit" value="Contact">
                 </div>
-                                <!---Template modale popup contact--->
-<?php get_template_part('templates-part/paging-photos'); ?>
-                <div class="arrows">
-                    <img class="arrow-left" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche">
-                    <img class="arrow-right"src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite">
+                                
+                <div class=paging-arrows>
+                    <!---Template paging-photos contact--->
+                    
+                    <div class="arrows">
+                        <img class="arrow-left" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche">
+                        <img class="arrow-right"src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite">
+                    <?php get_template_part('templates-part/paging-photos'); ?>
+                    </div><!---ferme arrows-->    
                     <!---La petite image au dessus des flèches--->
-                    <div class="side-little-image">           
+                    <!--<div class="side-little-image">  -->         
                         <?php 
                         // Récupérer une petite image
-                        echo '<div class="little-image">';
+                        /* echo '<div class="little-image">';
                         // Utiliser la fonction WP_Query pour obtenir une image aléatoire du type de post "photo"
                             $little_image_query = new WP_Query(array(
                                 'post_type' => 'photo',
@@ -108,10 +111,10 @@ while (have_posts()) :
                                 }
                             }
                         echo '</div>';
-                        wp_reset_postdata(); // Réinitialiser les données de la requête précédente
+                        wp_reset_postdata(); */// Réinitialiser les données de la requête précédente
                         ?>
                     </div><!---ferme side-little-image-->
-                </div><!---ferme arrows-->
+                </div><!---ferme le 2ème bloc de la 2ème partie-->
             </section><!---ferme contact-photo-->
 
 
@@ -120,26 +123,18 @@ while (have_posts()) :
                 <p>Vous aimerez aussi</p>
             </div>
 
-            <?php get_template_part('templates-part/photo-block'); ?>
-                    
-        </article><!-- #post-<?php the_ID(); ?> -->
+            <?php echo get_template_part('/templates-part/photo-block'); ?>
+            
+            <!-- Ajout d'un fond transparent foncé avec oeil et plein écran -->
 
-        <?php
-        // La boucle
-            $args = array(
-                    'showposts' => 1,
-                    'cat' => 0,
-                    'orderby'  => 'rand'
-            );
-
-            $the_query = new WP_Query($args);
-            while ($the_query->have_posts()) :
-            $the_query->the_post();
-        ?>
-
+<div class="eye-overlay" id="eye-overlay">
+    <div class="eye-content" id="eye-content">
+        <div class="eye-hover">
+            <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/Contact-header.svg'; ?>" alt="<?php echo 'logo contact'; ?>">
+        </div>
+              
         <?php endwhile;
             wp_reset_postdata(); // Réinitialiser la requête
-            endwhile; // Fin de la boucle WordPress
         ?>
     </div><!-- .container -->
 </main><!-- #main -->

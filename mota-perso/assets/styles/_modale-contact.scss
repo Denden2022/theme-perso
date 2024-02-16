@@ -9,6 +9,9 @@
     top: 0;
     left: 0;
 }
+#popup-container {
+    display: none;
+}
 .popup-contact {//le contenu
     position: absolute;
     background:white;
@@ -17,6 +20,7 @@
     height: 770px;
     padding-top: 10px;
     object-fit: contain;
+
     @include anim-modale;
 }
 
@@ -28,12 +32,12 @@
     width: min-content;
 }
 
-.wpcf7-form-control {
+.wpcf7-form-control {//les cases de la modale
     height: 40px;
     width: 263px;
     border-radius: 10px;
     border: 1px solid;
-    color: $color-grey-medium;
+    border-color: $color-grey-medium;
     margin: 5px 0 10px 0;
 }
 

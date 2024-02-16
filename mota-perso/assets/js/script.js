@@ -1,7 +1,8 @@
 /**** I-Gestion popup modale-contact****/ 
+function activButtonPlayModale(){
 const modal = document.getElementById('popup-container');
-const btn = document.getElementById("button-contact");
-const btnSinglePage = document.querySelector(".btn-single-page");
+const btn = document.getElementById("button-contact");//bouton contact du nav Menu
+const btnSinglePage = document.querySelector(".btn-single-page");//bouton contact du single page
 
 // Ouverture de la modale au clic du bouton contact du menu Header
 btn.onclick = function() {
@@ -17,47 +18,56 @@ window.onclick = function(event) {
 btnSinglePage.onclick = function() {
   modal.style.display = "flex";
 }
+}
+
+activButtonPlayModale();
 
 
 /**** II-Pré-remplir la Ref de la popup modale-contact au clic du bouton contact du single page****/ 
-
-
-
-/**** III-Gestion de la pagination des photos****/ 
-$('.pagination ul li:first-child a').addClass("current");
-$('.page-numbers').click(function(event){
-  event.preventDefault()
-  $('.page-numbers').removeClass("current");
-  $(this).addClass("current");
-  var link = $(this).attr('href');
-  $('#data-posts').html('<img src="wp-content/themes/montheme/img/load.gif" class="load">');
-  $('#data-posts').load(link+' .excerpt');
-});
-
-
-/**** IV-Gestion des filtres****/ 
+//je définis le bouton concernée, il s'agit de btn-single-page
 jQuery(document).ready(function($) {
-  // Fonction pour filtrer les images
-  function filtrerImages() {
-      var categorie = $('#categorie').val();
-      var format = $('#format').val();
-      $('.item').each(function() {
-          var categorieItem = $(this).hasClass(categorie) || categorie === 'all';
-          var formatItem = $(this).hasClass(format) || format === 'all';
-          if (categorieItem && formatItem) {
-              $(this).show();
-          } else {
-              $(this).hide();
-          }
-      });
-  }
-  // Filtre lorsque le sélecteur de catégorie change
-  $('#categorie').on('change', function() {
-      filtrerImages();
-  });
-  // Filtre lorsque le sélecteur de format change
-  $('#format').on('change', function() {
-      filtrerImages();
-  });
+    const btnSinglePageRef = $(".btn-single-page");
+
+    btnSinglePageRef.on("click", function() {
+        // Récupérer la valeur de la référence
+        var referenceValue = $("#reference_value").text();
+        // Mettre à jour la valeur de l'élément input avec la référence
+        $('#reference').val(referenceValue);
+    });
 });
+
+
+
+/**** III-Gestion des filtres****/ 
+jQuery(document).ready(function($) {
+    // Fonction pour filtrer les images
+    function filtrerImages() {
+        var categorie = $('#categorie').val();
+        var format = $('#format').val();
+        // Réinitialiser les filtres
+        $('.item').show();
+        // Filtrer par catégorie
+        if (categorie !== 'all') {
+            $('.item').not('.' + categorie).hide();
+        }
+        // Filtrer par format
+        if (format !== 'all') {
+            $('.item').not('.' + format).hide();
+        }
+    }
+
+    // Filtre lorsque le sélecteur de catégorie change
+    $('#categorie').on('change', function() {
+        filtrerImages();
+    });
+
+    // Filtre lorsque le sélecteur de format change
+    $('#format').on('change', function() {
+        filtrerImages();
+    });
+});
+
+
+
+
 

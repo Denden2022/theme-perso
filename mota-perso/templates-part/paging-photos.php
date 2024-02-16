@@ -12,8 +12,7 @@
 <?php
         $args = array(
             'post_type' => 'photo',
-            'posts_per_page' => -1,
-            'orderby' => 'rand',
+            'posts_per_page' => -1,           
             );
         $photos_query = new WP_Query($args);
     ?>  
@@ -39,8 +38,8 @@ echo '</div>'; //fermer swiper-wrapper ?>
 // Réinitialiser la requête WP
 wp_reset_postdata();
 ?>
-</div>
+</div><!---- fermer swiper-part ---->
 
 
-</div>
+
 
