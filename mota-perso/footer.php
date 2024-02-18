@@ -19,9 +19,6 @@
                 <!---Template modale popup contact--->
 <?php get_template_part('templates-part/content-modale'); ?>
 
-                <!---Template lightbox--->
-<?php //get_template_part('templates-part/lightbox'); ?>
-
 <?php wp_footer(); ?>
 
     </body>

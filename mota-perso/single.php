@@ -124,14 +124,6 @@ while (have_posts()) :
             </div>
 
             <?php echo get_template_part('/templates-part/photo-block'); ?>
-            
-            <!-- Ajout d'un fond transparent foncé avec oeil et plein écran -->
-
-<div class="eye-overlay" id="eye-overlay">
-    <div class="eye-content" id="eye-content">
-        <div class="eye-hover">
-            <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/Contact-header.svg'; ?>" alt="<?php echo 'logo contact'; ?>">
-        </div>
               
         <?php endwhile;
             wp_reset_postdata(); // Réinitialiser la requête
