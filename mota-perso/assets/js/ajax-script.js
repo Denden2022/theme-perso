@@ -1,3 +1,4 @@
+/***** Charger les photos lorsque l'on clique sur le bouton "Charger plus" ****/
 (function ($) {
     $(document).ready(function () {
 
@@ -44,5 +45,42 @@
                 });
         });
 
+    });
+})(jQuery);
+
+
+/***** Charger le filtre lorsque l'on clique sur le filtre "Catégories" ****/
+(function ($) {
+    $(document).ready(function () {
+        $('.js-load-filters').change(function (e) {
+            e.preventDefault();
+
+            const ajaxurl = $(this).data('ajaxurl');
+            const category = $(this).val(); // Récupérer la catégorie sélectionnée
+
+            const data = {
+                action: 'load_filters',
+                nonce: $(this).data('nonce'),
+                category: category // Envoyer la catégorie sélectionnée à PHP
+            };
+
+            fetch(ajaxurl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Cache-Control': 'no-cache',
+                },
+                body: new URLSearchParams(data),
+            })
+            .then(response => response.json())
+            .then(body => {
+                console.log(body);
+                if (!body.success) {
+                    alert(body.data);
+                    return;
+                }
+                $('#images-container').html(body.data); // Afficher les images dans le conteneur
+            });
+        });
     });
 })(jQuery);

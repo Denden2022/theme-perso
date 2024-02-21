@@ -12,6 +12,7 @@
 
 
 <div class="block-image">
+    
     <?php
     // Vérifier si la page actuelle est un article individuel
     if (is_single()) {
@@ -39,21 +40,21 @@
             'posts_per_page' => 2,
             'orderby' => 'rand',
         ));}
+
     ?>
 
     <?php if ($the_query->have_posts()) : ?>
     <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-    <div class="lightbox">
+    <!---<div class="lightbox">--->
         <div id="same-image" class="same-image image-container">
             <?php the_post_thumbnail(); ?>          
-       <!-- oeil+éléments à afficher --> 
-        
-            <!---<div class="eye-overlay">
+       
+            <!-- oeil+éléments à afficher --> 
+            <div class="eye-overlay">
                 <div id="eye-container" class="eye-img">
                     <img class="hover-img" style="width:100%; height:30px;" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/eye.svg'; ?> " alt="eye">
                     <div class="popup-close"></div>
-                </div>-->
-            
+            </div>
                
                 <?php
                 // On récupère les champs ACF nécessaires

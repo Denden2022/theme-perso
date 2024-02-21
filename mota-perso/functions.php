@@ -13,6 +13,7 @@ wp_enqueue_style('swiper-css', 'https://unpkg.com/swiper/swiper-bundle.min.css')
 // Enqueue Swiper JS
 wp_enqueue_script('swiper-js', 'https://unpkg.com/swiper/swiper-bundle.min.js', array(), null, true);
 }
+
 add_action( 'wp_enqueue_scripts', 'theme_perso_enqueue' );
 
 
@@ -26,7 +27,7 @@ register_nav_menus( array(
 add_action( 'after_setup_theme', 'register_my_menu' );
 
 
-/*****Fonction pour ajouter un item supplémentaire au menu Footer****/
+/*****Fonction pour ajouter un item supplémentaire sans lien au menu Footer****/
 function my_footer_menu($items, $args) {
     // Vérifiez si c'est le menu Footer
     if ($args->theme_location == 'footer') {
@@ -52,7 +53,7 @@ function my_contact_menu($items, $args) {
 add_filter('wp_nav_menu_items', 'my_contact_menu', 10, 2);
 
 
-/*****Charger un script spécifique à la page.php*****/
+/*****Charger le script spécifique "Charger plus de photos" à la page.php*****/
 function button_home() {
     // Charger un script quand on clique sur le bouton "charger plus" à la page d'accueil
   if( is_page() ) {
@@ -61,55 +62,26 @@ function button_home() {
 }
 add_action( 'wp_enqueue_scripts', 'button_home' );
 
-
 /*****Réceptionner et traiter la requête Ajax du bouton "charger plus"*****/
-add_action( 'wp_ajax_load_photos', 'load_photos' );
-add_action( 'wp_ajax_nopriv_load_photos', 'load_photos' );
-
-function load_photos() {
-    // Vérification de sécurité
-    if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'load_photos' ) ) {
-        wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
-    }
-    // On vérifie que l'identifiant a bien été envoyé
-    if ( ! isset( $_POST['postid'] ) ) {
-        wp_send_json_error( "L'identifiant de l'article est manquant.", 400 );
-    }
-    // Récupération de l'ID de l'article
-    $post_id = intval( $_POST['postid'] );
-    // Vérifier que l'article est publié, et public
-    if ( get_post_status( $post_id ) !== 'publish' ) {
-        wp_send_json_error( "Vous n'avez pas accès aux photos de cet article.", 403 );
-    }
-
-    // Construction du HTML des photos
-    $html = '';
-    $number_of_blocks = 4;
-
-    for ($i = 0; $i < $number_of_blocks; $i++) {
-        ob_start();
-        get_template_part('templates-part/photo-block');
-        $html .= ob_get_clean();
-    }
-
-    // Envoyer les données au navigateur
-    wp_send_json_success( $html );
-}
+include('includes/ajax.php');
 
 
 /*****Fonction pour les filtres de la page d'accueil*****/
 //filtre des catégories
-function filtreCategorie()
-{
-	if ($terms = get_terms(array(
-		'taxonomy' => 'categorie',
-		'field'    => 'slug',
-		'terms'    => $_POST['category'],
-	)))
-		foreach ($terms as $term) {
-			echo '<option  value="' . $term->slug . '">' . $term->name . '</option>';
-		}
+function filtreCategorie() {
+    $output = '';
+    $terms = get_terms(array(
+        'taxonomy' => 'categorie',
+        'hide_empty' => false // Pour inclure les termes sans post associé
+    ));
+    if ($terms) {
+        foreach ($terms as $term) {
+            $output .= '<option value="' . $term->slug . '">' . $term->name . '</option>';
+        }
+    }
+    return $output;
 }
+
 
 //filtre des formats
 function filtreFormat()
@@ -136,5 +108,39 @@ function filtreFormat()
 			echo '<option  value="' . $term->slug . '">' . $term->name . '</option>';
 		}
 }*/
+
+/*****Réceptionner et traiter la requête Ajax du bouton "Plein écran"*****/
+add_action('wp_ajax_get_category_images', 'get_category_images_callback');
+add_action('wp_ajax_nopriv_get_category_images', 'get_category_images_callback');
+
+function get_category_images_callback() {
+    $selectedCategory = $_POST['category'];
+
+    // Ajoutez votre propre logique pour récupérer les images basées sur la catégorie sélectionnée.
+    // Par exemple, vous pouvez utiliser WP_Query pour récupérer les images associées à la catégorie.
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => -1,
+        'category_name' => $selectedCategory
+    );
+
+    $query = new WP_Query($args);
+
+    // Boucle à travers les résultats de la requête pour afficher les images
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            // Ici, vous pouvez afficher les images associées à chaque article
+            // par exemple :
+            echo '<img src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '" />';
+        }
+        wp_reset_postdata();
+    } else {
+        echo 'Aucune image trouvée.';
+    }
+
+    wp_die();
+}
+
 
 ?>

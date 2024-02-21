@@ -38,26 +38,15 @@
         </div>
     </section>
 
+            <!---<Les filtres>-->
     <section class="filters-photos">
         <div class="filters">
-            <select class="filters-class" name="categories" id="categorie">
-                <option class="item all" value="all" selected>catégories</option>
-                <option class="item vide" value="vide"></option>
-                <?php echo filtreCategorie(); ?>
-            </select>
-            <select class="filters-class" name="formats" id="format">
-                <option class="item all" value="formats" selected>formats</option>
-                <option class="item vide" value="vide"></option>
-                <?php echo filtreFormat(); ?>
-            </select>
-            <select class="filters-class" name="trier" id="trier">
-                <option class="item all" value="trier">trier par</option>
-                <option class="item vide" value="vide"></option>
-                <option class="item recent" value="recent">A partir des plus récentes</option>
-                <option class="item old" value="old">A partir des plus anciennes</option>
-            </select>
+        <?php include('includes/filter.php'); ?>
         </div>
 
+        <!--Les images de la catégorie sélectionnée apparaitront ici-->
+        <div id="images-container"></div>
+        
         <?php
         // Nombre de fois que le template photo-block s'affiche
         $number_of_blocks = 4;

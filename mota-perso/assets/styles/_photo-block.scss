@@ -23,12 +23,11 @@
     z-index: 999;
     top: 0;
     opacity: 0; /* Initialement invisible */
-    transition: opacity 0.3s ease; /* Transition douce */
+    transition: opacity 0.3s ease; // Transition douce
 }
 #same-image:hover .eye-overlay {
     opacity: 1; /* Rendre visible lorsque survolé */
 }
-
 .popup-close{
     position:absolute;
     top:10px;
@@ -55,7 +54,7 @@
     font-size: 14px;
     text-transform: uppercase;
     color: white;
-    visibility: hidden;
+    //visibility: hidden;
 }
 #ref-hover {
     margin-right: 420px;

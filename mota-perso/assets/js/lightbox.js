@@ -17,46 +17,34 @@ eyeBtn.onclick = function() {
 }
 
 
-   /* const lightbox = document.querySelector('.lightbox');
+   /*const lightbox = document.querySelector('.lightbox');
     const screenBtn = document.querySelector(".popup-close");//bouton contact du nav Menu
     
+    // Définition de l'état initial de la modale
+let modalEye = false;
     // Ouverture de la modale au clic du bouton contact du menu Header
     screenBtn.onclick = function() {
         lightbox.style.visibility = "visible";
+        modalEye = true;
     }*/
 
 
 /*** Lightbox des images */
-/**** I-Gestion popup modale-contact****/ 
-/*document.addEventListener("DOMContentLoaded", function() {
-    const hoverImgs = document.querySelectorAll('.hover-img');
-    const sameImages = document.querySelectorAll('.same-image');
-    const lightbox = document.getElementById('lightbox-overlay');
 
-    hoverImgs.forEach((hoverImg, index) => {
-        hoverImg.addEventListener('click', function() {
-            // Afficher la lightbox
-            lightbox.style.display = 'flex';
-            // Cacher toutes les images
-            sameImages.forEach(image => {
-                image.style.display = 'none';
-            });
-            // Afficher l'image correspondante
-            sameImages[index].style.display = 'block';
-            // Modifier la source de l'image dans la lightbox
-            sameImages[index].src = hoverImg.src;
+/*(function ($) {
+    $(document).ready(function () {
+
+        const lightbox = document.querySelector('.lightbox');
+        // Ouvrir la lightbox lorsque vous cliquez sur .popup-close
+        $('.popup-close').click(function () {
+            lightbox(); // Ouvrir la lightbox
         });
+
+        // Fermer la lightbox lorsque vous cliquez sur .close-lightbox
+        $('.popup-close').click(function () {
+            lightbox(); // Fermer la lightbox
+        });
+
     });
+})(jQuery);*/
 
-    // Fermer la lightbox en cliquant dessus
-    lightbox.addEventListener('click', function() {
-        lightbox.style.display = 'none';
-    });
-});*/
-
-
-
-
-    
-
-    

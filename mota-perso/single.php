@@ -20,8 +20,8 @@ while (have_posts()) :
             // On récupère les champs ACF nécessaires
             $titre=get_field('titre');
             $reference=get_field('reference');
-            $categorie=get_field('categorie', $post_id);
-            $format=get_field('format', $post_id);
+            $categorie=get_field('categorie', get_the_ID());
+            $format=get_field('format', get_the_ID());
             $type=get_field('type');
             $annee=get_field('annee');
             ?>

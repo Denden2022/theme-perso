@@ -19,6 +19,23 @@
                 <!---Template modale popup contact--->
 <?php get_template_part('templates-part/content-modale'); ?>
 
+                <!---lightbox--->
+<div class="lightbox">
+<div class="lightbox-close"></div>
+<div class="swiper-lightbox">
+<?php
+
+        $args = array(
+            'post_type' => 'photo',
+            'posts_per_page' => -1,           
+            );
+ // Récupérer l'ID de l'article en cours
+ $current_post_id = get_the_ID();
+
+        $photos_query = new WP_Query($args);
+    ?>
+</div>
+
 <?php wp_footer(); ?>
 
     </body>

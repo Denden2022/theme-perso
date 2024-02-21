@@ -35,35 +35,3 @@ jQuery(document).ready(function($) {
         $('#reference').val(referenceValue);
     });
 });
-
-
-
-/**** III-Gestion des filtres****/ 
-jQuery(document).ready(function($) {
-    // Fonction pour filtrer les images
-    function filtrerImages() {
-        var categorie = $('#categorie').val();
-        var format = $('#format').val();
-        // Réinitialiser les filtres
-        $('.item').show();
-        // Filtrer par catégorie
-        if (categorie !== 'all') {
-            $('.item').not('.' + categorie).hide();
-        }
-        // Filtrer par format
-        if (format !== 'all') {
-            $('.item').not('.' + format).hide();
-        }
-    }
-
-    // Filtre lorsque le sélecteur de catégorie change
-    $('#categorie').on('change', function() {
-        filtrerImages();
-    });
-
-    // Filtre lorsque le sélecteur de format change
-    $('#format').on('change', function() {
-        filtrerImages();
-    });
-});
-
