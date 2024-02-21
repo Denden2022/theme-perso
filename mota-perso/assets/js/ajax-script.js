@@ -48,18 +48,18 @@
     });
 })(jQuery);
 
-
+                    /***** Charger les filtres ****/
 /***** Charger le filtre lorsque l'on clique sur le filtre "Catégories" ****/
 (function ($) {
     $(document).ready(function () {
-        $('.js-load-filters').change(function (e) {
+        $('.js-load-filters-categories').change(function (e) {
             e.preventDefault();
 
             const ajaxurl = $(this).data('ajaxurl');
             const category = $(this).val(); // Récupérer la catégorie sélectionnée
 
             const data = {
-                action: 'load_filters',
+                action: 'load_filters_categories',
                 nonce: $(this).data('nonce'),
                 category: category // Envoyer la catégorie sélectionnée à PHP
             };
@@ -80,6 +80,7 @@
                     return;
                 }
                 $('#images-container').html(body.data); // Afficher les images dans le conteneur
+                $('.block-image').hide(); // Cacher .block-list-photos
             });
         });
     });

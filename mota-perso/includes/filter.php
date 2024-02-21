@@ -1,8 +1,8 @@
 <!---Les filtres de la page d'accueil--->
 
-<select class="filters-class js-load-filters" name="categories" id="categorie"
-        data-nonce="<?php echo wp_create_nonce('load_filters'); ?>"
-        data-action="load_filters"
+<select class="filters-class js-load-filters-categories" name="categories" id="categorie"
+        data-nonce="<?php echo wp_create_nonce('load_filters_categories'); ?>"
+        data-action="load_filters_categories"
         data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>">
     <option class="item all" value="all" selected>Catégories</option>
     <option class="item vide" value="vide"></option>
@@ -14,6 +14,7 @@
                 <option class="item vide" value="vide"></option>
                 <?php echo filtreFormat(); ?>
             </select>
+            
             <select class="filters-class" name="trier" id="trier">
                 <option class="item all" value="trier">trier par</option>
                 <option class="item vide" value="vide"></option>
