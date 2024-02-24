@@ -3,7 +3,7 @@
 Template Name: Modèle de page Mentions légales
 */
 
-get_header(); ?>
+?>
 
 <?php get_header(); ?>
 

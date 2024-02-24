@@ -69,7 +69,7 @@ include('includes/ajax.php');
 /*****Fonction pour les filtres de la page d'accueil*****/
 //filtre des catégories
 function filtreCategorie() {
-    $output = '';
+    $output = '<option value="all" selected>Catégories</option>'; // Option par défaut
     $terms = get_terms(array(
         'taxonomy' => 'categorie',
         'hide_empty' => false // Pour inclure les termes sans post associé
@@ -83,19 +83,21 @@ function filtreCategorie() {
 }
 
 
-//filtre des formats
-function filtreFormat()
-{
-	if ($terms = get_terms(array(
-		'taxonomy' => 'format',
-		'field'    => 'slug',
-		'terms'    => $_POST['format'],
-	)))
-		foreach ($terms as $term) {
-			echo '<option  value="' . $term->slug . '">' . $term->name . '</option>';
-		}
-}
 
+//filtre des formats
+function filtreFormat() {
+    $output = '<option value="all-formats" selected>Formats</option>'; // Option par défaut
+    $terms = get_terms(array(
+        'taxonomy' => 'format',
+        'hide_empty' => false // Pour inclure les termes sans post associé
+    ));
+    if ($terms) {
+        foreach ($terms as $term) {
+            $output .= '<option value="' . $term->slug . '">' . $term->name . '</option>';
+        }
+    }
+    return $output;
+}
 //filtre des tries
 /*function filtreTrie()
 {

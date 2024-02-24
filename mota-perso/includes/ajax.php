@@ -1,4 +1,14 @@
 <?php
+/**
+ * Include ajax pour : - Charger les images au clic du bouton "Charger plus"
+ *                   : - Charger les images correspondants aux choix des filtres
+ *
+ * @package Mota
+ */
+
+?>
+
+<?php
 /*****Réceptionner et traiter la requête Ajax du bouton "charger plus"*****/
 add_action( 'wp_ajax_load_photos', 'load_photos' );
 add_action( 'wp_ajax_nopriv_load_photos', 'load_photos' );
@@ -45,22 +55,24 @@ function load_filters_categories() {
 
     $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
 
-    if (empty($category)) {
-        wp_send_json_error( "La catégorie demandée n'est pas valide.", 400 );
+    // Si la catégorie est "all", ne pas appliquer de filtre par catégorie
+    $tax_query = array();
+    if ($category !== 'all') {
+        $tax_query = array(
+            array(
+                'taxonomy' => 'categorie',
+                'field' => 'slug',
+                'terms' => $category,
+            )
+        );
     }
 
-    // Requête pour obtenir les images de la catégorie demandée
+    // Requête pour obtenir les images en fonction de la catégorie demandée
     $args = array(
         'post_type' => 'photo',
         'posts_per_page' => -1,
         'orderby' => 'rand',
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'categorie', // Nom de la taxonomie
-                'field' => 'slug', // Rechercher par slug
-                'terms' => $category, // Slug de la catégorie
-            )
-        )
+        'tax_query' => $tax_query,
     );
     $query = new WP_Query($args);
 
@@ -79,40 +91,43 @@ function load_filters_categories() {
 
     wp_send_json_success( $html );
 }
+
 
 
 /*****  Réceptionner et traiter la requête Ajax du filtre "Format"  *****/
 add_action( 'wp_ajax_load_filters_formats', 'load_filters_formats' );
 add_action( 'wp_ajax_nopriv_load_filters_formats', 'load_filters_formats' );
 
-function load_filters() {
+function load_filters_formats() {
     if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'load_filters_formats' ) ) {
         wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
     }
 
     $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
 
-    if (empty($format)) {
-        wp_send_json_error( "Le format demandée n'est pas valide.", 400 );
+    // Si la catégorie est "all-formats", ne pas appliquer de filtre par format
+    $tax_query = array();
+    if ($format !== 'all-formats') {
+        $tax_query = array(
+            array(
+                'taxonomy' => 'format',
+                'field' => 'slug',
+                'terms' => $format,
+            )
+        );
     }
 
-    // Requête pour obtenir les images de la catégorie demandée
+    // Requête pour obtenir les images en fonction du format demandée
     $args = array(
         'post_type' => 'photo',
-        'posts_per_page' => 2,
+        'posts_per_page' => -1,
         'orderby' => 'rand',
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'format', // Nom de la taxonomie
-                'field' => 'slug', // Rechercher par slug
-                'terms' => $format, // Slug de la catégorie
-            )
-        )
+        'tax_query' => $tax_query,
     );
     $query = new WP_Query($args);
 
     if (!$query->have_posts()) {
-        wp_send_json_error( "Aucune image trouvée pour cette catégorie.", 400 );
+        wp_send_json_error( "Aucune image trouvée pour ce format.", 400 );
     }
 
     $html = '';
@@ -126,4 +141,3 @@ function load_filters() {
 
     wp_send_json_success( $html );
 }
-?>

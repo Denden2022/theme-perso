@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for modale popup
+ * Template part for modale "Contact"
  *
  *
  * @package Mota

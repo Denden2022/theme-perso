@@ -8,9 +8,7 @@
 
 get_header();
 
-/* Commencer la boucle */
-while (have_posts()) :
-    the_post();
+
 ?>
 
 <main id="main" class="site-main">
@@ -24,6 +22,9 @@ while (have_posts()) :
             $format=get_field('format', get_the_ID());
             $type=get_field('type');
             $annee=get_field('annee');
+            $previousPost=get_previous_post();
+            $nextPost=get_next_post();
+
             ?>
 
 <!---1ère partie avec la photo et ses informations détaillées-->
@@ -89,9 +90,17 @@ while (have_posts()) :
                     <!---Template paging-photos contact--->
                     
                     <div class="arrows">
-                        <img class="arrow-left" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche">
-                        <img class="arrow-right"src="<?php echo get_stylesheet_directory_uri() . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite">
-                    <?php get_template_part('templates-part/paging-photos'); ?>
+                        <div class="image-arrows">
+                            <img src="<?php echo get_the_post_thumbnail_url($previousPost) ?>" alt="">
+                            <img src="<?php echo get_the_post_thumbnail_url($nextPost) ?>" alt="">
+                        </div>
+                        <?php if($previousPost) : ?>
+                        <a href="<?php echo get_the_permalink($previousPost)?>"><img class="arrow-left" src="<?php echo get_stylesheet_directory_uri($previousPost) . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche"></a>
+                        <?php endif; ?>
+                        <?php if($nextPost) : ?>
+                        <a href="<?php echo get_the_permalink($nextPost)?>"><img class="arrow-right"src="<?php echo get_stylesheet_directory_uri($nextPost) . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite"></a>
+                        <?php endif; ?>
+                        <?php //get_template_part('templates-part/paging-photos'); ?>
                     </div><!---ferme arrows-->    
                     <!---La petite image au dessus des flèches--->
                     <!--<div class="side-little-image">  -->         
@@ -125,7 +134,7 @@ while (have_posts()) :
 
             <?php echo get_template_part('/templates-part/photo-block'); ?>
               
-        <?php endwhile;
+        <?php 
             wp_reset_postdata(); // Réinitialiser la requête
         ?>
     </div><!-- .container -->

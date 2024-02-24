@@ -47,6 +47,7 @@
         <!--Les images de la catégorie sélectionnée apparaitront ici-->
         <div id="images-container"></div>
         
+        <div id="images-block">
         <?php
         // Nombre de fois que le template photo-block s'affiche
         $number_of_blocks = 4;
@@ -55,7 +56,7 @@
         for ($i = 0; $i < $number_of_blocks; $i++) {
             get_template_part('templates-part/photo-block');
         }
-        ?>
+        ?></div>
 
                 <!---<Le bouton "charger-plus">-->
         <div class="block-button">

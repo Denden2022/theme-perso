@@ -1,13 +1,8 @@
-body {
-   font-family: 'Space mono', sans-serif;
-   font-family: 'Poppins', sans-serif;
-   width: 100%;
-   margin: auto;
-   max-width: 1440px;
-   background-color: white;
-}
-
-/*colors theme*/
+/*
+*NAV MENU et HERO HEADER
+*
+*/
+//colors theme
 $color-red: #E00000;
 $color-red-medium: #FE5858;
 $color-pink: #FFD6D6;
@@ -18,7 +13,23 @@ $color-grey-strong: #C4C4C4;
 $color-border-form: #B8BBC2;
 $color-border-hover: #215AFF;
 
-/*header*/
+body {
+   font-family: 'Space mono', sans-serif;
+   font-family: 'Poppins', sans-serif;
+   width: 100%;
+   margin: auto;
+   max-width: 1440px;
+   background-color: white;
+
+}
+#primary {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+}
+/****NAV MENU ****/
 #header {
    display: flex;
    flex-direction: row;
@@ -66,13 +77,22 @@ $color-border-hover: #215AFF;
    left: 8.83vw;
    margin-top: 1.042vw;
 }
+
+/**** HERO HEADER  ****/
 .title-header {
-   position: absolute;
-   bottom: 14.58vw;
-   left: 23.44vw;
+   position: relative;
+   bottom: 30vw;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   z-index: 1;
 }
 .header-image img {
    object-fit: cover;
    height: 50.104vw;
    width: 75vw;
+}
+#logo {
+   margin-bottom: -100px;
 }

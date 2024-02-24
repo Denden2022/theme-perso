@@ -47,13 +47,21 @@
     <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
     <!---<div class="lightbox">--->
         <div id="same-image" class="same-image image-container">
-            <?php the_post_thumbnail(); ?>          
+            <?php the_post_thumbnail(); ?>         
        
             <!-- oeil+éléments à afficher --> 
             <div class="eye-overlay">
-                <div id="eye-container" class="eye-img">
-                    <img class="hover-img" style="width:100%; height:30px;" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/eye.svg'; ?> " alt="eye">
-                    <div class="popup-close"></div>
+            <div id="eye-container" class="eye-img">
+            <?php
+            // Récupérer le slug (post_name) de l'article
+            $post_slug = get_post_field('post_name', get_the_ID());
+            ?>
+            <a href="./<?php echo esc_attr($post_slug); ?>" class="hover-img"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/eye.svg'; ?>" alt="eye"></a>
+            <?php
+            // Récupérer l'URL de l'image en taille réelle
+            $image_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+            ?>
+            <a href="<?php echo esc_url($image_url[0]); ?>" class="screen-full"></a>
             </div>
                
                 <?php
@@ -62,7 +70,7 @@
                 $categorie=get_field('categorie');
                 ?>
 
-                <div class="details-overlay">
+                <div class="details-overlay" data-reference="<?php echo $reference ?>">
                     <span id="ref-hover">BF<?php echo $reference ?></span>
                     <span id="cat-hover">
                         <?php if ($categorie) {

@@ -1,5 +1,7 @@
 /**
+ * 
  * swiper effect fade sur la petite image avec pagination flêchée du single page
+ * 
  */
 var swiper = new Swiper(".mySwiper", {
     spaceBetween: 30,

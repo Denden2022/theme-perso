@@ -3,7 +3,7 @@
 Template Name: Modèle de page Vie privée
 */
 
-get_header(); ?>
+?>
 
 <?php get_header(); ?>
 

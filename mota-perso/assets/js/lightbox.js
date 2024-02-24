@@ -1,50 +1,35 @@
-//gestion de l'oeil
-const eyemodal = document.querySelector('.details-overlay');
-const eyeBtn = document.querySelector(".hover-img"); //bouton contact du nav Menu
+/*** 
+ * 
+ * Script pour la lightbox pour la photo ciblée en full screen
+ * 
+ * ***/
 
-// Définition de l'état initial de la modale
-let modalVisible = false;
 
-// Gestion de l'affichage/masquage des détails au clic de l'oeil
-eyeBtn.onclick = function() {
-    if (!modalVisible) {
-        eyemodal.style.visibility = "visible";
-        modalVisible = true;
-    } else {
-        eyemodal.style.visibility = "hidden";
-        modalVisible = false;
+/**** Affichage de la photo ciblée en plein écran ****/ 
+
+/*document.addEventListener('DOMContentLoaded', function() {
+    var fullScreenLinks = document.querySelectorAll('.screen-full');
+    var overlay = document.querySelector('.lightbox');
+
+    if (fullScreenLinks.length > 0) {
+        fullScreenLinks.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                var imageURL = this.getAttribute('href');
+                // Affichez l'image en plein écran ou dans une fenêtre modale
+                // Vous devrez implémenter cette fonctionnalité selon vos besoins
+                // Par exemple, ouvrir l'image dans un lightbox.
+                openFullScreenImage(imageURL);
+            });
+        });
     }
-}
 
+    var popupClose = document.querySelector('.lightbox-close');
 
-   /*const lightbox = document.querySelector('.lightbox');
-    const screenBtn = document.querySelector(".popup-close");//bouton contact du nav Menu
-    
-    // Définition de l'état initial de la modale
-let modalEye = false;
-    // Ouverture de la modale au clic du bouton contact du menu Header
-    screenBtn.onclick = function() {
-        lightbox.style.visibility = "visible";
-        modalEye = true;
-    }*/
-
-
-/*** Lightbox des images */
-
-/*(function ($) {
-    $(document).ready(function () {
-
-        const lightbox = document.querySelector('.lightbox');
-        // Ouvrir la lightbox lorsque vous cliquez sur .popup-close
-        $('.popup-close').click(function () {
-            lightbox(); // Ouvrir la lightbox
+    if (popupClose && overlay) {
+        popupClose.addEventListener('click', function(e) {
+            e.preventDefault();
+            overlay.classList.remove('active');
         });
-
-        // Fermer la lightbox lorsque vous cliquez sur .close-lightbox
-        $('.popup-close').click(function () {
-            lightbox(); // Fermer la lightbox
-        });
-
-    });
-})(jQuery);*/
-
+    }
+});*/
