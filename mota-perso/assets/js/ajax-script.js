@@ -113,7 +113,7 @@
             const data = {
                 action: 'load_filters_formats',
                 nonce: $(this).data('nonce'),
-                category: format // Envoyer la catégorie sélectionnée à PHP
+                format: format // Envoyer la catégorie sélectionnée à PHP
             };
 
             fetch(ajaxurl, {
@@ -134,7 +134,7 @@
                 $('#images-container').html(body.data); // Afficher les images dans le conteneur
                 
                 // Condition pour réinitialiser le contenu si "Formats" est sélectionné à nouveau
-                if (format === 'all-formats') {
+                if (format === 'all') {
                     $('.block-image').show(); // Afficher toutes les images
                 } else {
                     $('.block-image').hide(); // Cacher les images

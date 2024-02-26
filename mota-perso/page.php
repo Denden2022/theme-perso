@@ -34,7 +34,7 @@
     wp_reset_postdata(); ?>
         </div><!--ferme class hero-header-->
         <div class="title-header">
-            <img style="width:100%; height:142px;" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/Titre-header.svg'; ?> " alt="titre header">
+            <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/Titre-header.svg'; ?> " alt="titre header">
         </div>
     </section>
 

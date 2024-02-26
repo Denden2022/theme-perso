@@ -1,5 +1,5 @@
 /*
-* Toute la partie SINGLE PAGE
+* Toute la partie SINGLE PAGE en 3 sections
 *
 */
 /** 1ère section  **/
@@ -104,7 +104,7 @@
     position: relative;
     bottom: -90px;
     left: 345px;
-    &:hover .swiper-part {
+    /*&:hover .swiper-part {
         visibility: visible;
         position: absolute;
         z-index: 1;
@@ -114,7 +114,7 @@
     &:hover .side-little-image {
         position: relative;
         z-index: -1;
-    }
+    }*/
 }
 
 .swiper-part {
@@ -143,7 +143,9 @@
     height: 3.70vw;
     bottom: 25px;
     left: 144px;
+    
 }
+
         /*** swiper ****/
 .swiper {
     width: 4.22vw;

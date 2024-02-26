@@ -1,7 +1,7 @@
 <?php
 /**
  * Include ajax pour : - Charger les images au clic du bouton "Charger plus"
- *                   : - Charger les images correspondants aux choix des filtres
+ *                   : - Charger les images correspondants aux choix des filtres "Catégories", "Formats" et "Trier par"
  *
  * @package Mota
  */
@@ -85,6 +85,9 @@ function load_filters_categories() {
         $query->the_post();
         $html .= '<div class="image">';
         $html .= get_the_post_thumbnail();
+        ob_start();
+        get_template_part('templates-part/eye-overlay');
+        $html .= ob_get_clean();
         $html .= '</div>';
     }
     wp_reset_postdata();
@@ -107,7 +110,7 @@ function load_filters_formats() {
 
     // Si la catégorie est "all-formats", ne pas appliquer de filtre par format
     $tax_query = array();
-    if ($format !== 'all-formats') {
+    if ($format !== 'all') {
         $tax_query = array(
             array(
                 'taxonomy' => 'format',
@@ -133,11 +136,16 @@ function load_filters_formats() {
     $html = '';
     while ($query->have_posts()) {
         $query->the_post();
-        $html .= '<div class="image">';
+        $html .= '<div id="image" class="image">';
         $html .= get_the_post_thumbnail();
+        ob_start();
+        get_template_part('templates-part/eye-overlay');
+        $html .= ob_get_clean();
         $html .= '</div>';
     }
     wp_reset_postdata();
 
     wp_send_json_success( $html );
 }
+
+/*****  Réceptionner et traiter la requête Ajax du filtre "Trier par"  *****/

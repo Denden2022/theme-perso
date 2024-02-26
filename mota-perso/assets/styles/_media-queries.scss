@@ -1,0 +1,24 @@
+/* Media query pour les écrans plus petits comme le smartphone*/
+            /****Ecran 480px et 320px*****/
+@media (max-width: 480px) {
+//footer
+#footer * {
+    display: none;
+    display: grid;
+    margin-left: 0;
+    height: 60px;
+}
+.menu-item-143 {
+    margin-top: 20px;
+}
+.menu-item-reserves {
+    margin-bottom: 20px;
+}
+
+//Menu
+.site_header_menu {
+    content: url(../images/burger.svg);
+    cursor: pointer;
+}
+                    }
+

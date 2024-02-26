@@ -86,7 +86,7 @@ function filtreCategorie() {
 
 //filtre des formats
 function filtreFormat() {
-    $output = '<option value="all-formats" selected>Formats</option>'; // Option par défaut
+    $output = '<option value="all" selected>Formats</option>'; // Option par défaut
     $terms = get_terms(array(
         'taxonomy' => 'format',
         'hide_empty' => false // Pour inclure les termes sans post associé

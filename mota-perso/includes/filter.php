@@ -52,9 +52,19 @@
         data-nonce="<?php echo wp_create_nonce('load_filters_formats'); ?>"
         data-action="load_filters_formats"
         data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>">
-    <option class="item-all" value="all-formats" selected>formats</option>
+    <option class="item-all" value="all" selected>formats</option>
     <option class="item vide" value="vide"></option>
-    <?php echo filtreFormat(); ?>
+    <?php //echo filtreFormat(); ?>
+    <?php 
+        $terms = get_terms(array(
+            'taxonomy' => 'format',
+        ));
+            // Parcourons les termes
+            foreach ($terms as $term) {
+                // Affichons le nom du terme
+                echo '<option class="single-item">' . $term->name . '</option>';
+            }
+        ?>
 </select>
             
 

@@ -2,15 +2,11 @@
 /**
  * Template part for block photos
  *
- *
  * @package Mota
  */
-
 ?>
 
                 <!---Photos apparentées--->
-
-
 <div class="block-image">
     
     <?php
@@ -34,6 +30,24 @@
                 )
             )
         ));}
+
+
+ // Vérifier si la page actuelle est la page d'accueil
+ /*if (is_page()) {
+     // Récupérer l'ID de la page en cours
+     $current_page_id = get_the_ID();
+ 
+     // WP_Query pour obtenir des articles de type 'photo' associés à la page actuelle
+     $the_query = new WP_Query(array(
+         'post_type' => 'photo',
+         'posts_per_page' => 8,
+         'orderby' => 'rand',
+         'meta_query' => array(
+             array(
+                'field' => 'term_id',
+             )
+         )
+     ));}*/
     else {
         $the_query = new WP_Query(array(
             'post_type' => 'photo',
@@ -47,51 +61,11 @@
     <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
     <!---<div class="lightbox">--->
         <div id="same-image" class="same-image image-container">
-            <?php the_post_thumbnail(); ?>         
-       
+            <?php the_post_thumbnail(); ?> 
+
             <!-- oeil+éléments à afficher --> 
-            <div class="eye-overlay">
-            <div id="eye-container" class="eye-img">
-            <?php
-            // Récupérer le slug (post_name) de l'article
-            $post_slug = get_post_field('post_name', get_the_ID());
-            ?>
-            <a href="./<?php echo esc_attr($post_slug); ?>" class="hover-img"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/eye.svg'; ?>" alt="eye"></a>
-            <?php
-            // Récupérer l'URL de l'image en taille réelle
-            $image_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-            ?>
-            <a href="<?php echo esc_url($image_url[0]); ?>" class="screen-full"></a>
-            </div>
-               
-                <?php
-                // On récupère les champs ACF nécessaires
-                $reference=get_field('reference');
-                $categorie=get_field('categorie');
-                ?>
-
-                <div class="details-overlay" data-reference="<?php echo $reference ?>">
-                    <span id="ref-hover">BF<?php echo $reference ?></span>
-                    <span id="cat-hover">
-                        <?php if ($categorie) {
-                            // Récupérer les termes de taxonomie associés au champ personnalisé 'format'
-                            $terms = get_terms(array(
-                                'taxonomy' => 'categorie',
-                                'include' => $categorie // Inclure uniquement les termes de taxonomie correspondant à la valeur du champ 'categorie'
-                            ));
-
-                            // Vérifier s'il y a des termes de taxonomie trouvés
-                            if (!empty($terms) && !is_wp_error($terms)) {
-                                // Parcourir les termes de taxonomie
-                                foreach ($terms as $term) {
-                                    // affichez le nom du terme)
-                                    echo $term->name;
-                                    }
-                            }};
-                        ?>
-                    </span>
-                </div><!---fermer les span-->  
-            </div><!---fermer la modale avec l'oeil--> 
+            <?php get_template_part('templates-part/eye-overlay')?>
+            
         </div><!---fermer l'image-->
     <?php
         endwhile;
