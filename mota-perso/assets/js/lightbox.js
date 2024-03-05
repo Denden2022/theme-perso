@@ -2,34 +2,26 @@
  * 
  * Script pour la lightbox pour la photo ciblée en full screen
  * 
+ * 
  * ***/
 
-
-/**** Affichage de la photo ciblée en plein écran ****/ 
-
-/*document.addEventListener('DOMContentLoaded', function() {
-    var fullScreenLinks = document.querySelectorAll('.screen-full');
-    var overlay = document.querySelector('.lightbox');
-
-    if (fullScreenLinks.length > 0) {
-        fullScreenLinks.forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                var imageURL = this.getAttribute('href');
-                // Affichez l'image en plein écran ou dans une fenêtre modale
-                // Vous devrez implémenter cette fonctionnalité selon vos besoins
-                // Par exemple, ouvrir l'image dans un lightbox.
-                openFullScreenImage(imageURL);
+/**** Ouverture de la lightbox au clic du favicon full-screen et Fermeture de la lightbox au clic de la croix****/ 
+function lightbox(){
+    document.addEventListener('DOMContentLoaded', function() {
+        const lightbox = document.querySelectorAll('.lightbox');
+        lightbox.forEach(function(element) {
+            element.addEventListener('click', function() {
+                const imageSrc = this.querySelector('img').src;
+                const lightboxContainer = document.querySelector('.swiper-lightbox');
+                lightboxContainer.innerHTML = `<img src="${imageSrc}" alt="Image">`;
+                document.querySelector('.lightbox').style.visibility = "visible";
             });
         });
-    }
 
-    var popupClose = document.querySelector('.lightbox-close');
-
-    if (popupClose && overlay) {
-        popupClose.addEventListener('click', function(e) {
-            e.preventDefault();
-            overlay.classList.remove('active');
+        const btnCross = document.querySelector(".lightbox-close");
+        btnCross.addEventListener('click', function() {
+            document.querySelector('.lightbox').style.visibility = "hidden";
         });
-    }
-});*/
+    });}
+
+lightbox();

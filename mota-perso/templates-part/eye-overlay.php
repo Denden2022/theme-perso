@@ -1,20 +1,25 @@
 <!-- oeil+éléments à afficher --> 
 <div class="eye-overlay">
     <div id="eye-container" class="eye-img">
+
             <?php
-            // Récupérer le slug (post_name) de l'article
-            $post_slug = get_post_field('post_name', get_the_ID());
+
             ?>
-            <a href="./<?php echo esc_attr($post_slug); ?>" class="hover-img"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/eye.svg'; ?>" alt="eye"></a>
+            <a href="<?php the_permalink(); ?>" class="hover-img">
+            <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/eye.svg'; ?>" alt="eye"></a>  
+            
             <?php
-            // Récupérer l'URL de l'image en taille réelle
-            $image_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+            $image_url = wp_get_attachment_url( get_post_thumbnail_id() );
+            // Vérifie si l'URL de l'image est valide et lightbox
+            if ( $image_url ) {
+            // Afficher le lien pour la lightbox
+                echo '<a href="' . esc_url( $image_url ) . '" class="screen-full"></a>';
+            }
             ?>
-            <a href="<?php echo esc_url($image_url[0]); ?>" class="screen-full"></a>
     </div>
                
                 <?php
-                // On récupère les champs ACF nécessaires
+                // On récupère les champs ACF nécessaires pour les détails de l'overlay
                 $reference=get_field('reference');
                 $categorie=get_field('categorie');
                 ?>

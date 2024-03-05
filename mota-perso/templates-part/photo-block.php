@@ -7,9 +7,9 @@
 ?>
 
                 <!---Photos apparentées--->
-<div class="block-image">
-    
-    <?php
+                <div class="block-image">
+
+                <?php
     // Vérifier si la page actuelle est un article individuel
     if (is_single()) {
         // Récupérer la catégorie de l'image en cours
@@ -30,10 +30,8 @@
                 )
             )
         ));}
-
-
- // Vérifier si la page actuelle est la page d'accueil
- /*if (is_page()) {
+       
+                /*if (is_page()) {
      // Récupérer l'ID de la page en cours
      $current_page_id = get_the_ID();
  
@@ -48,20 +46,35 @@
              )
          )
      ));}*/
-    else {
-        $the_query = new WP_Query(array(
-            'post_type' => 'photo',
-            'posts_per_page' => 2,
-            'orderby' => 'rand',
-        ));}
+     else {
+        
+            $the_query = new WP_Query(array(
+                'post_type' => 'photo',
+                'posts_per_page' => 2,
+                'orderby' => 'rand',
+                $tax_query = array(
+                    array(
+                        'taxonomy' => 'categorie',
+                        'field' => 'slug',
+                        'terms' => 'categorie',
+                    ))
+                
+            ));
+        
+        }
+        ?>
 
-    ?>
-
-    <?php if ($the_query->have_posts()) : ?>
+<?php if ($the_query->have_posts()) : ?>
     <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-    <!---<div class="lightbox">--->
+    <!---
+    <div class="lightbox">
+        --->
         <div id="same-image" class="same-image image-container">
-            <?php the_post_thumbnail(); ?> 
+        
+                <a href="<?php the_permalink(); ?>">
+                
+                    <?php the_post_thumbnail(); ?>
+                </a>
 
             <!-- oeil+éléments à afficher --> 
             <?php get_template_part('templates-part/eye-overlay')?>
@@ -74,4 +87,6 @@
     ?>
     </div><!---fermer lightbox-->
 </div><!---fermer block image-->
+
+
 

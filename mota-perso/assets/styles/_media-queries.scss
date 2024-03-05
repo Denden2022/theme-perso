@@ -1,6 +1,125 @@
 /* Media query pour les écrans plus petits comme le smartphone*/
-            /****Ecran 480px et 320px*****/
-@media (max-width: 480px) {
+            /****Ecran inférieur ou égale à 768px*****/
+@media (max-width: 768px) {
+//Menu
+.close {//ensemble menu li mobile
+    display: flex;
+}
+#burgerIcon {
+    position: absolute;
+    bottom: 120px;
+    left: 300px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    content: url(../images/burger.svg);
+  }
+
+  //Icône croix
+.active-icon {
+    content: url(../images/cross.svg);
+    cursor: pointer;
+    }
+#menu #primary-menu{
+    margin-top: 200px;
+}
+#branding-img img {//logo du menu
+    margin-top: 0;
+ }
+.open-menu{
+    position: absolute;
+    right: 100px;
+    flex-direction: column;
+    z-index: 2;
+    background-color: $color-red;
+    font-family: 'Space mono', sans-serif;
+    font-size: 44px;
+    top: 225px;
+    height: 740px;
+    width: 375px;
+    left: 50px;
+    z-index: 3;
+}
+#menu * {
+    color: white;
+    margin-left: 0;
+    left: 0;
+}
+.site_header_menu {
+    & li:hover,  #button-contact:hover {
+       font-weight: none;
+    }
+ }
+
+    //Hero-header
+.header-image img {
+    margin-left: 0;
+    height: 253px;
+    max-width: 100%;
+}
+.title-header img {
+    height: 41px;
+}
+
+//Liste de photos et ses filtres
+.filters {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    gap: 8px;
+}.sel {
+    margin-left: 0;
+}
+.filters-photos {
+    display: grid;
+    grid-template-columns: 450px;
+}
+.block-image {
+    grid-template-columns: 318px;
+}
+#logo {
+    margin-bottom: -60px;
+}
+
+//single-page
+.big-image img {
+    width: 265px;
+    height: 397px;
+}
+.details-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    border-bottom: 1px solid;
+    margin-left: 0;
+    & h2 {
+        margin-left: 50px;
+    }
+}
+.details {
+    margin-top: 50px;
+    margin-left: 30px;
+    & ul {
+        margin-left: 0;
+    }
+}
+.contact-photo {
+    height: 170px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.button-contact {
+    display: flex;
+    flex-direction: column;
+    border-top: none;
+}
+.same-image img {
+    height: 279px;
+}
+.arrow-left, .arrow-right {
+    display: none;
+}
+
 //footer
 #footer * {
     display: none;
@@ -14,11 +133,14 @@
 .menu-item-reserves {
     margin-bottom: 20px;
 }
-
-//Menu
-.site_header_menu {
-    content: url(../images/burger.svg);
-    cursor: pointer;
 }
-                    }
 
+
+/* Media query pour les moyens écrans*/
+            /****Ecran supérieur à 768px*****/
+@media (min-width: 769px) {
+#burgerIcon {
+    visibility: hidden;
+}
+
+            }

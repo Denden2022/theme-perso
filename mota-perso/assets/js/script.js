@@ -3,7 +3,7 @@
  * Script pour : I-Apparition de la modale au clic du bouton "Contact" du NAV MENU
  *             : II-Apparition de la modale au clic du bouton "Contact" du SINGLE PAGE
  *             : III-La réf de la photo correspondante est préremplie dans la modale au clic du bouton "Contact" du SINGLE PAGE
- *             : IV-Filtre "Catégories" en <div> se comportant comme le filtre <select>
+ *             : IV-Afficher l'image au survol des flèches dans Single page
  * 
  * ***/
 
@@ -29,9 +29,9 @@ buttonContactMenu();
 
 
 /**** II-Gestion du bouton contact du Single page****/ 
-function activButtonPlayModale (){
+document.addEventListener('DOMContentLoaded', function () {
 const modal = document.getElementById('popup-container');
-const btnSinglePage = document.querySelector(".btn-single-page");//bouton contact du single page
+const btnSinglePage = document.querySelector('.btn-single-page');//bouton contact du single page
 
 // Ouverture de la modale au clic du bouton contact du single page
 btnSinglePage.onclick = function() {
@@ -43,9 +43,7 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-}
-
-activButtonPlayModale();
+});
 
 
 /**** III-Pré-remplir la Ref de la popup modale-contact au clic du bouton contact du single page****/ 
@@ -66,32 +64,29 @@ jQuery(document).ready(function($) {
 });
 
 
-/**** IV-Une liste qui se comporte comme un filtre et se rattache aux filtres "catégorie"  ****/ 
-function toggleOptions() {
-    var optionsDiv = document.querySelector('.sel .options');
-    if (optionsDiv.style.display === 'none' || optionsDiv.style.display === '') {
-        optionsDiv.style.display = 'block';
-    } else {
-        optionsDiv.style.display = 'none';
-    }
+/**** IV-Afficher l'image au survol des flèches dans Single page  ****/ 
+function clicArrows(){
+    const imageArrowsLeft = document.querySelector('.image-arrow-left');//image de gauche
+    const imageArrowsRight = document.querySelector('.image-arrow-right');//image de droite
+    const arrowLeft = document.querySelector(".arrow-left");//La flèche gauche
+    const arrowRight = document.querySelector(".arrow-right");//La flèche droite
+    
+        // Ouverture de l'image au survol de la flèche gauche
+    arrowLeft && (arrowLeft.onmouseover = function() {
+        imageArrowsLeft.style.visibility = "visible";
+    });
+    // Fermeture de l'image lorsque la souris quitte la flèche gauche
+    arrowLeft && (arrowLeft.onmouseout = function() {
+        imageArrowsLeft.style.visibility = "hidden";
+    });
+
+    // Ouverture de l'image au survol de la flèche droite
+    arrowRight && (arrowRight.onmouseover = function() {
+        imageArrowsRight.style.visibility = "visible";
+    });
+    // Fermeture de l'image lorsque la souris quitte la flèche droite
+    arrowRight && (arrowRight.onmouseout = function() {
+        imageArrowsRight.style.visibility = "hidden";
+    });
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    var options = document.querySelectorAll('.sel .options div');
-    options.forEach(function(option) {
-        option.addEventListener('click', function() {
-            var selectedValue = this.textContent.trim();
-            document.querySelector('.sel .label').textContent = selectedValue;
-            document.querySelector('.sel .options').style.display = 'none';
-        });
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    var element = document.querySelector('.single-item');
-    element.addEventListener('click', function() {
-        element.classList.add('clicked');
-    });
-});
-
-
+    clicArrows();

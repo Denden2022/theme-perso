@@ -1,7 +1,10 @@
 <?php
 /**
  * Include ajax pour : - Charger les images au clic du bouton "Charger plus"
- *                   : - Charger les images correspondants aux choix des filtres "Catégories", "Formats" et "Trier par"
+ *                   : - Charger les images correspondants aux choix des filtres 
+ *                       "1-Catégories", 
+ *                       "2-Formats" et 
+ *                       "3-Trier par"
  *
  * @package Mota
  */
@@ -44,7 +47,7 @@ function load_photos() {
 }
 
                     /***** Charger les filtres ****/
-/*****  Réceptionner et traiter la requête Ajax du filtre "Catégorie" *****/
+/*****  1-Réceptionner et traiter la requête Ajax du filtre "Catégorie" *****/
 add_action( 'wp_ajax_load_filters_categories', 'load_filters_categories' );
 add_action( 'wp_ajax_nopriv_load_filters_categories', 'load_filters_categories' );
 
@@ -97,7 +100,7 @@ function load_filters_categories() {
 
 
 
-/*****  Réceptionner et traiter la requête Ajax du filtre "Format"  *****/
+/*****  2-Réceptionner et traiter la requête Ajax du filtre "Format"  *****/
 add_action( 'wp_ajax_load_filters_formats', 'load_filters_formats' );
 add_action( 'wp_ajax_nopriv_load_filters_formats', 'load_filters_formats' );
 
@@ -108,9 +111,9 @@ function load_filters_formats() {
 
     $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
 
-    // Si la catégorie est "all-formats", ne pas appliquer de filtre par format
+    // Si la catégorie est "allFormats", ne pas appliquer de filtre par format
     $tax_query = array();
-    if ($format !== 'all') {
+    if ($format !== 'allFormats') {
         $tax_query = array(
             array(
                 'taxonomy' => 'format',
@@ -148,4 +151,42 @@ function load_filters_formats() {
     wp_send_json_success( $html );
 }
 
-/*****  Réceptionner et traiter la requête Ajax du filtre "Trier par"  *****/
+/*****  3-Réceptionner et traiter la requête Ajax du filtre "Trier par"  *****/
+add_action('wp_ajax_filters_orders', 'load_filters_orders');
+add_action('wp_ajax_nopriv_filters_orders', 'load_filters_orders');
+
+function load_filters_orders() {
+    if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'load_filters_orders' ) ) {
+        wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
+    }
+
+    $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : '';
+
+    $args = array(
+        'post_type'      => 'attachment',
+        'post_mime_type' => 'image',
+        'orderby'        => 'date',
+        'order'          => $order == 'recent' ? 'DESC' : 'ASC',
+        'posts_per_page' => -1
+    );
+
+    $query = new WP_Query($args);
+
+    if (!$query->have_posts()) {
+        wp_send_json_error("Aucune image trouvée pour cette demande.", 400);
+    }
+
+    $html = '';
+    while ($query->have_posts()) {
+        $query->the_post();
+        $html .= '<div class="image">';
+        $html .= get_the_post_thumbnail();
+        ob_start();
+        get_template_part('templates-part/eye-overlay');
+        $html .= ob_get_clean();
+        $html .= '</div>';
+    }
+    wp_reset_postdata();
+
+    wp_send_json_success($html);
+}

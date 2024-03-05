@@ -1,23 +1,32 @@
 <?php
+/*****
+ * Function pour : I-Lecture des fichiers et import des bibliothèques
+ *                 II-création du menu Header et Footer
+ *                 III-Fonction pour ajouter un item supplémentaire sans lien au menu Footer
+ *                 IV-Fonction pour ajouter le bouton contact au menu Header
+ *                 V-Charger le script spécifique "Charger plus de photos" à la page.php
+ *                     et des filtres
+ */
 
-/*****Lecture des fichiers et import des bibliothèques*****/
+/***** I-Lecture des fichiers et import des bibliothèques *****/
 function theme_perso_enqueue() {
 wp_enqueue_style( 'theme-perso-style', get_template_directory_uri(). '/assets/styles/mota.css' );
 wp_enqueue_script( 'jquery' );
     // Enqueue custom script.js
 wp_enqueue_script('modale-script', get_template_directory_uri() . '/assets/js/script.js', array('jquery'), 1.1, true);
 wp_enqueue_script('lightbox-script', get_template_directory_uri() . '/assets/js/lightbox.js', array('jquery'), 1.1, true);
-wp_enqueue_script('swiper-script', get_stylesheet_directory_uri() . '/assets/js/swiper.js', array('swiper-js'), 1.1, true);
+wp_enqueue_script('menu-script', get_stylesheet_directory_uri() . '/assets/js/menu.js', array('jquery'), 1.1, true);
+wp_enqueue_script('filter-script', get_stylesheet_directory_uri() . '/assets/js/filter.js', array('jquery'), 1.1, true);
 // Enqueue Swiper CSS
-wp_enqueue_style('swiper-css', 'https://unpkg.com/swiper/swiper-bundle.min.css');
+wp_enqueue_script('swiper-script', get_stylesheet_directory_uri() . '/assets/js/swiper.js', array('swiper-js'), 1.1, true);
 // Enqueue Swiper JS
 wp_enqueue_script('swiper-js', 'https://unpkg.com/swiper/swiper-bundle.min.js', array(), null, true);
+
 }
 
 add_action( 'wp_enqueue_scripts', 'theme_perso_enqueue' );
 
-
-/*****création du menu Header et Footer*****/
+/***** II-création du menu Header et Footer *****/
 function register_my_menu(){
 register_nav_menus( array(
 	'main' => 'Menu Principal',
@@ -27,7 +36,7 @@ register_nav_menus( array(
 add_action( 'after_setup_theme', 'register_my_menu' );
 
 
-/*****Fonction pour ajouter un item supplémentaire sans lien au menu Footer****/
+/***** III-Fonction pour ajouter un item supplémentaire sans lien au menu Footer ****/
 function my_footer_menu($items, $args) {
     // Vérifiez si c'est le menu Footer
     if ($args->theme_location == 'footer') {
@@ -40,7 +49,7 @@ function my_footer_menu($items, $args) {
 add_filter('wp_nav_menu_items', 'my_footer_menu', 10, 2);
 
 
-/*****Fonction pour ajouter le bouton contact au menu Header*****/
+/***** IV-Fonction pour ajouter le bouton contact au menu Header*****/
 function my_contact_menu($items, $args) {
     // Vérifiez si c'est le menu Header
     if ($args->theme_location == 'main') {
@@ -53,7 +62,7 @@ function my_contact_menu($items, $args) {
 add_filter('wp_nav_menu_items', 'my_contact_menu', 10, 2);
 
 
-/*****Charger le script spécifique "Charger plus de photos" à la page.php*****/
+/***** V-Charger le script spécifique "Charger plus de photos" à la page.php *****/
 function button_home() {
     // Charger un script quand on clique sur le bouton "charger plus" à la page d'accueil
   if( is_page() ) {
@@ -62,57 +71,12 @@ function button_home() {
 }
 add_action( 'wp_enqueue_scripts', 'button_home' );
 
-/*****Réceptionner et traiter la requête Ajax du bouton "charger plus"*****/
+/*****Réceptionner et traiter la requête Ajax du bouton "charger plus" et des filtres*****/
 include('includes/ajax.php');
 
 
-/*****Fonction pour les filtres de la page d'accueil*****/
-//filtre des catégories
-function filtreCategorie() {
-    $output = '<option value="all" selected>Catégories</option>'; // Option par défaut
-    $terms = get_terms(array(
-        'taxonomy' => 'categorie',
-        'hide_empty' => false // Pour inclure les termes sans post associé
-    ));
-    if ($terms) {
-        foreach ($terms as $term) {
-            $output .= '<option value="' . $term->slug . '">' . $term->name . '</option>';
-        }
-    }
-    return $output;
-}
-
-
-
-//filtre des formats
-function filtreFormat() {
-    $output = '<option value="all" selected>Formats</option>'; // Option par défaut
-    $terms = get_terms(array(
-        'taxonomy' => 'format',
-        'hide_empty' => false // Pour inclure les termes sans post associé
-    ));
-    if ($terms) {
-        foreach ($terms as $term) {
-            $output .= '<option value="' . $term->slug . '">' . $term->name . '</option>';
-        }
-    }
-    return $output;
-}
-//filtre des tries
-/*function filtreTrie()
-{
-	if ($terms = get_terms(array(
-		'taxonomy' => 'categorie',
-		'field'    => 'slug',
-		'terms'    => $_POST['category'],
-	)))
-		foreach ($terms as $term) {
-			echo '<option  value="' . $term->slug . '">' . $term->name . '</option>';
-		}
-}*/
-
 /*****Réceptionner et traiter la requête Ajax du bouton "Plein écran"*****/
-add_action('wp_ajax_get_category_images', 'get_category_images_callback');
+/*add_action('wp_ajax_get_category_images', 'get_category_images_callback');
 add_action('wp_ajax_nopriv_get_category_images', 'get_category_images_callback');
 
 function get_category_images_callback() {
@@ -142,7 +106,8 @@ function get_category_images_callback() {
     }
 
     wp_die();
-}
+}*/
+
 
 
 ?>

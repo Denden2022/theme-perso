@@ -7,6 +7,8 @@ var swiper = new Swiper(".mySwiper", {
     spaceBetween: 30,
     effect: "fade",
     grabCursor: true,
+    centeredSlides: true,
+    slidesPerview: 1,
     navigation: {
       nextEl: ".arrow-right",
       clickable: true,

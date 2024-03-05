@@ -88,17 +88,16 @@ get_header();
                                 
                 <div class=paging-arrows>
                     <!---Template paging-photos contact--->
-                    
                     <div class="arrows">
                         <div class="image-arrows">
-                            <img src="<?php echo get_the_post_thumbnail_url($previousPost) ?>" alt="">
-                            <img src="<?php echo get_the_post_thumbnail_url($nextPost) ?>" alt="">
+                            <img class="image-arrow-left" src="<?php echo get_the_post_thumbnail_url($previousPost) ?>" alt="image précédente">
+                            <img class="image-arrow-right" src="<?php echo get_the_post_thumbnail_url($nextPost) ?>" alt="image suivante">
                         </div>
                         <?php if($previousPost) : ?>
-                        <a href="<?php echo get_the_permalink($previousPost)?>"><img class="arrow-left" src="<?php echo get_stylesheet_directory_uri($previousPost) . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche"></a>
+                            <a href="<?php echo get_the_permalink($previousPost)?>"><img class="arrow-left" src="<?php echo get_stylesheet_directory_uri($previousPost) . '/assets/images/arrow-left.svg'; ?> " alt="flèche gauche"></a>
                         <?php endif; ?>
                         <?php if($nextPost) : ?>
-                        <a href="<?php echo get_the_permalink($nextPost)?>"><img class="arrow-right"src="<?php echo get_stylesheet_directory_uri($nextPost) . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite"></a>
+                            <a href="<?php echo get_the_permalink($nextPost)?>"><img class="arrow-right"src="<?php echo get_stylesheet_directory_uri($nextPost) . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite"></a>
                         <?php endif; ?>
                         <?php //get_template_part('templates-part/paging-photos'); ?>
                     </div><!---ferme arrows-->    
@@ -122,7 +121,7 @@ get_header();
                         echo '</div>';
                         wp_reset_postdata(); */// Réinitialiser les données de la requête précédente
                         ?>
-                    </div><!---ferme side-little-image-->
+                        </div><!---ferme side-little-image-->
                 </div><!---ferme le 2ème bloc de la 2ème partie-->
             </section><!---ferme contact-photo-->
 
@@ -132,11 +131,12 @@ get_header();
                 <p>Vous aimerez aussi</p>
             </div>
 
-            <?php echo get_template_part('/templates-part/photo-block'); ?>
-              
-        <?php 
-            wp_reset_postdata(); // Réinitialiser la requête
-        ?>
+            <div id="images-block">
+                <?php get_template_part('templates-part/photo-block'); ?>
+            </div>
+
+                <?php wp_reset_postdata(); // Réinitialiser la requête ?>
+                
     </div><!-- .container -->
 </main><!-- #main -->
 
