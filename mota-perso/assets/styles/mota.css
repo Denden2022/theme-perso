@@ -37,9 +37,8 @@ body {
 /****NAV MENU ****/
 #header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   position: relative;
   width: 100%;
   height: 80px;
@@ -49,16 +48,17 @@ body {
 #menu * {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   text-decoration: none;
   color: black;
-  margin-left: 20px;
+  position: relative;
   text-transform: uppercase;
 }
 
 .site_header_menu {
   font-family: "Space mono", sans-serif;
   position: relative;
-  left: 18.23vw;
+  left: 15vw;
   top: 5px;
 }
 .site_header_menu li:hover, .site_header_menu #button-contact:hover {
@@ -70,7 +70,12 @@ body {
   font-size: 16px;
   border: none;
   background-color: white;
+  margin-left: 30px;
   cursor: pointer;
+}
+
+.menu-item {
+  margin-left: 30px;
 }
 
 .page-item-63 {
@@ -80,8 +85,7 @@ body {
 #branding-img img {
   width: 100%;
   height: 14px;
-  position: absolute;
-  left: -25vw;
+  left: -15vw;
   margin-top: 25px;
 }
 
@@ -146,7 +150,7 @@ body {
   align-items: center;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 3;
 }
 
 #popup-container {
@@ -421,10 +425,15 @@ body {
      object-fit: cover;
   height: 25.78vw;
   width: 100%;
+  position: relative;
+}
+
+#same-image {
+  margin-bottom: -500px;
 }
 
 .eye-overlay {
-  position: absolute;
+  position: relative;
   width: 30.2vw;
   height: 25.8vw;
   background: rgba(0, 0, 0, 0.6);
@@ -432,9 +441,9 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 999;
-  top: 0;
   opacity: 0;
   transition: opacity 0.3s ease;
+  bottom: 500px;
 }
 
 #same-image:hover .eye-overlay {
@@ -742,49 +751,44 @@ body {
 /* Media query pour les écrans plus petits comme le smartphone*/
 /****Ecran inférieur ou égale à 768px*****/
 @media (max-width: 768px) {
-  .close {
-    display: flex;
+  #primary-menu {
+    display: none;
+  }
+  #primary-menu-mobile {
+    display: block;
   }
   #burgerIcon {
+    display: block;
     position: absolute;
-    bottom: 120px;
-    left: 300px;
+    top: 20px;
     width: 20px;
     height: 20px;
     cursor: pointer;
-    content: url(../images/burger.svg);
   }
   .active-icon {
     content: url(../images/cross.svg);
     cursor: pointer;
   }
-  #menu #primary-menu {
-    margin-top: 200px;
+  #button-contact {
+    margin-bottom: 80px;
   }
   #branding-img img {
-    margin-top: 0;
+    left: -30px;
   }
-  .open-menu {
-    position: absolute;
-    right: 100px;
-    flex-direction: column;
-    z-index: 2;
-    background-color: #E00000;
-    font-family: "Space mono", sans-serif;
-    font-size: 44px;
-    top: 225px;
-    height: 740px;
-    width: 375px;
-    left: 50px;
-    z-index: 3;
-  }
-  #menu * {
-    color: white;
-    margin-left: 0;
-    left: 0;
+  .menu-item-51 {
+    margin: 15px 0 20px 0;
   }
   .site_header_menu li:hover, .site_header_menu #button-contact:hover {
     font-weight: none;
+  }
+  .popup-contact {
+    width: 400px;
+  }
+  .popup-header img {
+    width: 100%;
+  }
+  .wpcf7 {
+    margin-left: 60px;
   }
   .header-image img {
     margin-left: 0;
@@ -813,9 +817,26 @@ body {
   #logo {
     margin-bottom: -60px;
   }
+  #images-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 70px 0 70px;
+  }
+  .image img {
+    height: 55vw;
+  }
+  .eye-overlay {
+    width: 71%;
+    height: 48%;
+    z-index: 1;
+  }
+  #same-image {
+    margin-bottom: -40px;
+  }
   .big-image img {
     width: 265px;
     height: 397px;
+    margin-left: -70px;
   }
   .details-container {
     display: flex;
@@ -843,12 +864,25 @@ body {
     display: flex;
     flex-direction: column;
     border-top: none;
+    margin-right: 150px;
+    padding-top: 0;
+  }
+  .button-contact p {
+    margin-right: 0;
   }
   .same-image img {
     height: 279px;
   }
   .arrow-left, .arrow-right {
     display: none;
+  }
+  .text-photos-apparentes {
+    width: 100%;
+    margin: 0;
+  }
+  .text-photos-apparentes p {
+    margin-left: 120px;
+    letter-spacing: 2px;
   }
   #footer * {
     display: none;
@@ -865,24 +899,23 @@ body {
 }
 /* Media query pour les moyens écrans*/
 /****Ecran supérieur à 768px*****/
-@media (min-width: 769px) {
-  #burgerIcon {
-    visibility: hidden;
+@media (max-width: 500px) {
+  #branding-img img {
+    left: -50px;
   }
 }
 /*
 *Menu burger pour écran mobile
 *
 */
-#burgerIcon {
-  margin-top: -10px;
+/* Cacher le menu burger par défaut */
+.menu-toggle {
+  display: none;
   position: relative;
-  left: 280px;
 }
 
-.active-icon {
-  content: url(../images/cross.svg);
-  cursor: pointer;
+#burgerIcon {
+  bottom: 50px;
 }
 
 #menu-overlay {
@@ -891,7 +924,7 @@ body {
   left: 0;
   width: 100%;
   height: 5000px;
-  background-color: black;
+  background-color: #E00000;
   display: none; /* Masqué par défaut */
   z-index: 2;
   top: 80px;
@@ -900,24 +933,19 @@ body {
 .open-menu {
   position: absolute;
   flex-direction: column;
-  z-index: 2;
-  background-color: #E00000;
+  z-index: 3;
+  background-color: white;
   font-family: "Space mono", sans-serif;
   font-size: 44px;
-  top: 80px;
-  height: 740px;
-  width: 480px;
-  right: 800px;
-  z-index: 3;
-  margin: 0;
-  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 .open-menu #primary-menu {
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: 80px;
-  padding-top: 50px;
+  left: -50px;
+  padding-top: 300px;
 }
 .open-menu #primary-menu button {
   background-color: #E00000;

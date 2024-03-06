@@ -47,13 +47,7 @@
         <!--Filtre : les images de la catégorie sélectionnée apparaitront ici-->
         <div id="images-container"></div>
         <?php
-        // Nombre de fois que le template photo-block s'affiche
-        $number_of_blocks = 4;
-
-        // Boucle pour afficher le template photo-block plusieurs fois
-        for ($i = 0; $i < $number_of_blocks; $i++) {
             get_template_part('templates-part/photo-block');
-        }
         ?>
             
         </div>

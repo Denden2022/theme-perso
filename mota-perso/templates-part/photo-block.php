@@ -30,62 +30,38 @@
                 )
             )
         ));}
-       
-                /*if (is_page()) {
-     // Récupérer l'ID de la page en cours
-     $current_page_id = get_the_ID();
- 
-     // WP_Query pour obtenir des articles de type 'photo' associés à la page actuelle
-     $the_query = new WP_Query(array(
-         'post_type' => 'photo',
-         'posts_per_page' => 8,
-         'orderby' => 'rand',
-         'meta_query' => array(
-             array(
-                'field' => 'term_id',
-             )
-         )
-     ));}*/
-     else {
         
+     else {
             $the_query = new WP_Query(array(
                 'post_type' => 'photo',
-                'posts_per_page' => 2,
+                'posts_per_page' => 8,
                 'orderby' => 'rand',
-                $tax_query = array(
-                    array(
-                        'taxonomy' => 'categorie',
-                        'field' => 'slug',
-                        'terms' => 'categorie',
-                    ))
-                
             ));
-        
         }
         ?>
-
 <?php if ($the_query->have_posts()) : ?>
     <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
     <!---
     <div class="lightbox">
         --->
         <div id="same-image" class="same-image image-container">
-        
-                <a href="<?php the_permalink(); ?>">
-                
-                    <?php the_post_thumbnail(); ?>
-                </a>
+            <a href="<?php the_permalink(); ?>">
+                <?php the_post_thumbnail(); ?>
+             <?php 
+            get_template_part('templates-part/eye-overlay')
+            ?>    
+            </a>
 
+            <div class="overlay-container">
             <!-- oeil+éléments à afficher --> 
-            <?php get_template_part('templates-part/eye-overlay')?>
-            
+           
+            </div>    
         </div><!---fermer l'image-->
     <?php
         endwhile;
         endif;
-         wp_reset_postdata();
+        wp_reset_postdata();
     ?>
-    </div><!---fermer lightbox-->
 </div><!---fermer block image-->
 
 

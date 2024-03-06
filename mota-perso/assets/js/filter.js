@@ -10,7 +10,7 @@
  * ***/
 
 /**** I-Créer un modèle de filtre pour les CATEGORIES  ****/ 
-function toggleOptions() {
+function toggleOptionsCategories() {
     var optionsDiv = document.querySelector('.sel .options');
     if (optionsDiv) {
         if (optionsDiv.style.display === 'none' || optionsDiv.style.display === '') {
@@ -64,9 +64,9 @@ function loadImagesByCategory(category) {
 
     jQuery.post(jQuery('#customSelect').data('ajaxurl'), data, function(response) {
         if (response.success) {
-            jQuery('.lightbox').html(response.data);
+            jQuery('.sel').html(response.data);
             // Ferme le filtre une fois que la catégorie est sélectionnée
-            toggleOptions();
+            toggleOptionsCategories();
             // Met à jour le texte du bouton de catégories avec la catégorie sélectionnée
             jQuery('.label').text(category);
             // Réinitialise l'écouteur d'événement sur les catégories pour permettre de réafficher "Catégories"
@@ -271,4 +271,4 @@ jQuery(document).on('click', '.single-item-order', function(event) {
     loadImagesByOrder(order);
 });
 
-//TEST
+

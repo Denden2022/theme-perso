@@ -14,9 +14,13 @@
     object-fit: cover;
     height: 25.78vw;
     width: 100%;
+    position: relative;
+}
+#same-image {
+    margin-bottom: -500px;
 }
 .eye-overlay {
-    position: absolute;
+    position: relative;
     width: 30.2vw;
     height: 25.8vw;
     background: rgba(0, 0, 0, 0.6);
@@ -24,9 +28,9 @@
     justify-content: center;
     align-items: center;
     z-index: 999;
-    top: 0;
     opacity: 0; // Initialement invisible
     transition: opacity 0.3s ease; // Transition douce
+    bottom: 500px;
 }
 #same-image:hover .eye-overlay {
     opacity: 1; // Rendre visible lorsque survolé

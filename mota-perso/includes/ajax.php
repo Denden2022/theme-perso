@@ -34,7 +34,7 @@ function load_photos() {
 
     // Construction du HTML des photos
     $html = '';
-    $number_of_blocks = 4;
+    $number_of_blocks = 1;
 
     for ($i = 0; $i < $number_of_blocks; $i++) {
         ob_start();

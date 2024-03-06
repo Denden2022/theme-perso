@@ -7,11 +7,11 @@
 ?>
 
 <!---Filtre "Catégories"--->
-<div class="sel js-load-filters-categories" id="customSelect"  onclick="toggleOptions()"
+<div class="sel js-load-filters-categories" id="customSelect"  onclick="toggleOptionsCategories()"
     data-nonce="<?php echo wp_create_nonce('load_filters_categories'); ?>"
     data-action="load_filters_categories"
     data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>"
-    onchange="toggleOptions()">
+    onchange="toggleOptionsCategories()">
     <div class="label" data-value="all">Catégories</div>
         <div class="options">
             <?php 

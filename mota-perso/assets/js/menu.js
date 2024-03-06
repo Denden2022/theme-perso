@@ -2,6 +2,18 @@
  * Script pour le menu en mode mobile
  * 
  */
+// Ajoutez ce script JavaScript pour basculer entre le menu burger et le menu complet
+function toggleBurger() {
+  var burgerMenu = document.querySelector('#primary-menu-mobile');
+  if (burgerMenu.style.display === "block") {
+      burgerMenu.style.display = "none";
+  } else {
+      burgerMenu.style.display = "block";
+  }
+}
+
+
+
 //transformer le burger en croix lorsque l'on rentre dans le menu et ouvre le menu
 function toggleBurger() {
   const burgerIcon = document.getElementById('burgerIcon');
@@ -38,6 +50,9 @@ document.querySelectorAll('.close ul li a').forEach(link => {
     burgerIcon.classList.remove('active-icon');
   });
 });
+
+
+
 
 
 

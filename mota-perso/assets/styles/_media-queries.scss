@@ -2,54 +2,53 @@
             /****Ecran inférieur ou égale à 768px*****/
 @media (max-width: 768px) {
 //Menu
-.close {//ensemble menu li mobile
-    display: flex;
-}
+#primary-menu {
+    display: none;
+    }
+#primary-menu-mobile {
+    display: block;
+    }
 #burgerIcon {
+    display: block;
     position: absolute;
-    bottom: 120px;
-    left: 300px;
+    top: 20px;
     width: 20px;
     height: 20px;
     cursor: pointer;
-    content: url(../images/burger.svg);
-  }
-
-  //Icône croix
+    }
+    //Icône croix
 .active-icon {
     content: url(../images/cross.svg);
     cursor: pointer;
     }
+#button-contact {
+    margin-bottom: 80px;
+    }
 #menu #primary-menu{
-    margin-top: 200px;
-}
+   // margin-top: 400px;
+    }
 #branding-img img {//logo du menu
-    margin-top: 0;
- }
-.open-menu{
-    position: absolute;
-    right: 100px;
-    flex-direction: column;
-    z-index: 2;
-    background-color: $color-red;
-    font-family: 'Space mono', sans-serif;
-    font-size: 44px;
-    top: 225px;
-    height: 740px;
-    width: 375px;
-    left: 50px;
-    z-index: 3;
-}
-#menu * {
-    color: white;
-    margin-left: 0;
-    left: 0;
-}
+    //margin-top: 150px;
+    left: -30px;
+    }
+.menu-item-51 {
+    margin: 15px 0 20px 0;
+    }
 .site_header_menu {
     & li:hover,  #button-contact:hover {
-       font-weight: none;
+        font-weight: none;
+        }
     }
+.popup-contact {
+    width: 400px;
+    }
+.popup-header img {
+    width: 100%;
+    }
+.wpcf7 {
+    margin-left: 60px;
  }
+
 
     //Hero-header
 .header-image img {
@@ -80,11 +79,27 @@
 #logo {
     margin-bottom: -60px;
 }
-
+#images-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 70px 0 70px;
+}
+.image img {
+    height: 55vw;
+}
+.eye-overlay {
+    width: 71%;
+    height: 48%;
+    z-index: 1;
+}
+#same-image {
+    margin-bottom: -40px;
+}
 //single-page
 .big-image img {
     width: 265px;
     height: 397px;
+    margin-left: -70px;
 }
 .details-container {
     display: flex;
@@ -112,6 +127,11 @@
     display: flex;
     flex-direction: column;
     border-top: none;
+    margin-right: 150px;
+    padding-top: 0;
+    & p {
+        margin-right: 0;
+    }
 }
 .same-image img {
     height: 279px;
@@ -119,7 +139,14 @@
 .arrow-left, .arrow-right {
     display: none;
 }
-
+.text-photos-apparentes {
+    width: 100%;
+    margin: 0;
+    & p {
+        margin-left: 120px;
+        letter-spacing: 2px;
+    }
+}
 //footer
 #footer * {
     display: none;
@@ -138,9 +165,9 @@
 
 /* Media query pour les moyens écrans*/
             /****Ecran supérieur à 768px*****/
-@media (min-width: 769px) {
-#burgerIcon {
-    visibility: hidden;
-}
 
-            }
+@media (max-width: 500px) {
+    #branding-img img {//logo du menu
+        left: -50px;
+    }
+}
