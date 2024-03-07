@@ -1,6 +1,22 @@
 /*
 *  Lightbox
 */
+.screen-full {//favicon du plein écran
+    position:absolute;
+    top:10px;
+    right:15px;
+    border-radius:20px;
+    height:25px;
+    width:25px;
+    border:1px solid black;
+    background-image: url(../images/full-screen.png);
+    background-repeat: no-repeat;
+    background-color: black;
+    background-position: center;
+    cursor:pointer;
+    display:flex;
+    transition:all 0.4s ease;
+}
 .lightbox {
     visibility: hidden;
     position:fixed;
@@ -15,7 +31,6 @@
     left:0;
     transition: opacity 0.3s ease; // Transition douce
 }
-
 .lightbox-close{
     position:absolute;
     top:120px;
@@ -30,9 +45,54 @@
     display:flex;
     transition:all 0.4s ease;
 }
-
-.swiper-lightbox img {
-    object-fit: contain;
-    width: 660px;
-    min-height: 1400px;
+.details-lightbox {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    position: absolute;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: white;
+    left: 700px;
 }
+#ref-lightbox {
+    margin-right: 300px;
+}
+
+
+
+        /*** swiper ****/
+.swiper {
+    width: 100%;
+
+}
+.screen-img img{
+    width: 25%;
+    margin-left: 650px;
+}
+.swiper-button-next {
+    content: url(../images/arrow-right.svg);
+}
+.swiper-wrapper {
+    width: 100%;
+}
+.swiper-button-prev {
+    content: url(../images/arrow-left.svg);
+    background-color: white;
+    position: absolute;
+    width: 50px;
+    left: 450px;
+    top: 400px;
+}
+.swiper-button-next{
+    content: url(../images/arrow-right.svg);
+    background-color: white;
+    position: absolute;
+    width: 50px;
+    left: 1350px;
+    top: 400px;
+}
+.swiper-slide img {
+    height: 30%;
+  }

@@ -1,21 +1,13 @@
 <!-- oeil+éléments à afficher --> 
 <div class="eye-overlay">
     <div id="eye-container" class="eye-img">
-
-            <?php
-
-            ?>
             <a href="<?php the_permalink(); ?>" class="hover-img">
             <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/eye.svg'; ?>" alt="eye"></a>  
             
-            <?php
-            $image_url = wp_get_attachment_url( get_post_thumbnail_id() );
-            // Vérifie si l'URL de l'image est valide et lightbox
-            if ( $image_url ) {
-            // Afficher le lien pour la lightbox
-                echo '<a href="' . esc_url( $image_url ) . '" class="screen-full"></a>';
-            }
-            ?>
+            <div class="screen-full">
+            <div <?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?> class="screen-img"></div>
+
+            </div>
     </div>
                
                 <?php

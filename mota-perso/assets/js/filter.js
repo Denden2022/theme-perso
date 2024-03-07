@@ -64,7 +64,7 @@ function loadImagesByCategory(category) {
 
     jQuery.post(jQuery('#customSelect').data('ajaxurl'), data, function(response) {
         if (response.success) {
-            jQuery('.sel').html(response.data);
+            jQuery('.lightbox').html(response.data);
             // Ferme le filtre une fois que la catégorie est sélectionnée
             toggleOptionsCategories();
             // Met à jour le texte du bouton de catégories avec la catégorie sélectionnée

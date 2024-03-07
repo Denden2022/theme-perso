@@ -3,20 +3,19 @@
  * swiper effect fade sur la petite image avec pagination flêchée du single page
  * 
  */
-var swiper = new Swiper(".mySwiper", {
+var swiper = new Swiper(".Swiper", {
+    loop:true,
     spaceBetween: 30,
     effect: "fade",
     grabCursor: true,
     centeredSlides: true,
-    slidesPerview: 1,
+    slidesPerView: 1,
     navigation: {
-      nextEl: ".arrow-right",
-      clickable: true,
-        prevEl: ".arrow-left",
-        clickable: true,
+      nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
     },
-    /*pagination: {
+    pagination: {
       el: ".swiper-pagination",
       
-    },*/  
+    },
   });

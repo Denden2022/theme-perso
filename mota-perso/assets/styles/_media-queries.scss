@@ -88,9 +88,21 @@
     height: 55vw;
 }
 .eye-overlay {
-    width: 71%;
-    height: 48%;
+    width: 100%;
+    height: 88.4%;
     z-index: 1;
+    bottom: 282px;
+}
+#ref-hover {
+    margin-right: 100px;
+}
+#cat-hover {
+    bottom: 50px;
+    right: 50px;
+}
+.details-overlay {
+    position: absolute;
+    bottom: 20px;
 }
 #same-image {
     margin-bottom: -40px;
@@ -166,8 +178,18 @@
 /* Media query pour les moyens écrans*/
             /****Ecran supérieur à 768px*****/
 
-@media (max-width: 500px) {
-    #branding-img img {//logo du menu
-        left: -50px;
+@media (min-width: 800px) and (max-width: 1440px) {
+    .eye-overlay {
+        width: 100%;
+        height: 91%;
+        z-index: 1;
+        bottom: 375px;
+    }
+    .details-overlay {
+        position: absolute;
+        bottom: 20px;
+    }
+    #same-image {
+        margin-bottom: -40px;
     }
 }

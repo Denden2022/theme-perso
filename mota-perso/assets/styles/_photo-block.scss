@@ -35,24 +35,6 @@
 #same-image:hover .eye-overlay {
     opacity: 1; // Rendre visible lorsque survolé
 }
-
-.screen-full {//favicon du plein écran
-    position:absolute;
-    top:10px;
-    right:15px;
-    border-radius:20px;
-    height:25px;
-    width:25px;
-    border:1px solid black;
-    background-image: url(../images/full-screen.png);
-    background-repeat: no-repeat;
-    background-color: black;
-    background-position: center;
-    cursor:pointer;
-    display:flex;
-    transition:all 0.4s ease;
-}
-
 .details-overlay {
     margin-top: 450px;
     display: flex;

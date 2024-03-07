@@ -34,13 +34,9 @@ function load_photos() {
 
     // Construction du HTML des photos
     $html = '';
-    $number_of_blocks = 1;
-
-    for ($i = 0; $i < $number_of_blocks; $i++) {
-        ob_start();
-        get_template_part('templates-part/photo-block');
-        $html .= ob_get_clean();
-    }
+    ob_start();
+    get_template_part('templates-part/photo-block');
+    $html .= ob_get_clean();
 
     // Envoyer les données au navigateur
     wp_send_json_success( $html );
@@ -86,13 +82,16 @@ function load_filters_categories() {
     $html = '';
     while ($query->have_posts()) {
         $query->the_post();
-        $html .= '<div class="image">';
+        $html .= '<div id="same-image" class="same-image image-container">';
+        $html .= '<a href="' . get_the_permalink() . '">';
         $html .= get_the_post_thumbnail();
         ob_start();
         get_template_part('templates-part/eye-overlay');
         $html .= ob_get_clean();
+        $html .= '</a>';
         $html .= '</div>';
     }
+    
     wp_reset_postdata();
 
     wp_send_json_success( $html );
@@ -139,11 +138,13 @@ function load_filters_formats() {
     $html = '';
     while ($query->have_posts()) {
         $query->the_post();
-        $html .= '<div id="image" class="image">';
+        $html .= '<div id="same-image" class="same-image image-container">';
+        $html .= '<a href="' . get_the_permalink() . '">';
         $html .= get_the_post_thumbnail();
         ob_start();
         get_template_part('templates-part/eye-overlay');
         $html .= ob_get_clean();
+        $html .= '</a>';
         $html .= '</div>';
     }
     wp_reset_postdata();
@@ -179,11 +180,13 @@ function load_filters_orders() {
     $html = '';
     while ($query->have_posts()) {
         $query->the_post();
-        $html .= '<div class="image">';
+        $html .= '<div id="same-image" class="same-image image-container">';
+        $html .= '<a href="' . get_the_permalink() . '">';
         $html .= get_the_post_thumbnail();
         ob_start();
         get_template_part('templates-part/eye-overlay');
         $html .= ob_get_clean();
+        $html .= '</a>';
         $html .= '</div>';
     }
     wp_reset_postdata();
