@@ -1,15 +1,15 @@
 /*** 
  * 
- * Script Filtre pour : I-Créer un modèle de filtre pour les CATEGORIES
+ * Script Filtre pour : I-Rendre le filtre CATEGORIES fonctionnel
  *                      II-Fonction pour charger les images en fonction de la CATEGORIE sélectionnée
- *                      III-Créer un modèle de filtre pour les FORMATS
+ *                      III-Rendre le filtre FORMATS fonctionnel
  *                      IV-Fonction pour charger les images en fonction du FORMAT sélectionné
- *                      V-Créer un modèle de filtre pour TRIER PAR
- *                      VI-Fonction pour charger les images en fonction du TRIE sélectionné * 
+ *                      V-Rendre le filtre TRIER PAR fonctionnel
+ *                      VI-Fonction pour charger les images en fonction du TRIE sélectionné 
  * 
  * ***/
 
-/**** I-Créer un modèle de filtre pour les CATEGORIES  ****/ 
+/**** I-Rendre le filtre CATEGORIES fonctionnel ****/ 
 function toggleOptionsCategories() {
     var optionsDiv = document.querySelector('.sel .options');
     if (optionsDiv) {
@@ -57,14 +57,14 @@ document.addEventListener('DOMContentLoaded', function() {
 /**** II-Fonction pour charger les images en fonction de la CATEGORIE sélectionnée***/
 function loadImagesByCategory(category) {
     var data = {
-        action: 'load_filters_categories',
+        action: 'load_filters',
         nonce: jQuery('#customSelect').data('nonce'),
         category: category
     };
 
     jQuery.post(jQuery('#customSelect').data('ajaxurl'), data, function(response) {
         if (response.success) {
-            jQuery('.lightbox').html(response.data);
+            jQuery('').html(response.data);
             // Ferme le filtre une fois que la catégorie est sélectionnée
             toggleOptionsCategories();
             // Met à jour le texte du bouton de catégories avec la catégorie sélectionnée
@@ -97,7 +97,7 @@ jQuery(document).on('click', '.options .single-item', function(event) {
 
 
 /****FILTRE FORMAT */
-/**** III-Créer un modèle de filtre pour les FORMATS  ****/ 
+/**** III-Rendre le filtre FORMATS fonctionnel ****/ 
 function toggleOptionsFormats() {
     var optionsDiv = document.querySelector('.select .options-formats');
     if (optionsDiv) {
@@ -152,7 +152,7 @@ function loadImagesByFormat(format) {
 
     jQuery.post(jQuery('#selectFormats').data('ajaxurl'), data, function(response) {
         if (response.success) {
-            jQuery('.lightbox').html(response.data);
+            jQuery('').html(response.data);
             // Ferme le filtre une fois que le format est sélectionnée
             toggleOptionsFormats();
             // Met à jour le texte du bouton de formats avec le format sélectionnée
@@ -185,7 +185,7 @@ jQuery(document).on('click', '.options-formats .single-item-format', function(ev
 
 
 /****FILTRE TRIER PAR */
-/**** V-Créer un modèle de filtre pour TRIER PAR  ****/ 
+/**** V-Rendre le filtre TRIER PAR fonctionnel  ****/ 
 function toggleOptionsOrders() {
     var optionsDiv = document.querySelector('.selection .options-tries');
     if (optionsDiv) {
@@ -272,3 +272,4 @@ jQuery(document).on('click', '.single-item-order', function(event) {
 });
 
 
+//test

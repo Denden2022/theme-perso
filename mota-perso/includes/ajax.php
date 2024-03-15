@@ -44,7 +44,7 @@ function load_photos() {
 
                     /***** Charger les filtres ****/
 /*****  1-Réceptionner et traiter la requête Ajax du filtre "Catégorie" *****/
-add_action( 'wp_ajax_load_filters_categories', 'load_filters_categories' );
+/*add_action( 'wp_ajax_load_filters_categories', 'load_filters_categories' );
 add_action( 'wp_ajax_nopriv_load_filters_categories', 'load_filters_categories' );
 
 function load_filters_categories() {
@@ -95,12 +95,12 @@ function load_filters_categories() {
     wp_reset_postdata();
 
     wp_send_json_success( $html );
-}
+}*/
 
 
 
 /*****  2-Réceptionner et traiter la requête Ajax du filtre "Format"  *****/
-add_action( 'wp_ajax_load_filters_formats', 'load_filters_formats' );
+/*add_action( 'wp_ajax_load_filters_formats', 'load_filters_formats' );
 add_action( 'wp_ajax_nopriv_load_filters_formats', 'load_filters_formats' );
 
 function load_filters_formats() {
@@ -150,10 +150,11 @@ function load_filters_formats() {
     wp_reset_postdata();
 
     wp_send_json_success( $html );
-}
+}*/
+
 
 /*****  3-Réceptionner et traiter la requête Ajax du filtre "Trier par"  *****/
-add_action('wp_ajax_filters_orders', 'load_filters_orders');
+/*add_action('wp_ajax_filters_orders', 'load_filters_orders');
 add_action('wp_ajax_nopriv_filters_orders', 'load_filters_orders');
 
 function load_filters_orders() {
@@ -192,4 +193,80 @@ function load_filters_orders() {
     wp_reset_postdata();
 
     wp_send_json_success($html);
+}*/
+
+/*****  TEST  *****/
+add_action( 'wp_ajax_load_filters', 'load_filters' );
+add_action( 'wp_ajax_nopriv_load_filters', 'load_filters' );
+
+function load_filters() {
+    // Vérifier si le nonce est défini et valide
+    if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'load_filters' ) ) {
+        wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
+    }
+
+    // Récupérer les valeurs des filtres
+    $category = isset( $_POST['category'] ) ? sanitize_text_field( $_POST['category'] ) : '';
+    $format   = isset( $_POST['format'] ) ? sanitize_text_field( $_POST['format'] ) : '';
+
+    // Construire la requête WP_Query en fonction des filtres
+    /*$args = array(
+        'post_type'      => 'photo',
+        'posts_per_page' => 12,
+        'orderby'        => 'date',
+        'order'          => isset( $_POST['post_ordre'] ) ? $_POST['post_ordre'] : 'DESC', 
+        'paged'          => isset( $_POST['paged'] ) ? $_POST['paged'] : 1, 
+        'tax_query'      => array(
+            'relation' => 'AND', // Utiliser l'opérateur logique "AND"
+        ),
+    );*/
+
+    // Ajouter la taxonomie de catégorie si elle est définie
+    if ( $category && $category !== "all" ) {
+         $args['tax_query'][] = array(
+            'taxonomy' => 'categorie',
+            'field'    => 'slug',
+            'terms'    => $category,
+        );
+    }
+
+    
+    // Ajouter la taxonomie de format si elle est définie
+    if ( $format && $format !== "allFormats" ) {
+
+        $args['tax_query'][] = array(
+            'taxonomy' => 'format',
+            'field'    => 'slug',
+            'terms'    => $format,
+        );
+    }
+
+    // Si à la fois la catégorie et le format sont sélectionnés, les combiner avec une relation 'AND'
+    if ( $category && $format ) {
+
+        $args['tax_query']['relation'] = 'AND';
+    }
+
+    $query = new WP_Query( $args );
+
+    if ( ! $query->have_posts() ) {
+        wp_send_json_error( "Aucune image trouvée pour cette demande.", 400 );
+    }
+
+    $html = '';
+    while ( $query->have_posts() ) {
+        $query->the_post();
+        $html .= '<div id="same-image" class="same-image image-container">';
+        $html .= '<a href="' . esc_url( get_the_permalink() ) . '">';
+        $html .= get_the_post_thumbnail();
+        ob_start();
+        get_template_part( 'templates-part/eye-overlay' );
+        $html .= ob_get_clean();
+        $html .= '</a>';
+        $html .= '</div>';
+    }
+    wp_reset_postdata();
+
+    wp_send_json_success( $html );
 }
+

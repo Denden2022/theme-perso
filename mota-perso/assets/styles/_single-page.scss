@@ -3,23 +3,25 @@
 *
 */
             /** 1ère section  **/
+.container-single-page {
+    max-width: 1143px;
+    margin: auto;
+}
 .details-container {
     display: grid;
-    grid-template-columns: 720px 720px;
+    grid-template-columns: 1fr 1fr;
     padding-top: 35px;
-    justify-content: center;
-    width: fit-content;
 }
 .contact-photo {
     display: grid;
-    grid-template-columns: 720px 720px;
+    grid-template-columns: 1fr 1fr;
     height: 118px;
 }
 .details {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    margin-left: 150px;
+    margin-left: 40px;
     & h2 {
         text-transform: uppercase;
         font-style: italic;
@@ -39,13 +41,13 @@
 }
 }
 .side-big-image {
-    width: 29.125vw;
     margin-left: 10px;
+    height: 844px;
 }
 .big-image img{
     object-fit: cover;
-    width: 100%;
-    height: 100%;
+    width: 29.6vw;
+    height: 844px;
 }
 
             /** 2ème section avec le bouton et les flèches**/
@@ -67,14 +69,12 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-left: 120px;
     border-top: 1px solid;
     padding-top: 35px;
-    margin-top: -1px;
     font-family: 'Poppins', sans-serif;
     & p {
         font-size: 14px;
-        margin-right: 130px;
+        margin-right: 116px;
     }
     & input {
         cursor: pointer; // Changer l'apparence du curseur
@@ -100,11 +100,12 @@
 }
 .arrows {
     position: relative;
-    bottom: -90px;
-    left: 345px;
+    top: 100px;
+    left: 505px;
 }
 .arrow-right {
-    margin-left: 22px;
+    position: absolute;
+    margin-left: 38px;
     cursor: pointer;
     &:hover {
         content: url(../images/arrow-Rblack.svg);
@@ -112,7 +113,8 @@
     }
 }
 .arrow-left {
-    margin-left: 145px;
+    position: absolute;
+    margin-left: -15px;
     cursor: pointer;
     &:hover {
         content: url(../images/arrow-Lblack.svg);
@@ -124,12 +126,13 @@
     object-fit: cover;
     width: 4.22vw;
     height: 3.70vw;
-    bottom: 25px;
-    left: 144px;
+    bottom: 12px;
+    left: 138px;
 }
 .image-arrow-left,
 .image-arrow-right {
     visibility: hidden;
+    margin-left: -150px;
 }
 
 /***  3ème section avec les Photos apparentées***/
@@ -137,6 +140,5 @@
     text-transform: uppercase;
     font-size: 18px;
     border-top: 1px solid;
-    margin: 0 150px 0 120px;
     padding: 60px 0 40px 0;
 }

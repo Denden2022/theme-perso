@@ -15,12 +15,16 @@
             )); 
 ?>
 </footer>
-
                 <!---Template modale popup contact--->
 <?php get_template_part('templates-part/content-modale'); ?>
 
                 <!---lightbox--->           
 <?php get_template_part('templates-part/lightbox'); ?>
+
+
+
+
+
 
 </div>
 

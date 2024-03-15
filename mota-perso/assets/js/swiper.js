@@ -1,21 +1,14 @@
 /**
  * 
- * swiper effect fade sur la petite image avec pagination flêchée du single page
+ * swiper pour la lightbox
  * 
  */
-var swiper = new Swiper(".Swiper", {
-    loop:true,
-    spaceBetween: 30,
-    effect: "fade",
-    grabCursor: true,
-    centeredSlides: true,
+var swiper = new Swiper(".mySwiper", {
+    spaceBetween: 830,
     slidesPerView: 1,
+    centeredSlides: true,
     navigation: {
       nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      
     },
   });

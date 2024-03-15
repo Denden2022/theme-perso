@@ -2,24 +2,12 @@
 * Les filtres et les photos du filtre
 *
 */
+
 .filters {
     margin: 50px 20px 30px 0;
     display: flex;
 }
-.filters-class {
-    margin-right: 30px;
-    border-radius: 10px;
-    border: $color-border-form solid 1px;
-    width: 260px;
-    height: 43px;
-    font-size: 12px;
-    font-family: 'Poppins', sans-serif;
-    text-transform: uppercase;
-    padding: 0 20px 0 10px;
-    &:hover {
-        border: $color-border-hover solid 1px;
-    }
-}
+
 #trier-select {
     margin-left: 360px;
 }
@@ -29,24 +17,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 50px;
-    margin-top: 50px;
+    margin-bottom: 110px;
+    margin-top: 175px;
 }
 .block-list-photos {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: -150px;
+}
+#images-container, .block-image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    position: relative;
+    gap: 20px;
 }
 #images-container {
-    display: grid;
-    grid-template-columns: 580px 580px;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
-    position: relative;
-    
+    bottom: -30px;
 }
-
 .image img {
     object-fit: cover;
     width: 100%;
@@ -65,7 +54,6 @@
     box-sizing: border-box;
     overflow: hidden;
     padding-top: 30px;
-    border-top: 1px solid $color-border-form;
 }
 
 .label,
@@ -77,7 +65,7 @@
 .label:hover {
     border: #215AFF solid 1px;
     border-radius: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 9px;
 }
 .sel {
     width: 260px;
@@ -90,13 +78,15 @@
     margin-right: 30px;
     margin-left: -20px;
 }
-.selected {
-    background-color: #ff0000;
-}
 .sel .options {
     width: 260px;
     background-color: #ffffff;
     display: none;
+    position: absolute;
+    z-index: 15;
+    border-radius: 6px;
+    border-top-left-radius: 1px solid;
+    border-top: 1px solid $color-border-form;
 }
 .sel .options .single-item:hover {
     background-color: $color-pink;
@@ -123,7 +113,7 @@
 .label-format:hover {
     border: #215AFF solid 1px;
     border-radius: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 9px;
 }
 .select {
     width: 260px;
@@ -134,14 +124,18 @@
     border-radius: 10px;
     background: #ffffff url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.2 11.1 2.5 5.7A1 1 0 0 1 3.2 4h9.6a1 1 0 0 1 .7 1.7L8.8 11a1 1 0 0 1-1.6 0z'/></svg>") no-repeat calc(100% - 12px) 16px;
     margin-right: 360px;
-}
-.selected {
-    background-color: #ff0000;
+    & .options-formats {
+        position: absolute;
+        z-index: 15;
+        border-radius: 6px;
+    }
 }
 .select .options-formats {
-    width: 260px;
+    width: 248px;
     background-color: #ffffff;
     display: none;
+    border-top: 1px solid $color-border-form;
+
 }
 .select .options-formats .single-item-format:hover {
     background-color: $color-pink;
@@ -168,7 +162,7 @@
 .label-trie:hover {
     border: #215AFF solid 1px;
     border-radius: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 9px;
 }
 .selection {
     width: 260px;
@@ -178,19 +172,23 @@
     border: $color-border-form solid 1px;
     border-radius: 10px;
     background: #ffffff url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.2 11.1 2.5 5.7A1 1 0 0 1 3.2 4h9.6a1 1 0 0 1 .7 1.7L8.8 11a1 1 0 0 1-1.6 0z'/></svg>") no-repeat calc(100% - 12px) 16px;
-}
-.selected {
-    background-color: #ff0000;
+    & .options-tries {
+        position: absolute;
+        z-index: 15;
+        border-radius: 6px;
+    }
 }
 .selection .options-tries {
-    width: 260px;
+    width: 248px;
     background-color: #ffffff;
     display: none;
+    border-top: 1px solid $color-border-form;
+
 }
-.selection .options-tries .single-item-trie:hover {
+.selection .options-tries .single-item-order:hover {
     background-color: $color-pink;
 }
-.selection .options-tries .single-item-trie:active {
+.selection .options-tries .single-item-order:active {
     background-color: red;
     color: white;
 }

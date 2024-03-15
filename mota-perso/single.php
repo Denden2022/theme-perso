@@ -84,8 +84,7 @@ get_header();
                 <div class="button-contact">
                     <p>Cette photo vous intéresse ?</p>
                     <input class="btn-single-page" type="submit" value="Contact">
-                </div>
-                                
+                </div>                     
                 <div class=paging-arrows>
                     <!---Template paging-photos contact--->
                     <div class="arrows">
@@ -99,44 +98,23 @@ get_header();
                         <?php if($nextPost) : ?>
                             <a href="<?php echo get_the_permalink($nextPost)?>"><img class="arrow-right"src="<?php echo get_stylesheet_directory_uri($nextPost) . '/assets/images/arrow-right.svg'; ?> " alt="flèche droite"></a>
                         <?php endif; ?>
-                        <?php //get_template_part('templates-part/paging-photos'); ?>
                     </div><!---ferme arrows-->    
-                    <!---La petite image au dessus des flèches--->
-                    <!--<div class="side-little-image">  -->         
-                        <?php 
-                        // Récupérer une petite image
-                        /* echo '<div class="little-image">';
-                        // Utiliser la fonction WP_Query pour obtenir une image aléatoire du type de post "photo"
-                            $little_image_query = new WP_Query(array(
-                                'post_type' => 'photo',
-                                'posts_per_page' => 1,
-                                'orderby' => 'rand'
-                            ));
-                            if ($little_image_query->have_posts()) {
-                                while ($little_image_query->have_posts()) {
-                                    $little_image_query->the_post();
-                                    the_post_thumbnail(); // Afficher la miniature de l'image
-                                }
-                            }
-                        echo '</div>';
-                        wp_reset_postdata(); */// Réinitialiser les données de la requête précédente
-                        ?>
-                        </div><!---ferme side-little-image-->
                 </div><!---ferme le 2ème bloc de la 2ème partie-->
             </section><!---ferme contact-photo-->
 
 
 <!---3ème partie avec les photos apparentées-->
-            <div class="text-photos-apparentes">
-                <p>Vous aimerez aussi</p>
-            </div>
-
-            <div id="images-block">
-                <?php get_template_part('templates-part/photo-block'); ?>
-            </div>
-
-                <?php wp_reset_postdata(); // Réinitialiser la requête ?>
-                
+            <section>
+                <div class="text-photos-apparentes">
+                    <p>Vous aimerez aussi</p>
+                </div>
+                <div id="images-block">
+                    <?php get_template_part('templates-part/photo-block'); ?>
+                </div>
+            </section>
+                    
+            <?php wp_reset_postdata(); // Réinitialiser la requête ?>
+               
     </div><!-- .container -->
 </main><!-- #main -->
 

@@ -21,6 +21,7 @@ body {
    max-width: 1440px;
    background-color: white;
 }
+
 #primary {
    display: flex;
    flex-direction: column;
@@ -47,6 +48,7 @@ body {
    //margin-left: 20px;
    position: relative;
    text-transform: uppercase;
+   z-index: 10;
 }
 .site_header_menu {
    font-family: 'Space mono', sans-serif;

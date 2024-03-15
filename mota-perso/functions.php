@@ -5,7 +5,7 @@
  *                 III-Fonction pour ajouter un item supplémentaire sans lien au menu Footer
  *                 IV-Fonction pour ajouter le bouton contact au menu Header
  *                 V-Charger le script spécifique "Charger plus de photos" à la page.php
- *                     et des filtres
+ *                    
  */
 
 /***** I-Lecture des fichiers et import des bibliothèques *****/
@@ -107,6 +107,7 @@ function get_category_images_callback() {
 
     wp_die();
 }*/
+
 
 
 

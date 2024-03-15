@@ -2,35 +2,40 @@
 * La partie photo-block du single Page avec l'overlay
 *
 */
-.block-image {
+/*.images-block {
     display: grid;
-    grid-template-columns: 580px 580px;
+    grid-template-columns: 1fr 1fr;
     justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
+    top: 15px;
     position: relative;
+    margin: auto;
+}*/
+.block-image {
+    margin-bottom: 90px;
 }
 .same-image img {
     object-fit: cover;
-    height: 25.78vw;
-    width: 100%;
+    height: 34.2vw;
+    width: 30.208vw;
     position: relative;
+    z-index: 7;
+
 }
 #same-image {
-    margin-bottom: -500px;
+   margin-bottom: -655px;
 }
 .eye-overlay {
     position: relative;
-    width: 30.2vw;
-    height: 25.8vw;
+    width: 30.208vw;
+    height: 34.3vw;
     background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 7;
     opacity: 0; // Initialement invisible
     transition: opacity 0.3s ease; // Transition douce
-    bottom: 500px;
+    bottom: 662px;
 }
 #same-image:hover .eye-overlay {
     opacity: 1; // Rendre visible lorsque survolé
@@ -45,9 +50,10 @@
     text-transform: uppercase;
     color: white;
     //visibility: hidden;
+    top: 170px;
 }
 #ref-hover {
-    margin-right: 420px;
+    margin-right: 400px;  
 }
 
 #eye-container .hover-img img{

@@ -6,30 +6,33 @@
  */
 ?>
 <div id="lightbox" class="lightbox">
-<div class="lightbox-close"></div>
+    <div class="lightbox-close"></div>
 
-<?php
+        <?php
 
-$args = array(
-    'post_type' => 'photo',
-    'posts_per_page' => 1,
-    'orderby' => 'rand',
-);
-
-$the_query = new WP_Query($args);
-?>
+        $args = array(
+            'post_type' => 'photo',
+            'posts_per_page' => -1,
+        );
+        
+        $the_query = new WP_Query($args);
+        ?>
 
         <?php
         echo '<div class="swiper mySwiper">'; 
         echo '<div class="swiper-wrapper">';
+
+        $the_query->next_post();
+        
         while ($the_query->have_posts()) {
             $the_query->the_post();
             echo '<div class="swiper-slide">'
-           
+            
              ?>
-           <a href="<?php the_permalink(); ?>" class="screen-img">
-                    <?php the_post_thumbnail(); ?>  
-            </a>
+        <div class="swiper-content">
+           <div class="screen-img">
+           <?php the_post_thumbnail(); ?>   
+            </div>
            
             <?php
                 // On récupère les champs ACF nécessaires pour les détails de l'overlay
@@ -56,24 +59,24 @@ $the_query = new WP_Query($args);
                                     }
                             }};
                         ?>
-                    </span>
-                </div><!---fermer les span-->                
+                    </span><!---fermer les span--> 
+                </div>
+                </div>           
             <?php
             echo '</div>';//fermer le swiper-slide
         }
-        echo '</div>'; //fermer swiper-wrapper
-echo '</div>'; //fermer mySwiper
+
+        echo '</div>';//fermer le swiper-wrapper
+        echo '<div class="swiper-button-next"></div>';
+        echo '<div class="swiper-button-prev"></div>';
+        echo '</div>';//fermer le swiper
+
         ?>
-        
 
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-
-
-<?php
-// Réinitialiser la requête WP
-wp_reset_postdata();
-?>
+        <?php
+        // Réinitialiser la requête WP
+        wp_reset_postdata();
+        ?>
 </div>
 
 

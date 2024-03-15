@@ -2,14 +2,11 @@
 <div class="eye-overlay">
     <div id="eye-container" class="eye-img">
             <a href="<?php the_permalink(); ?>" class="hover-img">
-            <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/eye.svg'; ?>" alt="eye"></a>  
-            
-            <div class="screen-full">
-            <div <?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?> class="screen-img"></div>
-
-            </div>
+                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/eye.svg'; ?>" alt="eye">
+            </a>  
+            <div class="screen-full"></div>     
     </div>
-               
+    
                 <?php
                 // On récupère les champs ACF nécessaires pour les détails de l'overlay
                 $reference=get_field('reference');

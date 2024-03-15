@@ -2,12 +2,15 @@
             /****Ecran inférieur ou égale à 768px*****/
 @media (max-width: 768px) {
 //Menu
+#main {
+    height: auto;
+}
 #primary-menu {
     display: none;
-    }
+}
 #primary-menu-mobile {
     display: block;
-    }
+}
 #burgerIcon {
     display: block;
     position: absolute;
@@ -15,18 +18,16 @@
     width: 20px;
     height: 20px;
     cursor: pointer;
-    }
+}
     //Icône croix
 .active-icon {
     content: url(../images/cross.svg);
     cursor: pointer;
-    }
+}
 #button-contact {
     margin-bottom: 80px;
-    }
-#menu #primary-menu{
-   // margin-top: 400px;
-    }
+}
+
 #branding-img img {//logo du menu
     //margin-top: 150px;
     left: -30px;
@@ -49,7 +50,6 @@
     margin-left: 60px;
  }
 
-
     //Hero-header
 .header-image img {
     margin-left: 0;
@@ -66,7 +66,8 @@
     flex-direction: column;
     margin-left: 100px;
     gap: 8px;
-}.sel {
+}
+.sel {
     margin-left: 0;
 }
 .filters-photos {
@@ -74,7 +75,9 @@
     grid-template-columns: 450px;
 }
 .block-image {
-    grid-template-columns: 318px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: -120px;
 }
 #logo {
     margin-bottom: -60px;
@@ -82,16 +85,18 @@
 #images-container {
     display: flex;
     flex-direction: column;
-    margin: 0 70px 0 70px;
 }
 .image img {
     height: 55vw;
 }
 .eye-overlay {
-    width: 100%;
-    height: 88.4%;
-    z-index: 1;
+    width: 319px;
+    height: 280px;
     bottom: 282px;
+    left: 70px;
+}
+.hover-img img {
+    right: 50px;
 }
 #ref-hover {
     margin-right: 100px;
@@ -105,41 +110,53 @@
     bottom: 20px;
 }
 #same-image {
-    margin-bottom: -40px;
+    margin-bottom: -265px;
+    & a {
+        margin-left: 70px;
+    }
 }
+#eye-container  .hover-img img {
+    width: 35px;
+    height: 25px;
+    margin-right: 110px;
+}
+.block-button {
+    margin-top: 290px;
+    margin-right: 60px;
+}
+
 //single-page
+.side-big-image {
+    margin-left: 175px;
+}
 .big-image img {
     width: 265px;
     height: 397px;
-    margin-left: -70px;
 }
 .details-container {
     display: flex;
     flex-direction: column-reverse;
-    align-items: center;
     border-bottom: 1px solid;
     margin-left: 0;
     & h2 {
-        margin-left: 50px;
+        margin-left: 35px;
     }
 }
 .details {
-    margin-top: 50px;
-    margin-left: 30px;
+    margin: -400px 130px 20px 70px;
     & ul {
         margin-left: 0;
     }
 }
 .contact-photo {
-    height: 170px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 .button-contact {
     display: flex;
     flex-direction: column;
     border-top: none;
-    margin-right: 150px;
+    margin-left: -270px;
     padding-top: 0;
     & p {
         margin-right: 0;
@@ -147,18 +164,41 @@
 }
 .same-image img {
     height: 279px;
+    width: 318px;
 }
 .arrow-left, .arrow-right {
     display: none;
 }
 .text-photos-apparentes {
-    width: 100%;
-    margin: 0;
+    padding: 0;
     & p {
         margin-left: 120px;
         letter-spacing: 2px;
     }
 }
+
+//lightbox
+#ref-lightbox {
+    margin-right: 60px;
+    margin-left: 120px;
+}
+.swiper-slide img {
+    width: 200px;
+    margin-left: 105px;
+    height: 100%;
+    }
+  .swiper-button-prev {
+    width: 100px;
+    top: 150px;
+    left: -10px;
+}
+.swiper-button-next{
+    width: 100px;
+    left: 320px;
+    top: 150px;
+}
+
+
 //footer
 #footer * {
     display: none;
@@ -174,22 +214,56 @@
 }
 }
 
-
 /* Media query pour les moyens écrans*/
             /****Ecran supérieur à 768px*****/
 
 @media (min-width: 800px) and (max-width: 1440px) {
+    #main {
+        height: 1800px;
+    }
+    .big-image img {
+        width: 38.6vw;
+    }
+    .button-contact p {
+        margin-right: 116px;
+    }
+    .block-image {
+
+        //margin-bottom: -120px;
+    }
     .eye-overlay {
         width: 100%;
-        height: 91%;
-        z-index: 1;
-        bottom: 375px;
+        height: 93%;
+        bottom: 496px;
     }
     .details-overlay {
         position: absolute;
-        bottom: 20px;
+        top: 0;
     }
     #same-image {
         margin-bottom: -40px;
+        & img {
+            width: 580px;
+        }
+    }
+    .arrows {
+        bottom: 295px;
+        right: 214px;
+    }
+    .image-arrows img {
+        width: 5.6vw;
+        height: 4.95vw;
+    }
+    .swiper-content {
+       margin-bottom: 150px;
+        }
+
+    .swiper-button-prev {
+        left: -400px;
+
+    }
+    .swiper-button-next{
+        left: 650px;
+
     }
 }
