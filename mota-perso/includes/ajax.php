@@ -1,10 +1,7 @@
 <?php
 /**
  * Include ajax pour : - Charger les images au clic du bouton "Charger plus"
- *                   : - Charger les images correspondants aux choix des filtres 
- *                       "1-Catégories", 
- *                       "2-Formats" et 
- *                       "3-Trier par"
+ *                   : - Charger les filtres après sélection
  *
  * @package Mota
  */
@@ -43,159 +40,6 @@ function load_photos() {
 }
 
                     /***** Charger les filtres ****/
-/*****  1-Réceptionner et traiter la requête Ajax du filtre "Catégorie" *****/
-/*add_action( 'wp_ajax_load_filters_categories', 'load_filters_categories' );
-add_action( 'wp_ajax_nopriv_load_filters_categories', 'load_filters_categories' );
-
-function load_filters_categories() {
-    if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'load_filters_categories' ) ) {
-        wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
-    }
-
-    $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
-
-    // Si la catégorie est "all", ne pas appliquer de filtre par catégorie
-    $tax_query = array();
-    if ($category !== 'all') {
-        $tax_query = array(
-            array(
-                'taxonomy' => 'categorie',
-                'field' => 'slug',
-                'terms' => $category,
-            )
-        );
-    }
-
-    // Requête pour obtenir les images en fonction de la catégorie demandée
-    $args = array(
-        'post_type' => 'photo',
-        'posts_per_page' => -1,
-        'orderby' => 'rand',
-        'tax_query' => $tax_query,
-    );
-    $query = new WP_Query($args);
-
-    if (!$query->have_posts()) {
-        wp_send_json_error( "Aucune image trouvée pour cette catégorie.", 400 );
-    }
-
-    $html = '';
-    while ($query->have_posts()) {
-        $query->the_post();
-        $html .= '<div id="same-image" class="same-image image-container">';
-        $html .= '<a href="' . get_the_permalink() . '">';
-        $html .= get_the_post_thumbnail();
-        ob_start();
-        get_template_part('templates-part/eye-overlay');
-        $html .= ob_get_clean();
-        $html .= '</a>';
-        $html .= '</div>';
-    }
-    
-    wp_reset_postdata();
-
-    wp_send_json_success( $html );
-}*/
-
-
-
-/*****  2-Réceptionner et traiter la requête Ajax du filtre "Format"  *****/
-/*add_action( 'wp_ajax_load_filters_formats', 'load_filters_formats' );
-add_action( 'wp_ajax_nopriv_load_filters_formats', 'load_filters_formats' );
-
-function load_filters_formats() {
-    if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'load_filters_formats' ) ) {
-        wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
-    }
-
-    $format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
-
-    // Si la catégorie est "allFormats", ne pas appliquer de filtre par format
-    $tax_query = array();
-    if ($format !== 'allFormats') {
-        $tax_query = array(
-            array(
-                'taxonomy' => 'format',
-                'field' => 'slug',
-                'terms' => $format,
-            )
-        );
-    }
-
-    // Requête pour obtenir les images en fonction du format demandée
-    $args = array(
-        'post_type' => 'photo',
-        'posts_per_page' => -1,
-        'orderby' => 'rand',
-        'tax_query' => $tax_query,
-    );
-    $query = new WP_Query($args);
-
-    if (!$query->have_posts()) {
-        wp_send_json_error( "Aucune image trouvée pour ce format.", 400 );
-    }
-
-    $html = '';
-    while ($query->have_posts()) {
-        $query->the_post();
-        $html .= '<div id="same-image" class="same-image image-container">';
-        $html .= '<a href="' . get_the_permalink() . '">';
-        $html .= get_the_post_thumbnail();
-        ob_start();
-        get_template_part('templates-part/eye-overlay');
-        $html .= ob_get_clean();
-        $html .= '</a>';
-        $html .= '</div>';
-    }
-    wp_reset_postdata();
-
-    wp_send_json_success( $html );
-}*/
-
-
-/*****  3-Réceptionner et traiter la requête Ajax du filtre "Trier par"  *****/
-/*add_action('wp_ajax_filters_orders', 'load_filters_orders');
-add_action('wp_ajax_nopriv_filters_orders', 'load_filters_orders');
-
-function load_filters_orders() {
-    if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'load_filters_orders' ) ) {
-        wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
-    }
-
-    $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : '';
-
-    $args = array(
-        'post_type'      => 'attachment',
-        'post_mime_type' => 'image',
-        'orderby'        => 'date',
-        'order'          => $order == 'recent' ? 'DESC' : 'ASC',
-        'posts_per_page' => -1
-    );
-
-    $query = new WP_Query($args);
-
-    if (!$query->have_posts()) {
-        wp_send_json_error("Aucune image trouvée pour cette demande.", 400);
-    }
-
-    $html = '';
-    while ($query->have_posts()) {
-        $query->the_post();
-        $html .= '<div id="same-image" class="same-image image-container">';
-        $html .= '<a href="' . get_the_permalink() . '">';
-        $html .= get_the_post_thumbnail();
-        ob_start();
-        get_template_part('templates-part/eye-overlay');
-        $html .= ob_get_clean();
-        $html .= '</a>';
-        $html .= '</div>';
-    }
-    wp_reset_postdata();
-
-    wp_send_json_success($html);
-}*/
-
-/*****  TEST  *****/
 add_action( 'wp_ajax_load_filters', 'load_filters' );
 add_action( 'wp_ajax_nopriv_load_filters', 'load_filters' );
 
@@ -210,42 +54,45 @@ function load_filters() {
     $format   = isset( $_POST['format'] ) ? sanitize_text_field( $_POST['format'] ) : '';
 
     // Construire la requête WP_Query en fonction des filtres
-    /*$args = array(
+    $args = array(
         'post_type'      => 'photo',
-        'posts_per_page' => 12,
+        'posts_per_page' => -1,
         'orderby'        => 'date',
         'order'          => isset( $_POST['post_ordre'] ) ? $_POST['post_ordre'] : 'DESC', 
         'paged'          => isset( $_POST['paged'] ) ? $_POST['paged'] : 1, 
         'tax_query'      => array(
             'relation' => 'AND', // Utiliser l'opérateur logique "AND"
         ),
-    );*/
-
-    // Ajouter la taxonomie de catégorie si elle est définie
-    if ( $category && $category !== "all" ) {
-         $args['tax_query'][] = array(
-            'taxonomy' => 'categorie',
-            'field'    => 'slug',
-            'terms'    => $category,
-        );
-    }
-
+    );
     
-    // Ajouter la taxonomie de format si elle est définie
-    if ( $format && $format !== "allFormats" ) {
 
-        $args['tax_query'][] = array(
-            'taxonomy' => 'format',
-            'field'    => 'slug',
-            'terms'    => $format,
-        );
-    }
+// Ajouter la taxonomie de catégorie si elle est définie
+if ($category && $category !== "all") {
+    $args['tax_query'][] = array(
+        'taxonomy' => 'categorie',
+        'field'    => 'slug',
+        'terms'    => $category,
+    );
+}
 
-    // Si à la fois la catégorie et le format sont sélectionnés, les combiner avec une relation 'AND'
-    if ( $category && $format ) {
+// Récupérer la valeur du paramètre 'format' de la requête AJAX
+$format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
 
-        $args['tax_query']['relation'] = 'AND';
-    }
+// Vérifier si le paramètre 'format' est vide ou égal à "allFormats"
+if (!empty($format) && $format !== "allFormats") {
+    // Ajouter la taxonomie de format à la requête WP_Query
+    $args['tax_query'][] = array(
+        'taxonomy' => 'format',
+        'field'    => 'slug',
+        'terms'    => $format,
+    );
+}
+// Vérifier le filtre 'allOrders' pour déterminer l'ordre de tri
+$order = isset($_POST['allOrders']) ? sanitize_text_field($_POST['allOrders']) : 'DESC'; // Par défaut, tri DESC
+
+// Ajouter le tri par date avec l'ordre déterminé par le filtre 'allOrders'
+$args['orderby'] = 'date'; // Trier par date
+$args['order'] = $order; // Utiliser l'ordre spécifié par le filtre 'allOrders'
 
     $query = new WP_Query( $args );
 

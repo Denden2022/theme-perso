@@ -43,11 +43,9 @@
     <?php if ($the_query->have_posts()) : ?>
         <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
             <div id="same-image" class="same-image image-container">
-                <a href="<?php the_permalink(); ?>">
-                    <?php the_post_thumbnail(); ?>
-                    <?php get_template_part('templates-part/eye-overlay') ?>    
-                </a>               
-            </div><!---fermer l'image-->
+                <?php get_template_part('templates-part/eye-overlay') ?>
+                <?php the_post_thumbnail(); ?>
+            </div>
     <?php
         endwhile;
         endif;

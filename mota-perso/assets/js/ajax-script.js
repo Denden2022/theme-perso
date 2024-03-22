@@ -132,14 +132,14 @@
 /***** 2-Charger le filtre lorsque l'on clique sur le filtre "Trier par" ****/
 (function ($) {
     $(document).ready(function () {
-        $('.js-load-filters-orders').change(function (e) {
+        $('.js-load-filters').change(function (e) {
             e.preventDefault();
 
             const ajaxurl = $(this).data('ajaxurl');
             const order = $(this).val();
 
             const data = {
-                action: 'filters_orders', // Utiliser 'filters_orders' comme action
+                action: 'load_filters', // Utiliser 'filters_orders' comme action
                 nonce: $(this).data('nonce'),
                 order: order
             };

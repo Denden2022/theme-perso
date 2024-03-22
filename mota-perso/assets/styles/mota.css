@@ -305,25 +305,6 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.side-little-image {
-  position: absolute;
-  margin-left: 480px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 4.22vw;
-  height: 3.7vw;
-}
-
-.little-image img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  bottom: 90px;
-  left: 8px;
-}
-
 .arrows {
   position: relative;
   top: 100px;
@@ -380,16 +361,9 @@ body {
 * La partie photo-block du single Page avec l'overlay
 *
 */
-/*.images-block {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-    top: 15px;
-    position: relative;
-    margin: auto;
-}*/
 .block-image {
-  margin-bottom: 90px;
+  margin-bottom: 720px;
+  margin-top: -650px;
 }
 
 .same-image img {
@@ -408,15 +382,15 @@ body {
 .eye-overlay {
   position: relative;
   width: 30.208vw;
-  height: 34.3vw;
+  height: 34.2vw;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 7;
+  z-index: 8;
   opacity: 0;
   transition: opacity 0.3s ease;
-  bottom: 662px;
+  top: 658px;
 }
 
 #same-image:hover .eye-overlay {
@@ -463,14 +437,14 @@ body {
   flex-direction: column;
   align-items: center;
   margin-bottom: 110px;
-  margin-top: 175px;
+  margin-top: 120px;
 }
 
 .block-list-photos {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -150px;
+  margin-top: -50px;
 }
 
 #images-container, .block-image {
@@ -661,21 +635,18 @@ body {
 /*
 *  Lightbox
 */
-.screen-full {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  border-radius: 20px;
-  height: 25px;
-  width: 25px;
-  border: 1px solid black;
-  background-image: url(../images/full-screen.png);
-  background-repeat: no-repeat;
-  background-color: black;
-  background-position: center;
+#eye-container > div.screen-image > img {
+  width: 34px;
+  height: 34px;
+  left: 250px;
+  bottom: 310px;
   cursor: pointer;
-  display: flex;
   transition: all 0.4s ease;
+}
+
+.screen-image {
+  width: 30px;
+  height: 30px;
 }
 
 .lightbox {
@@ -722,6 +693,13 @@ body {
   margin-left: 10px;
 }
 
+.infos-photo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+}
+
 /*** swiper ****/
 .swiper {
   width: 400px;
@@ -745,19 +723,17 @@ body {
 
 .swiper-button-prev {
   content: url(../images/arrow-left-white.svg);
-  position: absolute;
+  position: fixed;
   width: 150px;
-  top: 280px;
-  left: -600px;
+  margin-left: -600px;
   cursor: pointer;
 }
 
 .swiper-button-next {
   content: url(../images/arrow-right-white.svg);
-  position: absolute;
+  position: fixed;
   width: 150px;
-  left: 850px;
-  top: 280px;
+  margin-left: 800px;
   cursor: pointer;
 }
 
@@ -797,6 +773,9 @@ body {
   .site_header_menu li:hover, .site_header_menu #button-contact:hover {
     font-weight: none;
   }
+  #popup-container {
+    z-index: 10;
+  }
   .popup-contact {
     width: 400px;
   }
@@ -826,11 +805,15 @@ body {
   .filters-photos {
     display: grid;
     grid-template-columns: 450px;
+    margin-bottom: -10px;
   }
   .block-image {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: -120px;
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 30px;
+  }
+  #images-block {
+    margin-left: -30px;
   }
   #logo {
     margin-bottom: -60px;
@@ -843,16 +826,16 @@ body {
     height: 55vw;
   }
   .eye-overlay {
-    width: 319px;
-    height: 280px;
-    bottom: 282px;
-    left: 70px;
+    width: 84.8vw;
+    height: 358px;
+    top: -360px;
+    left: 23px;
   }
   .hover-img img {
     right: 50px;
   }
   #ref-hover {
-    margin-right: 100px;
+    margin-right: 210px;
   }
   #cat-hover {
     bottom: 50px;
@@ -860,28 +843,38 @@ body {
   }
   .details-overlay {
     position: absolute;
-    bottom: 20px;
+    top: -126px;
   }
   #same-image {
-    margin-bottom: -265px;
+    margin-bottom: -355px;
   }
   #same-image a {
-    margin-left: 70px;
+    margin-left: -27px;
+  }
+  #same-image img {
+    height: 74.2vw;
+    width: 84.8vw;
+    margin-left: 50px;
   }
   #eye-container .hover-img img {
     width: 35px;
     height: 25px;
-    margin-right: 110px;
+    margin-left: 185px;
   }
   .block-button {
     margin-top: 290px;
-    margin-right: 60px;
+    margin-right: -10px;
+  }
+  .block-list-photos {
+    margin-top: -300px;
+    margin-right: 30px;
   }
   .side-big-image {
-    margin-left: 175px;
+    margin-left: 56px;
+    margin-right: 56px;
   }
   .big-image img {
-    width: 265px;
+    width: 100%;
     height: 397px;
   }
   .details-container {
@@ -891,17 +884,20 @@ body {
     margin-left: 0;
   }
   .details-container h2 {
-    margin-left: 35px;
+    margin-left: -10px;
+    width: 100%;
+    font-size: 50px;
   }
   .details {
-    margin: -400px 130px 20px 70px;
+    margin: -400px 56px 20px 56px;
   }
   .details ul {
-    margin-left: 0;
+    margin-left: -47px;
   }
   .contact-photo {
     display: flex;
     justify-content: center;
+    margin-left: 250px;
   }
   .button-contact {
     display: flex;
@@ -913,12 +909,11 @@ body {
   .button-contact p {
     margin-right: 0;
   }
-  .same-image img {
-    height: 279px;
-    width: 318px;
-  }
   .arrow-left, .arrow-right {
     display: none;
+  }
+  .photos-apparentes {
+    margin-left: 50px;
   }
   .text-photos-apparentes {
     padding: 0;
@@ -1002,6 +997,23 @@ body {
   }
   .swiper-button-next {
     left: 650px;
+  }
+}
+@media (max-width: 320px) {
+  .details-container h2 {
+    font-size: 35px;
+  }
+  .popup-contact {
+    width: 300px;
+  }
+  .wpcf7-form-control {
+    width: 190px;
+  }
+  #button-submit {
+    width: 190px;
+  }
+  .text-photos-apparentes p {
+    margin-left: 20px;
   }
 }
 /*

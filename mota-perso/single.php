@@ -104,7 +104,7 @@ get_header();
 
 
 <!---3ème partie avec les photos apparentées-->
-            <section>
+            <section class="photos-apparentes">
                 <div class="text-photos-apparentes">
                     <p>Vous aimerez aussi</p>
                 </div>

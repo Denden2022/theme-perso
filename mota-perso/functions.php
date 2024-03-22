@@ -4,7 +4,7 @@
  *                 II-création du menu Header et Footer
  *                 III-Fonction pour ajouter un item supplémentaire sans lien au menu Footer
  *                 IV-Fonction pour ajouter le bouton contact au menu Header
- *                 V-Charger le script spécifique "Charger plus de photos" à la page.php
+ *                 V-Réceptionner et traiter la requête Ajax du bouton "charger plus" et des filtres
  *                    
  */
 
@@ -17,6 +17,8 @@ wp_enqueue_script('modale-script', get_template_directory_uri() . '/assets/js/sc
 wp_enqueue_script('lightbox-script', get_template_directory_uri() . '/assets/js/lightbox.js', array('jquery'), 1.1, true);
 wp_enqueue_script('menu-script', get_stylesheet_directory_uri() . '/assets/js/menu.js', array('jquery'), 1.1, true);
 wp_enqueue_script('filter-script', get_stylesheet_directory_uri() . '/assets/js/filter.js', array('jquery'), 1.1, true);
+wp_enqueue_script('ajax-script', get_stylesheet_directory_uri() . '/assets/js/ajax-script.js', array('jquery'), 1.1, true);
+wp_enqueue_script('single-page-script', get_stylesheet_directory_uri() . '/assets/js/single-page.js', array('jquery'), 1.1, true);
 // Enqueue Swiper CSS
 wp_enqueue_script('swiper-script', get_stylesheet_directory_uri() . '/assets/js/swiper.js', array('swiper-js'), 1.1, true);
 // Enqueue Swiper JS
@@ -62,52 +64,20 @@ function my_contact_menu($items, $args) {
 add_filter('wp_nav_menu_items', 'my_contact_menu', 10, 2);
 
 
-/***** V-Charger le script spécifique "Charger plus de photos" à la page.php *****/
-function button_home() {
-    // Charger un script quand on clique sur le bouton "charger plus" à la page d'accueil
-  if( is_page() ) {
-      wp_enqueue_script( 'button_plus', get_template_directory_uri() . '/assets/js/ajax-script.js', [ 'jquery' ], '1.1', true);
-  }
-}
-add_action( 'wp_enqueue_scripts', 'button_home' );
-
-/*****Réceptionner et traiter la requête Ajax du bouton "charger plus" et des filtres*****/
+/***** V-Réceptionner et traiter la requête Ajax du bouton "charger plus" et des filtres*****/
 include('includes/ajax.php');
 
+/**
+ * Proper ob_end_flush() for all levels
+ *
+ * This replaces the WordPress `wp_ob_end_flush_all()` function
+ * with a replacement that doesn't cause PHP notices.
+ */
+remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );
 
-/*****Réceptionner et traiter la requête Ajax du bouton "Plein écran"*****/
-/*add_action('wp_ajax_get_category_images', 'get_category_images_callback');
-add_action('wp_ajax_nopriv_get_category_images', 'get_category_images_callback');
-
-function get_category_images_callback() {
-    $selectedCategory = $_POST['category'];
-
-    // Ajoutez votre propre logique pour récupérer les images basées sur la catégorie sélectionnée.
-    // Par exemple, vous pouvez utiliser WP_Query pour récupérer les images associées à la catégorie.
-    $args = array(
-        'post_type' => 'post',
-        'posts_per_page' => -1,
-        'category_name' => $selectedCategory
-    );
-
-    $query = new WP_Query($args);
-
-    // Boucle à travers les résultats de la requête pour afficher les images
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            // Ici, vous pouvez afficher les images associées à chaque article
-            // par exemple :
-            echo '<img src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '" />';
-        }
-        wp_reset_postdata();
-    } else {
-        echo 'Aucune image trouvée.';
-    }
-
-    wp_die();
-}*/
-
+add_action( 'shutdown', function() {
+   while ( @ob_end_flush() );
+} );
 
 
 

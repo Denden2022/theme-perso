@@ -1,21 +1,17 @@
 /*
 *  Lightbox
 */
-.screen-full {//favicon du plein écran
-    position:absolute;
-    top:10px;
-    right:15px;
-    border-radius:20px;
-    height:25px;
-    width:25px;
-    border:1px solid black;
-    background-image: url(../images/full-screen.png);
-    background-repeat: no-repeat;
-    background-color: black;
-    background-position: center;
-    cursor:pointer;
-    display:flex;
+#eye-container > div.screen-image > img {
+    width: 34px;
+    height: 34px;
+    left: 250px;
+    bottom: 310px;
+    cursor: pointer;
     transition:all 0.4s ease;
+}
+.screen-image {
+    width: 30px;
+    height: 30px;
 }
 .lightbox {
     visibility: hidden;
@@ -57,6 +53,12 @@
     margin-right: 260px;
     margin-left: 10px;
 }
+.infos-photo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+}
 
 
         /*** swiper ****/
@@ -80,17 +82,15 @@
   }
   .swiper-button-prev {
     content: url(../images/arrow-left-white.svg);
-    position: absolute;
+    position: fixed;
     width: 150px;
-    top: 280px;
-    left: -600px;
+    margin-left: -600px;
     cursor: pointer;
 }
 .swiper-button-next{
     content: url(../images/arrow-right-white.svg);
-    position: absolute;
+    position: fixed;
     width: 150px;
-    left: 850px;
-    top: 280px;
+    margin-left: 800px;
     cursor: pointer;
 }

@@ -53,15 +53,15 @@
 
 <!---Filtre "Trier par"--->
 <div class="selection-container">
-    <div class="selection js-load-filters-orders" id="selectOrders"  onclick="toggleOptionsOrders()"
-        data-nonce="<?php echo wp_create_nonce('load_filters_orders'); ?>"
-        data-action="load_filters_orders"
+    <div class="selection js-load-filters" id="selectOrders" onclick="toggleOptionsOrders()"
+        data-nonce="<?php echo wp_create_nonce('load_filters'); ?>"
+        data-action="load_filters"
         data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>"
-        onchange="toggleOptionsOrders()">
+        data-allorders="<?php echo isset($_POST['allOrders']) ? sanitize_text_field($_POST['allOrders']) : ''; ?>">
         <div class="label-trie" data-value="allOrders">trier par</div>
-            <div class="options-tries">
-            <div class="single-item-order">A partir des plus récentes</div>
-            <div class="single-item-order">A partir des plus anciennes</div>
+        <div class="options-tries" style="display: none;">
+            <div class="single-item-order" onclick="setOrder('DESC')">A partir des plus récentes</div>
+            <div class="single-item-order" onclick="setOrder('ASC')">A partir des plus anciennes</div>
         </div>
     </div>
 </div>

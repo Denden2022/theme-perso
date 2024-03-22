@@ -2,16 +2,10 @@
 * La partie photo-block du single Page avec l'overlay
 *
 */
-/*.images-block {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-    top: 15px;
-    position: relative;
-    margin: auto;
-}*/
+
 .block-image {
-    margin-bottom: 90px;
+    margin-bottom: 720px;
+    margin-top: -650px;
 }
 .same-image img {
     object-fit: cover;
@@ -27,15 +21,15 @@
 .eye-overlay {
     position: relative;
     width: 30.208vw;
-    height: 34.3vw;
+    height: 34.2vw;
     background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 7;
+    z-index: 8;
     opacity: 0; // Initialement invisible
     transition: opacity 0.3s ease; // Transition douce
-    bottom: 662px;
+    top: 658px;
 }
 #same-image:hover .eye-overlay {
     opacity: 1; // Rendre visible lorsque survolé

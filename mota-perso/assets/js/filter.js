@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
 /**** IV-Fonction pour charger les images en fonction du FORMAT sélectionné***/
 function loadImagesByFormat(format) {
     var data = {
-        action: 'load_filters_formats',
+        action: 'load_filters',
         nonce: jQuery('#selectFormats').data('nonce'),
         format: format
     };
@@ -187,48 +187,19 @@ jQuery(document).on('click', '.options-formats .single-item-format', function(ev
 /****FILTRE TRIER PAR */
 /**** V-Rendre le filtre TRIER PAR fonctionnel  ****/ 
 function toggleOptionsOrders() {
-    var optionsDiv = document.querySelector('.selection .options-tries');
-    if (optionsDiv) {
-        if (optionsDiv.style.display === 'none' || optionsDiv.style.display === '') {
-            optionsDiv.style.display = 'block';
-        } else {
-            optionsDiv.style.display = 'none';
-        }
+    var options = document.querySelector('.options-tries');
+    if (options.style.display === 'none') {
+        options.style.display = 'block';
     } else {
-        console.error("L'élément .selection .options-tries n'a pas été trouvé.");
+        options.style.display = 'none';
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    var options = document.querySelectorAll('.selection .options-tries div');
-    options.forEach(function(option) {
-        option.addEventListener('click', function() {
-            var selectedValue = this.textContent.trim();
-            var label = document.querySelector('.selection .label-trie');
-            if (label) {
-                label.textContent = selectedValue;
-            } else {
-                console.error("L'élément .selection .label-trie n'a pas été trouvé.");
-            }
-            var optionsDiv = document.querySelector('.selection .options-tries');
-            if (optionsDiv) {
-                optionsDiv.style.display = 'none';
-            } else {
-                console.error("L'élément .selection .options-tries n'a pas été trouvé.");
-            }
-        });
-    });
-
-    var element = document.querySelector('.single-item-order');
-    if (element) {
-        element.addEventListener('click', function() {
-            element.classList.add('clicked');
-        });
-    } else {
-        console.error("L'élément .single-item-order n'a pas été trouvé.");
-    }
-});
-
+function setOrder(order) {
+    var selectOrders = document.getElementById('selectOrders');
+    selectOrders.setAttribute('data-allorders', order);
+    // Réaliser une action supplémentaire si nécessaire, comme soumettre le formulaire ou effectuer une requête AJAX
+}
 
 /**** VI-Fonction pour charger les images en fonction du trie sélectionné***/
 function loadImagesByOrder(order) {
@@ -240,7 +211,7 @@ function loadImagesByOrder(order) {
 
     jQuery.post(jQuery('#selectOrders').data('ajaxurl'), data, function(response) {
         if (response.success) {
-            jQuery('.lightbox').html(response.data);
+            jQuery('').html(response.data);
             // Ferme le filtre une fois que le trie est sélectionnée
             toggleOptionsOrders();
             // Met à jour le texte du bouton de trier par avec le trie sélectionnée
