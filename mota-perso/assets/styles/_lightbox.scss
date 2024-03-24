@@ -84,13 +84,13 @@
     content: url(../images/arrow-left-white.svg);
     position: fixed;
     width: 150px;
-    margin-left: -600px;
+    left: 100px;
     cursor: pointer;
 }
 .swiper-button-next{
     content: url(../images/arrow-right-white.svg);
     position: fixed;
     width: 150px;
-    margin-left: 800px;
+    right: 100px;
     cursor: pointer;
 }

@@ -2,40 +2,67 @@
 * La partie photo-block du single Page avec l'overlay
 *
 */
+.photo-block-home {
+    height: max-content;
+}
+.block-button {//le container des boutons avec un fond gris de "Charger plus" et "Contact"
+    //le style du bouton se trouve dans le style single-page à .input-single-page
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 270px;
 
-.block-image {
-    margin-bottom: 720px;
-    margin-top: -650px;
+}
+.js-load-button {
+    padding: 10px;
+    width: 272px;
+    height: 50px;
+    border: none;
+    background-color: $color-grey-medium;
+    font-size: 12px;
+    font-family: 'Space mono', sans-serif;
+    cursor: pointer;
+    z-index: 1;
+    margin-bottom: 90px;
+    margin-top: 60px;
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+}
+.block-load-photos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+    margin-top: -245px;
 }
 .same-image img {
     object-fit: cover;
     height: 34.2vw;
     width: 30.208vw;
     position: relative;
-    z-index: 7;
+    z-index: 1;
 
 }
-#same-image {
-   margin-bottom: -655px;
-}
 .eye-overlay {
-    position: relative;
+    position: absolute;
     width: 30.208vw;
     height: 34.2vw;
     background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 8;
+    z-index: 3;
     opacity: 0; // Initialement invisible
     transition: opacity 0.3s ease; // Transition douce
-    top: 658px;
+    //top: 658px;
 }
 #same-image:hover .eye-overlay {
     opacity: 1; // Rendre visible lorsque survolé
 }
 .details-overlay {
-    margin-top: 450px;
+    margin-top: 550px;
     display: flex;
     flex-direction: row;
     justify-content: end;
@@ -43,8 +70,6 @@
     font-size: 14px;
     text-transform: uppercase;
     color: white;
-    //visibility: hidden;
-    top: 170px;
 }
 #ref-hover {
     margin-right: 400px;  

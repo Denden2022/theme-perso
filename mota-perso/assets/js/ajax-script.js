@@ -50,8 +50,8 @@
                     }
 
                     // Et en cas de réussite
-                    $('.block-list-photos').html(body.data); // Remplacer le contenu du conteneur par les nouvelles photos
-                    $('.block-list-photos').append($this); // Déplacer le bouton à la fin de la liste de photos
+                    $('.block-load-photos').html(body.data); // Remplacer le contenu du conteneur par les nouvelles photos
+                    $('.block-load-photos').append($this); // Déplacer le bouton à la fin de la liste de photos
                 });
         });
 

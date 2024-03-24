@@ -49,50 +49,48 @@ function load_filters() {
         wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
     }
 
-    // Récupérer les valeurs des filtres
-    $category = isset( $_POST['category'] ) ? sanitize_text_field( $_POST['category'] ) : '';
-    $format   = isset( $_POST['format'] ) ? sanitize_text_field( $_POST['format'] ) : '';
+// Récupérer les paramètres de filtre
+$category = isset( $_POST['category'] ) ? sanitize_text_field( $_POST['category'] ) : '';
+$format = isset( $_POST['format'] ) ? sanitize_text_field( $_POST['format'] ) : '';
+$order = isset( $_POST['order'] ) ? sanitize_text_field( $_POST['order'] ) : '';
 
-    // Construire la requête WP_Query en fonction des filtres
+
+    // Construire la requête en fonction des filtres
     $args = array(
-        'post_type'      => 'photo',
+        'post_type' => 'post', // Remplacez 'post' par le type de vos articles
         'posts_per_page' => -1,
-        'orderby'        => 'date',
-        'order'          => isset( $_POST['post_ordre'] ) ? $_POST['post_ordre'] : 'DESC', 
-        'paged'          => isset( $_POST['paged'] ) ? $_POST['paged'] : 1, 
-        'tax_query'      => array(
-            'relation' => 'AND', // Utiliser l'opérateur logique "AND"
-        ),
+        'orderby' => 'date', // Par défaut, trié par date
+        'order' => 'DESC' // Par défaut, ordre descendant
     );
     
 
 // Ajouter la taxonomie de catégorie si elle est définie
 if ($category && $category !== "all") {
-    $args['tax_query'][] = array(
-        'taxonomy' => 'categorie',
-        'field'    => 'slug',
-        'terms'    => $category,
+    $args['category'] = $category;
+}
+
+// Filtrer par format
+if ($format != 'allFormats') {
+    $args['meta_query'] = array(
+        array(
+            'taxonomy' => 'format', // Remplacez 'format' par le nom de votre champ personnalisé
+            'terms' => $format,
+            'field'    => 'slug',
+            'compare' => '=',
+        )
     );
 }
 
-// Récupérer la valeur du paramètre 'format' de la requête AJAX
-$format = isset($_POST['format']) ? sanitize_text_field($_POST['format']) : '';
-
-// Vérifier si le paramètre 'format' est vide ou égal à "allFormats"
-if (!empty($format) && $format !== "allFormats") {
-    // Ajouter la taxonomie de format à la requête WP_Query
-    $args['tax_query'][] = array(
-        'taxonomy' => 'format',
-        'field'    => 'slug',
-        'terms'    => $format,
-    );
+   // Appliquer l'ordre de tri
+   switch ($order) {
+    case 'Titre':
+        $args['orderby'] = 'title';
+        break;
+    case 'Date':
+        $args['orderby'] = 'date';
+        break;
+    // Ajoutez d'autres cas pour d'autres options de tri si nécessaire
 }
-// Vérifier le filtre 'allOrders' pour déterminer l'ordre de tri
-$order = isset($_POST['allOrders']) ? sanitize_text_field($_POST['allOrders']) : 'DESC'; // Par défaut, tri DESC
-
-// Ajouter le tri par date avec l'ordre déterminé par le filtre 'allOrders'
-$args['orderby'] = 'date'; // Trier par date
-$args['order'] = $order; // Utiliser l'ordre spécifié par le filtre 'allOrders'
 
     $query = new WP_Query( $args );
 
@@ -104,16 +102,17 @@ $args['order'] = $order; // Utiliser l'ordre spécifié par le filtre 'allOrders
     while ( $query->have_posts() ) {
         $query->the_post();
         $html .= '<div id="same-image" class="same-image image-container">';
-        $html .= '<a href="' . esc_url( get_the_permalink() ) . '">';
-        $html .= get_the_post_thumbnail();
         ob_start();
-        get_template_part( 'templates-part/eye-overlay' );
+        get_template_part( 'templates-part/eye-overlay' ); // Inclure le modèle 'templates-part/eye-overlay'
         $html .= ob_get_clean();
-        $html .= '</a>';
+        $html .= get_the_post_thumbnail();
         $html .= '</div>';
     }
     wp_reset_postdata();
-
+    
     wp_send_json_success( $html );
+
+        // Terminer la requête AJAX
+        wp_die();
 }
 

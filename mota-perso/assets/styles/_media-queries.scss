@@ -1,6 +1,6 @@
 /* Media query pour les écrans plus petits comme le smartphone*/
             /****Ecran inférieur ou égale à 768px*****/
-@media (max-width: 768px) {
+@media (max-width: 800px) {
 //Menu
 #main {
     height: auto;
@@ -76,17 +76,25 @@
 .filters-photos {
     display: grid;
     grid-template-columns: 450px;
-    margin-bottom: -10px;
+    
 }
 .block-image {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #images-block {
-    margin-left: -30px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    height: max-content;
 }
-
+.block-button {
+    margin-bottom: 0;
+}
+.block-load-photos {
+    margin-top: 20px;
+}
 #logo {
     margin-bottom: -60px;
 }
@@ -98,10 +106,12 @@
     height: 55vw;
 }
 .eye-overlay {
-    width: 84.8vw;
-    height: 358px;
-    top: -360px;
-    left: 23px;
+    width: 84.7vw;
+    height: 74.2vw;
+}
+#eye-container > div.screen-image > img {
+    left: 220px;
+    bottom: 165px;
 }
 .hover-img img {
     right: 50px;
@@ -114,28 +124,22 @@
     right: 50px;
 }
 .details-overlay {
-    position: absolute;
-    top: -126px;
+    margin-top: 310px;
 }
 #same-image {
-    margin-bottom: -355px;
+    margin-bottom: 0;
     & a {
         margin-left: -27px;
     }
     & img {
         height: 74.2vw;
         width: 84.8vw;
-        margin-left: 50px;
     }
 }
 #eye-container  .hover-img img {
     width: 35px;
     height: 25px;
-    margin-left: 185px;
-}
-.block-button {
-    margin-top: 290px;
-    margin-right: -10px;
+    margin-left: 120px;
 }
 .block-list-photos {
     margin-top: -300px;
@@ -187,36 +191,27 @@
 .arrow-left, .arrow-right {
     display: none;
 }
-.photos-apparentes {
-    margin-left: 50px;
-}
-.text-photos-apparentes {
-    padding: 0;
-    & p {
-        margin-left: 120px;
+.text-photos-apparentes p {
+        margin-left: 80px;
         letter-spacing: 2px;
-    }
 }
 
 //lightbox
-#ref-lightbox {
-    margin-right: 60px;
-    margin-left: 120px;
+.infos-photo {
+    margin-left: 105px;
 }
 .swiper-slide img {
     width: 200px;
     margin-left: 105px;
     height: 100%;
     }
-  .swiper-button-prev {
+.swiper-button-prev {
     width: 100px;
-    top: 150px;
-    left: -10px;
+    left: 20px;
 }
 .swiper-button-next{
     width: 100px;
-    left: 320px;
-    top: 150px;
+    right: 15px;
 }
 
 
@@ -235,61 +230,10 @@
 }
 }
 
+
 /* Media query pour les moyens écrans*/
-            /****Ecran supérieur à 768px*****/
-
-@media (min-width: 800px) and (max-width: 1440px) {
-    #main {
-        height: 1800px;
-    }
-    .big-image img {
-        width: 38.6vw;
-    }
-    .button-contact p {
-        margin-right: 116px;
-    }
-    .block-image {
-
-        //margin-bottom: -120px;
-    }
-    .eye-overlay {
-        width: 100%;
-        height: 93%;
-        bottom: 496px;
-    }
-    .details-overlay {
-        position: absolute;
-        top: 0;
-    }
-    #same-image {
-        margin-bottom: -40px;
-        & img {
-            width: 580px;
-        }
-    }
-    .arrows {
-        bottom: 295px;
-        right: 214px;
-    }
-    .image-arrows img {
-        width: 5.6vw;
-        height: 4.95vw;
-    }
-    .swiper-content {
-       margin-bottom: 150px;
-        }
-
-    .swiper-button-prev {
-        left: -400px;
-
-    }
-    .swiper-button-next{
-        left: 650px;
-
-    }
-}
-
-@media (max-width: 320px) {
+            /****Ecran inférieur à 320px*****/
+@media (max-width: 390px) {
 .details-container h2 {
     font-size: 35px;
 }
@@ -304,5 +248,8 @@
     }
     .text-photos-apparentes p{
         margin-left: 20px;
+    }
+    .details-overlay {
+        margin-top: 200px;
     }
 }

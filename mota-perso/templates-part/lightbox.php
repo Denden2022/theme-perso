@@ -36,7 +36,8 @@
             <?php 
                 echo '</div>';//fermer le swiper-slide 
                 echo '</div>';//fermer le swiper-wrapper
-                echo '<div class="swiper-button-next"></div>';
+                echo '<div class="swiper-button-next">
+                </div>';
                 echo '<div class="swiper-button-prev"></div>';
                 echo '</div>';//fermer le swiper
             ?>

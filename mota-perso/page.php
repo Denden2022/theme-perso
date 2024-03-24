@@ -44,13 +44,14 @@
         <?php include('includes/filter.php'); ?>
         </div>
 
-        <!--Filtre : les images de la catégorie sélectionnée apparaitront ici-->
-        <div id="images-container"></div>
-        <?php
-            get_template_part('templates-part/photo-block');
-        ?>
-            
+        <div class="photo-block-home">
+            <?php
+                get_template_part('templates-part/photo-block');
+            ?>    
         </div>
+
+            <!--Filtre : les images de la catégorie sélectionnée apparaitront ici-->
+        <div id="images-container"></div>
 
         <!---<Le bouton "charger-plus">-->
         <div class="block-button">
@@ -60,10 +61,10 @@
                 data-action="load_photos"
                 data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>">Charger plus
             </button>
-
-                <!--Charger plus : les photos chargés, apparaitront ici-->
-            <div class="block-list-photos"></div>
         </div>
+                <!--Charger plus : les photos chargés, apparaitront ici-->
+            <div class="block-load-photos"></div>
+        
     </section>
 </main>
 

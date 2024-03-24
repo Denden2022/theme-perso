@@ -4,37 +4,31 @@
 */
 
 .filters {
-    margin: 50px 20px 30px 0;
+    margin: 50px 20px 50px 0;
     display: flex;
+    position: relative;
+    z-index: 5;
 }
 
 #trier-select {
     margin-left: 360px;
 }
-
-.block-button {//le container des boutons avec un fond gris de "Charger plus" et "Contact"
-    //le style du bouton se trouve dans le style single-page à .input-single-page
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 110px;
-    margin-top: 120px;
-}
-.block-list-photos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: -50px;
-}
-#images-container, .block-image {
+#images-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
     position: relative;
     gap: 20px;
 }
-#images-container {
-    bottom: -30px;
+#images-container  {
+    & .eye-overlay {
+    position: relative;
+    bottom: 661px;
+    margin-bottom: -650px;
+}
+& .same-image img {
+    position: relative;
+}
 }
 .image img {
     object-fit: cover;
@@ -45,6 +39,11 @@
 .image:hover .eye-overlay {
     opacity: 1;
 }
+.sel-container,
+.select-container,
+.selection-container {
+    cursor: pointer;
+}
 
 /***** Mise en couleur des filtres *****/
 /***Filtre CATEGORIE***/
@@ -54,6 +53,8 @@
     box-sizing: border-box;
     overflow: hidden;
     padding-top: 30px;
+    cursor: pointer;
+
 }
 
 .label,

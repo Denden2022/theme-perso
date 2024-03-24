@@ -12,65 +12,75 @@
 let images;
 
 jQuery(document).ready(function ($) {
-    // index de l'image affichée dans lightbox
+    // Index de l'image affichée dans la lightbox
     let currentIndex = 0;
-    // Element contenu dans l'ID container du lightbox
+    // Elément contenu dans l'ID container du lightbox
     const lightbox = $('.lightbox');
     const lightboxImage = $('#image-lightbox');
-    // Initialisation des images avec les éléments .screen-full
-    let images = $('.screen-full');
+    // Initialisation des images avec les éléments .screen-full triés par ordre de référence
+    let images = $('.screen-full').toArray().sort((a, b) => {
+        return $(a).attr('data-ref') - $(b).attr('data-ref');
+    });
     // Sélectionne le bouton de fermeture de la lightbox
     const closeButton = document.querySelector('.lightbox-close');
 
     // Affiche la lightbox
     function openLightbox(index) {
         currentIndex = index;
-        console.log('open lightbox');
         updateLightboxContent();
         lightbox.css("visibility", "visible");
-    // Ajoute un gestionnaire d'événements de clic au bouton de fermeture
+        // Ajoute un gestionnaire d'événements de clic au bouton de fermeture
         closeButton.addEventListener('click', function() {
-        // Masque la lightbox
-        lightbox.css("visibility", "hidden");
+            // Masque la lightbox
+            lightbox.css("visibility", "hidden");
         });
     }
-    
+
     // Met à jour le contenu de la lightbox avec l'image actuelle
     function updateLightboxContent() {
-        // Prendre image de l'objet jQuery "images" de l'index de l'image sélectionnée
-        const currentImage = images.eq(currentIndex);
-        // Récupère l'URL de l'image actuelle dans 'data-image'
-        const imageUrl = currentImage.attr('data-image');
-        // Récupère la référence de l'image actuelle dans 'data-ref'
-        const imageRef = currentImage.attr('data-ref');
-        // Récupère la référence de l'image actuelle dans 'data-ref'
-        const imageCat = currentImage.attr('data-cat');
-        // Mise en place de l'URL via le src pour afficher l'image
+        const currentImage = images[currentIndex];
+        const imageUrl = $(currentImage).attr('data-image');
+        const imageRef = $(currentImage).attr('data-ref');
+        const imageCat = $(currentImage).attr('data-cat');
         lightboxImage.attr('src', imageUrl);
-
-    // Ajout de la référence à côté de l'image dans la lightbox
         $('.lightbox-ref').text("BF" + imageRef);
-    // Ajout de la référence à côté de l'image dans la lightbox
         $('.lightbox-cat').text(imageCat);
     }
 
     // Délégation d'événements : attachement d'événements (event listener) à des éléments parents de la page, ici, l'élément image via la classe .screen-full
     $(document).on('click', '.screen-full', function () {
-        openLightbox(images.index(this));
+        openLightbox(images.indexOf(this));
     });
 
-    // Fonction pour afficher l'image suivante dans la lightbox
-    function afficherImageSuivante() {
-        currentIndex++;
-        if (currentIndex >= images.length) {
-            //currentIndex = 0; // Revenir au début si nous atteignons la dernière image
-        }
-        updateLightboxContent();
+// Fonction pour afficher l'image précédente dans la lightbox
+function afficherImagePrecedente() {
+
+    currentIndex--;
+    if (currentIndex < 0) {
+        currentIndex = 0; // Arrêter la navigation si nous sommes au début
+        return;
     }
+    updateLightboxContent();
+}
 
-    // Associez la fonction afficherImageSuivante à un événement, par exemple, un clic sur un bouton "Suivant" dans la lightbox
-    $('.swiper-button-next').on('click', function () {
-        afficherImageSuivante();
-    });
+// Fonction pour afficher l'image suivante dans la lightbox
+function afficherImageSuivante() {
+    currentIndex++;
+    if (currentIndex >= images.length) {
+        currentIndex = images.length - 1; // Arrêter la navigation si nous sommes à la fin
+        return;
+    }
+    updateLightboxContent();
+}
+
+// Associez la fonction afficherImagePrecedente à un événement, par exemple, un clic sur un bouton "Précédent" dans la lightbox
+$('.swiper-button-prev').on('click', function () {
+    afficherImagePrecedente();
+});
+
+// Associez la fonction afficherImageSuivante à un événement, par exemple, un clic sur un bouton "Suivant" dans la lightbox
+$('.swiper-button-next').on('click', function () {
+    afficherImageSuivante();
+});
 
 });

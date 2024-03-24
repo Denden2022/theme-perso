@@ -51,7 +51,7 @@
 }
 
             /** 2ème section avec le bouton et les flèches**/
-.btn-single-page, .js-load-button {
+.btn-single-page {
     padding: 10px;
     width: 272px;
     height: 50px;
@@ -60,6 +60,7 @@
     font-size: 12px;
     font-family: 'Space mono', sans-serif;
     cursor: pointer;
+    z-index: 1;
     &:hover {
         background-color: black;
         color: white;
@@ -87,6 +88,7 @@
     position: relative;
     top: 100px;
     left: 505px;
+    z-index: 1;
 }
 .arrow-right {
     position: absolute;
@@ -121,9 +123,23 @@
 }
 
 /***  3ème section avec les Photos apparentées***/
+.photos-apparentes {
+    display: flex;
+    flex-direction: column;
+}
 .text-photos-apparentes {
     text-transform: uppercase;
     font-size: 18px;
     border-top: 1px solid;
     padding: 60px 0 40px 0;
+}
+#images-block {
+    height: 760px;
+}
+.block-image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    position: relative;
+    gap: 20px;
 }
