@@ -55,4 +55,3 @@ document.querySelectorAll('.close ul li a').forEach(link => {
 
 
 
-

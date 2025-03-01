@@ -10,6 +10,7 @@
 #burgerIcon {
     bottom: 50px;
 }
+
 #menu-overlay {
     position: absolute;
     top: 0;
@@ -20,6 +21,15 @@
     display: none; /* Masqué par défaut */
     z-index: 8;
     top: 80px;
+    @include anim-menu;
+}
+.fixed-menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff; /* Couleur de fond */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre */
+    z-index: 1000; /* Assure que le menu apparaît au-dessus des autres éléments */
 }
 .open-menu {
     position: absolute;
@@ -30,6 +40,7 @@
     font-size: 44px;
     height: 100%;
     width: 100%;
+    @include anim-menu;
     //transition:all 0.4s ease;
     & #primary-menu {
         display: flex;
@@ -37,6 +48,7 @@
         position: absolute;
         left: -50px;
         padding-top: 300px;
+        @include anim-menu;
         & button {
             background-color: $color-red;
             font-size: 44px;
@@ -46,4 +58,5 @@
             color: white;    
         }
     }
+
 }

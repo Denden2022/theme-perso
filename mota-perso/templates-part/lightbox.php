@@ -27,12 +27,15 @@
 
         <div class="swiper-content">
            <div class="screen-img" id="screen-img">
-                <img id="image-lightbox" src="" alt=<?php echo the_title() ?>>
+                <img id="image-lightbox" src="" alt="">
                     <div class="infos-photo">
                         <p class="lightbox-ref"></p>
                         <p class="lightbox-cat"></p>
-                    </div>
+                    </div>  
+                    
             </div>
+        </div>    
+<div>
             <?php 
                 echo '</div>';//fermer le swiper-slide 
                 echo '</div>';//fermer le swiper-wrapper
@@ -41,11 +44,11 @@
                 echo '<div class="swiper-button-prev"></div>';
                 echo '</div>';//fermer le swiper
             ?>
-
+</div>
             <?php
             // Réinitialiser la requête WP
             wp_reset_postdata();
             ?>
-        </div>
+          
 </div>
 

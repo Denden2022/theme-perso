@@ -110,21 +110,23 @@
     height: 74.2vw;
 }
 #eye-container > div.screen-image > img {
-    left: 220px;
-    bottom: 165px;
+    display: flex;
+    flex-wrap: wrap;
+    left: 40vw;
+    bottom: 32vw;
 }
 .hover-img img {
     right: 50px;
 }
 #ref-hover {
-    margin-right: 210px;
+    margin-right: 45vw;
 }
 #cat-hover {
     bottom: 50px;
     right: 50px;
 }
 .details-overlay {
-    margin-top: 310px;
+    margin-top: 60vw;
 }
 #same-image {
     margin-bottom: 0;
@@ -205,14 +207,7 @@
     margin-left: 105px;
     height: 100%;
     }
-.swiper-button-prev {
-    width: 100px;
-    left: 20px;
-}
-.swiper-button-next{
-    width: 100px;
-    right: 15px;
-}
+
 
 
 //footer
@@ -233,7 +228,7 @@
 
 /* Media query pour les moyens écrans*/
             /****Ecran inférieur à 320px*****/
-@media (max-width: 390px) {
+@media (max-width: 480px) {
 .details-container h2 {
     font-size: 35px;
 }
@@ -250,6 +245,17 @@
         margin-left: 20px;
     }
     .details-overlay {
-        margin-top: 200px;
+        margin-top: 55vw;
+    }
+    #ref-hover {
+        margin-right: 35vw;
+    }
+    .swiper-button-prev {
+        width: 19vw;
+
+    }
+    .swiper-button-next{
+        width: 19vw;
+
     }
 }

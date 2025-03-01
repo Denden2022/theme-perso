@@ -13,6 +13,7 @@
             ?>
             <img class="screen-full" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/Icon-fullscreen.svg'; ?>" alt="screen-full;"
                 data-image="<?php echo get_the_post_thumbnail_url(); ?>"
+                data-alt="<?php echo get_the_title(); ?>"
                 data-ref="<?php echo get_field('reference'); ?>"
                 data-cat=" <?php if (!empty($categorie)) {
                         // Récupérer les termes de taxonomie associés au champ personnalisé 'format'

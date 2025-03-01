@@ -13,3 +13,19 @@
             transform: translateY(20px);
         }
       }
+
+
+@mixin anim-menu {
+    //animation de la modale du haut vers le bas
+    animation: menu 1s ease-in-out forwards;
+    opacity: 0;
+}
+@keyframes menu {
+    0% {
+            transform: translateX(200px);
+        }
+    100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+}

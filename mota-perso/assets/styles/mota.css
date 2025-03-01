@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 /* Import de la font Space mono */
-@import url("https://fonts.googleapis.com/css2? family= Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200; 1 300 ;1 400 ;1 500 ;1 600 ;1 700 ;1 800 ;1 900 & display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 /* Import de la font Poppins */
 @keyframes modale {
   0% {
@@ -11,6 +11,15 @@
   100% {
     opacity: 1;
     transform: translateY(20px);
+  }
+}
+@keyframes menu {
+  0% {
+    transform: translateX(200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 /*
@@ -446,7 +455,7 @@ body {
 }
 
 .details-overlay {
-  margin-top: 550px;
+  margin-top: 30vw;
   display: flex;
   flex-direction: row;
   justify-content: end;
@@ -457,13 +466,13 @@ body {
 }
 
 #ref-hover {
-  margin-right: 400px;
+  margin-right: 17vw;
 }
 
 #eye-container .hover-img img {
   cursor: pointer;
   width: 100%;
-  height: 30px;
+  height: 2vw;
 }
 
 /*
@@ -684,8 +693,8 @@ body {
 #eye-container > div.screen-image > img {
   width: 34px;
   height: 34px;
-  left: 250px;
-  bottom: 310px;
+  left: 12vw;
+  bottom: 15vw;
   cursor: pointer;
   transition: all 0.4s ease;
 }
@@ -770,16 +779,16 @@ body {
 .swiper-button-prev {
   content: url(../images/arrow-left-white.svg);
   position: fixed;
-  width: 150px;
-  left: 100px;
+  width: 10vw;
+  left: 5vw;
   cursor: pointer;
 }
 
 .swiper-button-next {
   content: url(../images/arrow-right-white.svg);
   position: fixed;
-  width: 150px;
-  right: 100px;
+  width: 10vw;
+  right: 5vw;
   cursor: pointer;
 }
 
@@ -885,21 +894,23 @@ body {
     height: 74.2vw;
   }
   #eye-container > div.screen-image > img {
-    left: 220px;
-    bottom: 165px;
+    display: flex;
+    flex-wrap: wrap;
+    left: 40vw;
+    bottom: 32vw;
   }
   .hover-img img {
     right: 50px;
   }
   #ref-hover {
-    margin-right: 210px;
+    margin-right: 45vw;
   }
   #cat-hover {
     bottom: 50px;
     right: 50px;
   }
   .details-overlay {
-    margin-top: 310px;
+    margin-top: 60vw;
   }
   #same-image {
     margin-bottom: 0;
@@ -975,14 +986,6 @@ body {
     margin-left: 105px;
     height: 100%;
   }
-  .swiper-button-prev {
-    width: 100px;
-    left: 20px;
-  }
-  .swiper-button-next {
-    width: 100px;
-    right: 15px;
-  }
   #footer * {
     display: none;
     display: grid;
@@ -998,7 +1001,7 @@ body {
 }
 /* Media query pour les moyens écrans*/
 /****Ecran inférieur à 320px*****/
-@media (max-width: 390px) {
+@media (max-width: 480px) {
   .details-container h2 {
     font-size: 35px;
   }
@@ -1015,7 +1018,16 @@ body {
     margin-left: 20px;
   }
   .details-overlay {
-    margin-top: 200px;
+    margin-top: 55vw;
+  }
+  #ref-hover {
+    margin-right: 35vw;
+  }
+  .swiper-button-prev {
+    width: 19vw;
+  }
+  .swiper-button-next {
+    width: 19vw;
   }
 }
 /*
@@ -1042,6 +1054,17 @@ body {
   display: none; /* Masqué par défaut */
   z-index: 8;
   top: 80px;
+  animation: menu 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+.fixed-menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff; /* Couleur de fond */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre */
+  z-index: 1000; /* Assure que le menu apparaît au-dessus des autres éléments */
 }
 
 .open-menu {
@@ -1053,6 +1076,8 @@ body {
   font-size: 44px;
   height: 100%;
   width: 100%;
+  animation: menu 1s ease-in-out forwards;
+  opacity: 0;
 }
 .open-menu #primary-menu {
   display: flex;
@@ -1060,6 +1085,8 @@ body {
   position: absolute;
   left: -50px;
   padding-top: 300px;
+  animation: menu 1s ease-in-out forwards;
+  opacity: 0;
 }
 .open-menu #primary-menu button {
   background-color: #E00000;

@@ -4,8 +4,8 @@
 #eye-container > div.screen-image > img {
     width: 34px;
     height: 34px;
-    left: 250px;
-    bottom: 310px;
+    left: 12vw;
+    bottom: 15vw;
     cursor: pointer;
     transition:all 0.4s ease;
 }
@@ -83,14 +83,14 @@
   .swiper-button-prev {
     content: url(../images/arrow-left-white.svg);
     position: fixed;
-    width: 150px;
-    left: 100px;
+    width: 10vw;
+    left: 5vw;
     cursor: pointer;
 }
 .swiper-button-next{
     content: url(../images/arrow-right-white.svg);
     position: fixed;
-    width: 150px;
-    right: 100px;
+    width: 10vw;
+    right: 5vw;
     cursor: pointer;
 }

@@ -35,7 +35,9 @@
             $the_query = new WP_Query(array(
                 'post_type' => 'photo',
                 'posts_per_page' => 8,
-                'orderby' => 'rand',
+                'orderby' => 'date',
+                'order' => 'ASC',
+                'post__not_in' => $excluded_posts, // Exclure les articles déjà affichés
             ));
         }
         ?>

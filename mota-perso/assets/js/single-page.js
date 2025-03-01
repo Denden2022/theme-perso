@@ -8,6 +8,10 @@
 
 
 /**** I-Gestion du bouton contact du Single page****/ 
+document.addEventListener('DOMContentLoaded', function() {
+    if(window.location.pathname === '/page1.html') {
+        // Charger le script spécifique à la page 1
+
 document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('popup-container');
     const btnSinglePage = document.querySelector('.btn-single-page');//bouton contact du single page
@@ -24,7 +28,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     });
     
-    
+    console.log('Chargement du script pour la page 1...');
+} else if(window.location.pathname === '/page2.html') {
+    // Charger le script spécifique à la page 2
+    console.log('Chargement du script pour la page 2...');
+}
+});
+
+
     /**** II-Pré-remplir la Ref de la popup modale-contact au clic du bouton contact du single page****/ 
     //je définis le bouton concernée, il s'agit de btn-single-page
     jQuery(document).ready(function($) {
@@ -70,3 +81,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
         clicArrows();
 
+
+        

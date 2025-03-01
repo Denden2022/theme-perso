@@ -8,8 +8,8 @@
 <!---Filtre "Catégories"--->
 <div class="sel-container">
     <div class="sel js-load-filters" id="customSelect"  onclick="toggleOptionsCategories()"
-        data-nonce="<?php echo wp_create_nonce('load_filters'); ?>"
-        data-action="load_filters"
+        data-nonce="<?php echo wp_create_nonce('load_filters_categories'); ?>"
+        data-action="load_filters_categories"
         data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>"
         onchange="toggleOptionsCategories()">
         <div class="label" data-value="all">Catégories</div>
@@ -31,8 +31,8 @@
 <!---Filtre "Formats"--->
 <div class="select-container">
     <div class="select js-load-filters" id="selectFormats"  onclick="toggleOptionsFormats()"
-        data-nonce="<?php echo wp_create_nonce('load_filters'); ?>"
-        data-action="load_filters"
+        data-nonce="<?php echo wp_create_nonce('load_filters_formats'); ?>"
+        data-action="load_filters_formats"
         data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>"
         onchange="toggleOptionsFormats()">
         <div class="label-format" data-value="allFormats">Formats</div>
@@ -54,8 +54,8 @@
 <!---Filtre "Trier par"--->
 <div class="selection-container">
     <div class="selection js-load-filters" id="selectOrders" onclick="toggleOptionsOrders()"
-        data-nonce="<?php echo wp_create_nonce('load_filters'); ?>"
-        data-action="load_filters"
+        data-nonce="<?php echo wp_create_nonce('load_filters_orders'); ?>"
+        data-action="load_filters_orders"
         data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>"
         data-allorders="<?php echo isset($_POST['allOrders']) ? sanitize_text_field($_POST['allOrders']) : ''; ?>">
         <div class="label-trie" data-value="allOrders">trier par</div>

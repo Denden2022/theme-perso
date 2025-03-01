@@ -10,8 +10,10 @@
  * ***/
 
 /**** I-Rendre le filtre CATEGORIES fonctionnel ****/ 
+
+
 function toggleOptionsCategories() {
-    var optionsDiv = document.querySelector('.sel .options');
+    let optionsDiv = document.querySelector('.sel .options');
     if (optionsDiv) {
         if (optionsDiv.style.display === 'none' || optionsDiv.style.display === '') {
             optionsDiv.style.display = 'block';
@@ -24,76 +26,59 @@ function toggleOptionsCategories() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    var options = document.querySelectorAll('.sel .options div');
+    let options = document.querySelectorAll('.sel .options div');
     options.forEach(function(option) {
         option.addEventListener('click', function() {
-            var selectedValue = this.textContent.trim();
-            var label = document.querySelector('.sel .label');
+            let selectedValue = this.textContent.trim();
+            let label = document.querySelector('.sel .label');
             if (label) {
                 label.textContent = selectedValue;
             } else {
                 console.error("L'élément .sel .label n'a pas été trouvé.");
             }
-            var optionsDiv = document.querySelector('.sel .options');
+            let optionsDiv = document.querySelector('.sel .options');
             if (optionsDiv) {
                 optionsDiv.style.display = 'none';
             } else {
                 console.error("L'élément .sel .options n'a pas été trouvé.");
             }
+            // Charger les images en fonction de la catégorie sélectionnée
+            loadImagesByCategory(selectedValue);
         });
     });
 
-    var element = document.querySelector('.single-item');
+    /*var element = document.querySelector('.single-item');
     if (element) {
         element.addEventListener('click', function() {
             element.classList.add('clicked');
         });
     } else {
         console.error("L'élément .single-item n'a pas été trouvé.");
-    }
+    }*/
 });
 
 
 /**** II-Fonction pour charger les images en fonction de la CATEGORIE sélectionnée***/
 function loadImagesByCategory(category) {
     var data = {
-        action: 'load_filters',
+        action: 'load_filters_categories',
         nonce: jQuery('#customSelect').data('nonce'),
         category: category
     };
 
     jQuery.post(jQuery('#customSelect').data('ajaxurl'), data, function(response) {
         if (response.success) {
-            jQuery('').html(response.data);
+            jQuery('#images-container').html(response.data);
             // Ferme le filtre une fois que la catégorie est sélectionnée
             toggleOptionsCategories();
             // Met à jour le texte du bouton de catégories avec la catégorie sélectionnée
-            jQuery('.label').text(category);
-            // Réinitialise l'écouteur d'événement sur les catégories pour permettre de réafficher "Catégories"
-            resetCategoryListener();
+
         } else {
             console.log(response.data); // Affiche les erreurs dans la console
         }
     });
 }
 
-// Écouteur d'événement initial pour le changement de catégorie
-var resetCategoryListener = function() {
-    jQuery('.label').off('click').on('click', function() {
-        jQuery('.label').text('Catégories');
-        // Ajoutez ici toute autre logique nécessaire lors du clic sur "Catégories"
-    });
-};
-
-jQuery(document).ready(function() {
-    resetCategoryListener(); // Initialise l'écouteur d'événement
-});
-
-// Écouteur d'événement pour le changement de catégorie
-jQuery(document).on('click', '.options .single-item', function(event) {
-    var category = jQuery(this).text().trim();
-    loadImagesByCategory(category);
-});
 
 
 /****FILTRE FORMAT */
@@ -128,31 +113,33 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 console.error("L'élément .select .options-formats n'a pas été trouvé.");
             }
+            // Charger les images en fonction du format sélectionné
+            loadImagesByFormat(selectedValue);
         });
     });
 
-    var element = document.querySelector('.single-item-format');
+   /* var element = document.querySelector('.single-item-format');
     if (element) {
         element.addEventListener('click', function() {
             element.classList.add('clicked');
         });
     } else {
         console.error("L'élément .single-item-format n'a pas été trouvé.");
-    }
+    }*/
 });
 
 
 /**** IV-Fonction pour charger les images en fonction du FORMAT sélectionné***/
 function loadImagesByFormat(format) {
     var data = {
-        action: 'load_filters',
+        action: 'load_filters_formats',
         nonce: jQuery('#selectFormats').data('nonce'),
         format: format
     };
 
     jQuery.post(jQuery('#selectFormats').data('ajaxurl'), data, function(response) {
         if (response.success) {
-            jQuery('').html(response.data);
+            jQuery('.image-container').html(response.data);
             // Ferme le filtre une fois que le format est sélectionnée
             toggleOptionsFormats();
             // Met à jour le texte du bouton de formats avec le format sélectionnée
@@ -164,24 +151,6 @@ function loadImagesByFormat(format) {
         }
     });
 }
-
-// Écouteur d'événement initial pour le changement de format
-var resetFormatListener = function() {
-    jQuery('.label-format').off('click').on('click', function() {
-        jQuery('.label-format').text('Formats');
-        // Ajoutez ici toute autre logique nécessaire lors du clic sur "Formats"
-    });
-};
-
-jQuery(document).ready(function() {
-    resetFormatListener(); // Initialise l'écouteur d'événement
-});
-
-// Écouteur d'événement pour le changement de format
-jQuery(document).on('click', '.options-formats .single-item-format', function(event) {
-    var format = jQuery(this).text().trim();
-    loadImagesByFormat(format);
-});
 
 
 /****FILTRE TRIER PAR */

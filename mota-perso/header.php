@@ -31,9 +31,10 @@
                     'items_wrap' => '%3$s', // Pour ne pas envelopper les éléments dans une liste
                 )); ?>
             </ul>
-            <label for="toggle" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" onclick="toggleBurger()">
-                <img id="burgerIcon" class="burger-icon" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/burger.svg'; ?>" alt="<?php echo 'burger'; ?>">
-            </label>
+            <div class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" onclick="toggleBurger()">
+    <img id="burgerIcon" class="burger-icon" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/burger.svg'; ?>" alt="Menu burger">
+            </div>
+
         </div>
     </nav>
 
