@@ -109,7 +109,7 @@ get_header();
                     <p>Vous aimerez aussi</p>
                 </div>
                 <div id="images-block">
-                    <?php get_template_part('templates-part/photo-block'); ?>
+                    <?php get_template_part('templates-part/photo-block2'); ?>
                 </div>
             </section>
                     

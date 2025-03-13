@@ -8,34 +8,29 @@
 
 
 /**** I-Gestion du bouton contact du Single page****/ 
-document.addEventListener('DOMContentLoaded', function() {
-    if(window.location.pathname === '/page1.html') {
-        // Charger le script spécifique à la page 1
-
-document.addEventListener('DOMContentLoaded', function () {
+function activButtonPlayModale(){
     const modal = document.getElementById('popup-container');
-    const btnSinglePage = document.querySelector('#btn-single-page');//bouton contact du single page
+    const btn = document.getElementById("button-contact");//bouton contact du nav Menu
+    const btnSinglePage = document.querySelector(".btn-single-page");//bouton contact du single page
     
-    // Ouverture de la modale au clic du bouton contact du single page
-    btnSinglePage.onclick = function() {
+    // Ouverture de la modale au clic du bouton contact du menu Header
+    btn.onclick = function() {
         modal.style.display = "flex";
-      }
+    }
     // Fermeture de la modale en cliquant à l'extérieur de la modale
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
-    });
+    // Ouverture de la modale au clic du bouton contact du single page
+    btnSinglePage.onclick = function() {
+      modal.style.display = "flex";
+    }
+    }
     
-    console.log('Chargement du script pour la page 1...');
-} else if(window.location.pathname === '/page2.html') {
-    // Charger le script spécifique à la page 2
-    console.log('Chargement du script pour la page 2...');
-}
-});
-
-
+    activButtonPlayModale();
+    
     /**** II-Pré-remplir la Ref de la popup modale-contact au clic du bouton contact du single page****/ 
     //je définis le bouton concernée, il s'agit de btn-single-page
     jQuery(document).ready(function($) {
@@ -47,12 +42,12 @@ document.addEventListener('DOMContentLoaded', function () {
             // Mettre à jour la valeur de l'élément input avec la référence
             $('#reference').val(referenceValue);        
         });
-        $(document).on("click", "#button-contact", function() {
+        $(document).on("click", ".button-contact", function() {
             // Si le bouton cliqué est le bouton de contact, ne pas afficher la référence
             $('#reference').val(""); // Effacer la référence
         });
     });
-    
+    activButtonPlayModale();
     
     /**** III-Afficher l'image au survol des flèches dans Single page  ****/ 
     function clicArrows(){
