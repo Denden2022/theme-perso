@@ -71,17 +71,22 @@ body {
   left: 15vw;
   top: 5px;
 }
-.site_header_menu li:hover, .site_header_menu #button-contact:hover {
+.site_header_menu li:hover, .site_header_menu .menu-item-apropos:hover, .site_header_menu #button-contact:hover {
   font-weight: bold;
+}
+
+.menu-item-apropos {
+  margin-left: 30px;
+  cursor: pointer;
 }
 
 #button-contact {
   font-family: "Space mono", sans-serif;
   font-size: 16px;
   border: none;
-  background-color: white;
   margin-left: 30px;
   cursor: pointer;
+  margin-top: 0px;
 }
 
 .menu-item {
@@ -216,10 +221,16 @@ body {
   cursor: pointer;
 }
 
+.wpcf7-submit:hover {
+  background-color: black;
+  color: white;
+}
+
 .wpcf7-form p label {
   font-size: 12px;
   font-family: "Poppins" sans-serif;
-  font-weight: 200;
+  font-weight: 500;
+  line-height: 18px;
 }
 
 /*
@@ -535,8 +546,8 @@ body {
   cursor: pointer;
 }
 
-.label,
-.sel .options div {
+#label,
+.sel .options {
   padding: 10px;
   text-transform: uppercase;
   font-size: 12px;

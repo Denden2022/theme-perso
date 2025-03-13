@@ -1,174 +1,51 @@
-/*** 
- * 
- * Script ajax pour : I-Charger les photos au clic du bouton "Charger Plus"
- *                  : II-Charger les photos au clic des filtres 
- *                          "1-Catégories" et "Formats"
- *                          "2-Trier par"
- * 
- * ***/
+// Ce code utilise jQuery et AJAX pour charger des publications de manière dynamique en fonction de filtres, gérer des interactions avec des éléments de l'interface utilisateur tels que des modales et des menus.
 
+// Attente que le DOM soit prêt
+jQuery(document).ready(function($) {
+    let page = 1; // Page initiale pour la pagination
 
-/***** I-Charger les photos lorsque l'on clique sur le bouton "Charger plus" ****/
-(function ($) {
-    $(document).ready(function () {
+    // Fonction pour charger des publications
+    function loadPosts() {
+        // Préparer les données à envoyer avec la requête AJAX
+        const data = {
+            action: 'load_photos',
+            page: page,
+            categorie: $('#categorie-filter').val(),
+            format: $('#format-filter').val(),
+            sort: $('#tri-filter').val()
+        };
+        console.log(data); // Afficher les données dans la console
 
-        // Chargement des photos en Ajax
-        $('.js-load-button').click(function (e) {
-
-            // Empêcher l'envoi classique du formulaire
-            e.preventDefault();
-
-            // L'URL qui réceptionne les requêtes Ajax
-            const ajaxurl = $(this).data('ajaxurl');
-
-            const data = {
-                action: $(this).data('action'),
-                nonce: $(this).data('nonce'),
-                postid: $(this).data('postid'),
+        // Effectuer une requête AJAX
+        $.ajax({
+            url: ajax_params.ajaxurl,
+            type: 'POST',
+            dataType: 'html',
+            data: data,
+            success: function(response) {
+                if (response) {
+                    $('#photo-gallery').append(response); // Ajouter la réponse à la galerie
+                    page++; // Incrémenter le numéro de page
+                } else {
+                    $('#load-more').hide(); // Masquer le bouton charger plus si aucune réponse
+                }
             }
-
-            // Stocker $(this) dans une variable pour éviter les problèmes de contexte
-            const $this = $(this);
-
-            // Requête Ajax en JS natif via Fetch
-            fetch(ajaxurl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'Cache-Control': 'no-cache',
-                    },
-                    body: new URLSearchParams(data),
-                })
-                .then(response => response.json())
-                .then(body => {
-                    console.log(body);
-
-                    // En cas d'erreur
-                    if (!body.success) {
-                        alert(body.data);
-                        return;
-                    }
-
-                    // Et en cas de réussite
-                    $('.block-load-photos').html(body.data); // Remplacer le contenu du conteneur par les nouvelles photos
-                    $('.block-load-photos').append($this); // Déplacer le bouton à la fin de la liste de photos
-                });
         });
+    }
 
+    // Gestion du clic sur le bouton 'charger plus'
+    $('#load-more').on('click', function() {
+        loadPosts();
     });
-})(jQuery);
 
-                /***** II-Charger les photos au clic des filtres ****/
-/***** 1-Charger le filtre lorsque l'on clique sur le filtre "Catégories" et "Formats" ****/
-(function ($) {
-    $(document).ready(function () {
-        // Charger les filtres lorsqu'on clique sur un élément de catégorie
-        $('.js-load-filters .single-item').on('click', function () {
-            const ajaxurl = $('#customSelect').data('ajaxurl');
-            const category = $(this).text().trim();
-            const format = $('#selectFormats').val(); // Récupérer la valeur du format sélectionné
-
-            const data = {
-                action: 'load_filters',
-                nonce: $('#customSelect').data('nonce'),
-                category: category,
-                format: format // Ajouter le format au data envoyé
-            };
-
-            fetchFilters(ajaxurl, data);
-        });
-
-        // Charger les filtres lorsqu'on clique sur un élément de format
-        $('.js-load-filters .single-item-format').on('click', function () {
-            const ajaxurl = $('#selectFormats').data('ajaxurl');
-            const format = $(this).text().trim();
-            const category = $('#customSelect').val(); // Récupérer la valeur de la catégorie sélectionnée
-
-            const data = {
-                action: 'load_filters',
-                nonce: $('#selectFormats').data('nonce'),
-                category: category, // Ajouter la catégorie au data envoyé
-                format: format
-            };
-
-            fetchFilters(ajaxurl, data);
-        });
-
-        // Fonction pour charger les filtres
-        function fetchFilters(ajaxurl, data) {
-            fetch(ajaxurl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Cache-Control': 'no-cache',
-                },
-                body: new URLSearchParams(data),
-            })
-            .then(response => response.json())
-            .then(body => {
-                console.log(body);
-                if (!body.success) {
-                    alert(body.data);
-                    return;
-                }
-                $('#images-container').html(body.data); // Afficher les images dans le conteneur
-
-                // Fermer les options après la sélection d'une catégorie ou d'un format
-                $('.options, .options-formats').removeClass('show');
-
-                // Condition pour réinitialiser le contenu si "Tous" est sélectionné à nouveau
-                if (data.category === 'all' || data.format === 'allFormats') {
-                    $('.block-image').show(); // Afficher toutes les images
-                } else {
-                    $('.block-image').hide(); // Cacher les images
-                }
-            });
-        }
+    // Gestion des changements sur les filtres
+    $('#categorie-filter, #format-filter, #tri-filter').on('change', function() {
+        $('#photo-gallery').html(''); // Effacer le contenu actuel de la galerie
+        page = 1; // Réinitialiser la pagination à la première page
+        loadPosts(); // Recharger les posts avec les nouveaux filtres
     });
-})(jQuery);
+    
 
-
-
-/***** 2-Charger le filtre lorsque l'on clique sur le filtre "Trier par" ****/
-(function ($) {
-    $(document).ready(function () {
-        $('.js-load-filters').change(function (e) {
-            e.preventDefault();
-
-            const ajaxurl = $(this).data('ajaxurl');
-            const order = $(this).val();
-
-            const data = {
-                action: 'load_filters', // Utiliser 'filters_orders' comme action
-                nonce: $(this).data('nonce'),
-                order: order
-            };
-
-            fetch(ajaxurl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Cache-Control': 'no-cache',
-                },
-                body: new URLSearchParams(data),
-            })
-            .then(response => response.json())
-            .then(body => {
-                console.log(body);
-                if (!body.success) {
-                    alert(body.data);
-                    return;
-                }
-                $('#images-container').html(body.data);
-
-                // Condition pour réinitialiser le contenu si "Formats" est sélectionné à nouveau
-                if (order === 'allOrders') {
-                    $('.block-image').show();
-                } else {
-                    $('.block-image').hide();
-                }
-            });
-        });
-    });
-})(jQuery);
-
+    // Chargement initial des posts
+    loadPosts();
+});

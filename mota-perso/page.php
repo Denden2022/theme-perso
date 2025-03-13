@@ -41,31 +41,15 @@
             <!---<Les filtres>-->
     <section class="filters-photos">
         <div class="filters">
-        <?php include('includes/filter.php'); ?>
-        </div>
-
-        <div class="photo-block-home">
-            <?php
-                get_template_part('templates-part/photo-block');
-            ?>    
-        </div>
-
-            <!--Filtre : les images de la catégorie sélectionnée apparaitront ici-->
-        <div id="images-container"></div>
-
-        <!---<Le bouton "charger-plus">-->
-        <div class="block-button">
-            <button class="js-load-button"
-                data-postid="<?php echo get_the_ID(); ?>"
-                data-nonce="<?php echo wp_create_nonce('load_photos'); ?>"
-                data-action="load_photos"
-                data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>">Charger plus
-            </button>
-        </div>
-                <!--Charger plus : les photos chargés, apparaitront ici-->
-            <div class="block-load-photos"></div>
-        
+            <?php include('includes/filter.php'); ?>
+        </div>        
     </section>
+
+    <div id="photo-gallery" class="photo-gallery">
+        <!-- Les articles seront chargés ici par AJAX -->
+    </div>
+
+    <button id="load-more">Charger plus</button>
 </main>
 
  <?php get_footer(); ?>

@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('popup-container');
-    const btnSinglePage = document.querySelector('.btn-single-page');//bouton contact du single page
+    const btnSinglePage = document.querySelector('#btn-single-page');//bouton contact du single page
     
     // Ouverture de la modale au clic du bouton contact du single page
     btnSinglePage.onclick = function() {
