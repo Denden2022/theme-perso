@@ -47,7 +47,7 @@ function activButtonPlayModale(){
             $('#reference').val(""); // Effacer la référence
         });
     });
-    activButtonPlayModale();
+  
     
     /**** III-Afficher l'image au survol des flèches dans Single page  ****/ 
     function clicArrows(){

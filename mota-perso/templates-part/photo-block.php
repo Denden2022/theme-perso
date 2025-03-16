@@ -13,7 +13,7 @@
         <?php while ($photo_query->have_posts()) : $photo_query->the_post(); ?>
             <div id="same-image" class="same-image image-container">
                 <?php get_template_part('templates-part/eye-overlay') ?>
-                <?php echo the_post_thumbnail(); ?>
+                <?php echo get_the_post_thumbnail(); ?>
             </div>
     <?php
         endwhile;

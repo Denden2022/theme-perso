@@ -49,13 +49,14 @@
         left: -50px;
         padding-top: 300px;
         @include anim-menu;
-        & button {
+        & p {
             background-color: $color-red;
             font-size: 44px;
             color: white;
         }
         & a {
-            color: white;    
+            color: white;
+            width: 100%;    
         }
     }
 
