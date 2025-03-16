@@ -6,6 +6,7 @@
  */
 ?>
 
+
                 <!---Photos apparentées--->               
 <div class="block-image">
     <?php  $photo_query = new WP_Query( get_query_var('photo_query')); ?>
@@ -15,6 +16,7 @@
                 <?php get_template_part('templates-part/eye-overlay') ?>
                 <?php echo get_the_post_thumbnail(); ?>
             </div>
+            
     <?php
         endwhile;
         endif;

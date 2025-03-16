@@ -54,6 +54,7 @@ jQuery(document).ready(function ($) {
         lightboxImage.attr('alt', imageAlt);
         $('.lightbox-ref').text("BF" + imageRef);
         $('.lightbox-cat').text(imageCat);
+        console.log(currentImage);
     }
 
     // Fonction pour afficher l'image précédente dans la lightbox

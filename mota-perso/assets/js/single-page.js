@@ -40,9 +40,10 @@ function activButtonPlayModale(){
             // Récupérer la valeur de la référence
             var referenceValue = $("#reference_value").text();
             // Mettre à jour la valeur de l'élément input avec la référence
-            $('#reference').val(referenceValue);        
+            console.log(referenceValue);
+            $('#reference').val(referenceValue);      
         });
-        $(document).on("click", ".button-contact", function() {
+        $(document).on("click", "#button-contact", function() {
             // Si le bouton cliqué est le bouton de contact, ne pas afficher la référence
             $('#reference').val(""); // Effacer la référence
         });

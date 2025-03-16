@@ -48,7 +48,9 @@
     <div id="photo-gallery" class="photo-gallery">
         <!-- Les articles seront chargés ici par AJAX -->
     </div>
-
+    <?php
+                get_template_part('templates-part/photo-block2');
+            ?> 
     <button id="load-more">Charger plus</button>
 </main>
 
