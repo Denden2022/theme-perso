@@ -49,7 +49,7 @@
         <!-- Les articles seront chargés ici par AJAX -->
     </div>
     <?php
-                get_template_part('templates-part/photo-block2');
+               // get_template_part('templates-part/photo-block2');
             ?> 
     <button id="load-more">Charger plus</button>
 </main>
